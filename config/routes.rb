@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'info/tos'
-  get 'info/privacy'
+  get 'tos' => 'info#tos'
+  get 'privacy' => 'info#privacy'
   root 'home#index'
   get 'home/index'
   get 'service_logger/service'
