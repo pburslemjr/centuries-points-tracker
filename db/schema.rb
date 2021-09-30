@@ -10,9 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_09_30_232500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adminlist", force: :cascade do |t|
+    t.integer "memberID"
+  end
+
+  create_table "event_list", force: :cascade do |t|
+    t.integer "eventlistID"
+    t.integer "memberID"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "eventID"
+    t.integer "eventlistID"
+    t.date "date"
+    t.string "description"
+    t.boolean "isMandatory"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "memberlist", force: :cascade do |t|
+    t.integer "memberID"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.integer "memberID"
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "service_hour_list", force: :cascade do |t|
+    t.integer "servicehourlistID"
+    t.integer "memberID"
+  end
+
+  create_table "service_hours", force: :cascade do |t|
+    t.integer "servicehoursID"
+    t.integer "servicehourlistID"
+    t.date "date"
+    t.float "hours"
+    t.string "description"
+    t.boolean "isApproved"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
