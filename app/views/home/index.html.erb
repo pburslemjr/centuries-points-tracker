@@ -33,12 +33,6 @@
     </style>
   </head>
   <body>
-    <%= google_sign_in_button 'Sign in with my Google account', proceed_to: create_login_url %>
-
-    <%= google_sign_in_button image_tag('google_logo.png', alt: 'Google'), proceed_to: create_login_url %>
-    
-    <%= google_sign_in_button proceed_to: create_login_url do %>
-      Sign in with my <%= image_tag('google_logo.png', alt: 'Google') %> account
-    <% end %>
+    <%= google_sign_in_button 'Sign in with my Google account', proceed_to: create_login_url %>  
   </body>
 </html>
