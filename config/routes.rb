@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   get 'dashboard/properties'
   get 'dashboard/reports'
+  get 'admin/create_event'
   get 'tos' => 'info#tos'
   get 'privacy' => 'info#privacy'
   root 'home#index'

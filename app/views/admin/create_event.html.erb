@@ -1,0 +1,50 @@
+<div class="container mt-5">
+<div class="rendered-form">
+    <div class="">
+        <h1 access="false" id="control-299159">Create Event<br></h1></div>
+    <div class="">
+        <p access="false" id="control-9311842">
+            <div>This is an admin page to create events and eventually same them to a database. WIP
+                <br>
+            </div>
+        </p>
+    </div>
+    <div class="formbuilder-text form-group field-event-name mt-3">
+        <label for="event-name" class="formbuilder-text-label">Event Name
+            <br>
+        </label>
+        <input type="text" placeholder="Give this event a name..." class="form-control" name="event-name" access="false" id="event-name">
+    </div>
+    
+    <div class="formbuilder-date form-group field-event-date mt-3">
+        <label for="event-date" class="formbuilder-date-label">Event Date
+            <br>
+        </label>
+        <input type="date" placeholder="Pick a date for this event." class="form-control" name="event-date" access="false" id="event-date">
+    </div>
+
+    <div class="formbuilder-time form-group mt-3">
+      <label for="event-time">Event time: </label>
+      <input id="event-time" type="time" name="event-time" value="13:30">
+    </div>
+
+    <div class="formbuilder-textarea form-group field-event-description mt-3">
+        <label for="event-description" class="formbuilder-textarea-label">Event Description
+            <br>
+        </label>
+        <textarea type="textarea" placeholder="Give a description for this event..." class="form-control" name="event-description" access="false" id="event-description"></textarea>
+    </div>
+    <div class="formbuilder-checkbox-group form-group field-checkbox-is-mandatory mt-3">
+        <label for="checkbox-is-mandatory" class="formbuilder-checkbox-group-label">Options</label>
+        <div class="checkbox-group">
+            <div class="formbuilder-checkbox">
+                <input name="checkbox-is-mandatory[]" access="false" id="checkbox-is-mandatory-0" value="is-mandatory" type="checkbox" checked="checked">
+                <label for="checkbox-is-mandatory-0">Is Mandatory</label>
+            </div>
+        </div>
+    </div>
+    <div class="formbuilder-button form-group field-button-submit-event mt-3">
+        <button type="submit" class="btn-primary btn" name="button-submit-event" access="false" style="primary" id="button-submit-event">Create</button>
+    </div>
+</div>
+</div>
