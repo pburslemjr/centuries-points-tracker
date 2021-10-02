@@ -1,0 +1,3 @@
+class ServiceHour < ApplicationRecord
+    
+end

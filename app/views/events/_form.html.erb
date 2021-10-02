@@ -1,0 +1,25 @@
+    <%= error_messages_for(f.object) %>
+    
+    <div class="card mb-4">
+        <div class="card-body" summary="Event form fields">
+          <div class="mb-3">
+            <%= f.label :name, {class: "form-label"} %>
+            <%= f.text_field :name, {class: "form-control"} %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :description, {class: "form-label"} %>
+            <%= f.text_area :description, {class: "form-control"} %>
+          </div>
+          <div class="mb-4">
+            <%= f.label :date, {class: "form-label"} %>
+            <%= f.date_field :date, {class: "form-control"} %>
+          </div>
+          <div class="mb-2">
+            <%= f.label "Make Mandatory", {class: "form-label"} %>
+            <%= f.check_box :isMandatory, {class: "form-check-label"} %>
+          </div>
+        </div>
+    </div>
+
+
+  

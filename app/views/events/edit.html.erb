@@ -1,0 +1,15 @@
+<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
+
+<div class="events edit">
+  <h2>Edit Event</h2>
+
+  <%= form_for(@event) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit "Edit Event", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

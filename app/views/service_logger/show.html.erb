@@ -1,0 +1,33 @@
+<%= link_to("<< Back to List", service_logger_index_path, :class => 'back-link') %>
+
+<div class="events show">
+  <h2>Show Service Hours Log</h2>
+
+  <table summary="Event detail view">
+    <tr>
+      <th>Hours</th>
+      <td><%= @service.hours %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= @service.description %></td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @service.date %></td>
+    </tr>
+    <tr>
+      <th>Activity</th>
+      <td><%= @service.activity %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @service.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @service.updated_at %></td>
+    </tr>
+  </table>
+
+</div>
