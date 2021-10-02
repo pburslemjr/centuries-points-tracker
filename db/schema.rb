@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_034417) do
+ActiveRecord::Schema.define(version: 2021_10_02_125234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 2021_10_02_034417) do
     t.float "hours"
     t.string "description"
     t.boolean "isApproved"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "service_log_hours", force: :cascade do |t|
+    t.float "hours"
+    t.date "date"
+    t.string "activity"
+    t.string "description_service"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

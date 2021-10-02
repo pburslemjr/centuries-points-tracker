@@ -1,0 +1,9 @@
+<% content_for(:html_title) { 'Service Logger' } %>
+
+<h1>Log Hours</h1>
+
+<%= render 'form', book: @service %>
+
+<%= link_to("Home", {controller: "home", action: "index"}) %>
+<br/>
+<%= link_to("Points Tracker", {controller: "point_tracker", action: "tracker"}) %>
