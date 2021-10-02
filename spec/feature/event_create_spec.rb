@@ -1,3 +1,5 @@
+# https://www.codewithjason.com/rails-integration-tests-rspec-capybara/
+
 require 'rails_helper'
 
 RSpec.describe 'Creating an event', type: :feature do
@@ -17,4 +19,12 @@ RSpec.describe 'Creating an event', type: :feature do
     expect(page).to have_content('2021-10-05')
     expect(page).to have_content('2000-01-01 17:30:00 UTC')
   end
+
+  scenario "invalid inputs" do
+    visit new_event_path
+    fill_in 'Name', with: ''
+    click_on 'Create Event'
+    expect(page).to have_content("Name can't be blank")
+  end
+
 end
