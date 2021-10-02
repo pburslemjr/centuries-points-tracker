@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
+  get 'events/index'
+  get 'events/show'
+  get 'events/new'
+  get 'events/edit'
+  get 'events/delete'
+
+  resources :events do
+    member do
+      get :delete
+    end
+  end  
+  
   get 'dashboard/index'
   get 'dashboard/properties'
   get 'dashboard/reports'
-  get 'admin/create_event'
+  # get 'admin/create_event'
   get 'tos' => 'info#tos'
   get 'privacy' => 'info#privacy'
   root 'home#index'
