@@ -13,8 +13,16 @@
       <td><%= @event.description %></td>
     </tr>
     <tr>
+      <th>Location</th>
+      <td><%= @event.location %></td>
+    </tr>
+    <tr>
       <th>Date</th>
       <td><%= @event.date %></td>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <td><%= @event.time %></td>
     </tr>
     <tr>
       <th>Is Mandatory?</th>
@@ -29,5 +37,8 @@
       <td><%= @event.updated_at %></td>
     </tr>
   </table>
+
+    <div class="col-2"><%= link_to("Edit", edit_event_path(@event), :class => 'action edit') %></div>
+    <div class="col-2"><%= link_to("Delete", delete_event_path(@event), :class => 'action delete') %></div>
 
 </div>
