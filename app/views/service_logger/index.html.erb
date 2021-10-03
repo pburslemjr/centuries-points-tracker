@@ -26,9 +26,9 @@
         <td><%= service_logger.isApproved %></td>
 
         <td class="row">
-        <div class="col-2"><%= link_to("Show", service_logger_show_path, :class => 'action show') %></div>
-        <div class="col-2"><%= link_to("Edit", service_logger_edit_path, :class => 'action show') %></div>
-        <div class="col-2"><%= link_to("Delete", service_logger_delete_path, :class => 'action show') %></div>
+        <div class="col-2"><%= link_to("Show", service_logger_path(service_logger), :class => 'action show') %></div>
+        <div class="col-2"><%= link_to("Edit", edit_service_logger_path(service_logger), :class => 'action show') %></div>
+        <div class="col-2"><%= link_to("Delete", delete_service_logger_path(service_logger), :class => 'action show') %></div>
         
       </td>
 

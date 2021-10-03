@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
-  #events page
-  get 'events/index'    
-  get 'events/show'
-  get 'events/new'
-  get 'events/edit'
-  get 'events/delete'
-
+  root 'home#index'
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
@@ -19,6 +13,12 @@ Rails.application.routes.draw do
       get :delete
     end
   end  
+
+  resources :service_logger do
+    member do
+      get :delete
+    end
+  end  
   
   get 'dashboard/index'
   get 'dashboard/properties'
@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   # get 'admin/create_event'
   get 'tos' => 'info#tos'
   get 'privacy' => 'info#privacy'
-  root 'home#index'
   get 'home/index'
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
