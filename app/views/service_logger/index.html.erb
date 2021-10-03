@@ -6,9 +6,11 @@
   <thead class="header">
     <tr>
       <th>Hours</th>
+      <th>Service Hours ID</th>
+      <th>Service Hour List ID</th>
       <th>Date</th>
-      <th>Activity</th>
       <th>Description</th>
+      <th>Approval</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +19,11 @@
     <% @service_loggers.each do |service_logger| %>
       <tr>
         <td><%= service_logger.hours %></td>
+        <td><%= service_logger.servicehoursID %></td>
+        <td><%= service_logger.servicehourlistID %></td>
         <td><%= service_logger.date %></td>
-        <td><%= service_logger.activity %></td>
-        <td><%= service_logger.description_service %></td>
+        <td><%= service_logger.description %></td>
+        <td><%= service_logger.isApproved %></td>
 
         <td class="row">
         <div class="col-2"><%= link_to("Show", service_logger_show_path, :class => 'action show') %></div>

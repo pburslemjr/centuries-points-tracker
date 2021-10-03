@@ -1,19 +1,19 @@
 class ServiceLoggerController < ApplicationController
 
   def index
-    @service_loggers = ServiceLogHour.all
+    @service_loggers = ServiceHour.all
   end
 
   def show
-    @service_logger = ServiceLogHour.find(params[:id])
+    @service_logger = ServiceHour.find(params[:id])
   end
 
   def new
-    @service_logger = ServiceLogHour.new
+    @service_logger = ServiceHour.new
   end
 
   def create
-    @service_logger = ServiceLogHour.new(service_logger_params)
+    @service_logger = ServiceHour.new(service_logger_params)
     if @service_logger.save
        redirect_to service_logger_index_path, :notice => "Your hours have been sent for approval. Thank you for submitting your hours."
     else
@@ -24,6 +24,6 @@ class ServiceLoggerController < ApplicationController
 
   private
     def service_logger_params
-      params.require(:service_logger).permit(:hours, :date, :activity, :description_service)
+      params.permit(:hours, :date, :servicehoursID, :servicehourlistID, :description, :isApproved)
     end
 end

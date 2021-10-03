@@ -5,19 +5,31 @@
     <%= form.number_field :hours, class:"form-control" %>
   </div>
 
+  
+<div class="mb-3">
+    <%= form.label :'Service Hours ID' %>
+    <%= form.number_field :servicehoursID, class:"form-control" %>
+  </div>
+
+  
+<div class="mb-3">
+    <%= form.label :'Service Hour List ID' %>
+    <%= form.number_field :servicehourlistID, class:"form-control" %>
+  </div>
+
   <div class="mb-3">
-    <%= form.label :'date volunteered' %>
+    <%= form.label :'date' %>
     <%= form.date_field :date, { :start_year => 1980, class:"form-control"} %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :activity %>
-    <%= form.text_field :activity, class:"form-control" %>
-  </div>
+  <div class="mb-2">
+            <%= form.label "Approval", {class: "form-label"} %>
+            <%= form.check_box :isApproved, as: :boolean, checked_value: true, unchecked_value: false %>
+          </div>
 
   <div class="mb-3">
-    <%= form.label :description_service %>
-    <%= form.text_field :description_service, class:"form-control" %>
+    <%= form.label :description %>
+    <%= form.text_field :description, class:"form-control" %>
   </div>
 
   <div class="mb-3">
