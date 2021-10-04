@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'service_logger/edit'
   get 'service_logger/delete'
   get 'service_logger/show'
+  
 
   resources :events do
     member do
@@ -32,5 +33,6 @@ Rails.application.routes.draw do
   get 'point_tracker/tracker'
   get 'login', to: 'logins#new'
   get 'login/create', to: 'logins#create', as: :create_login
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
