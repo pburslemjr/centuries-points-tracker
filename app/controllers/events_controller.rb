@@ -5,7 +5,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
+    if @event.nil?
+      flash[:not_found] = "Not found"
+      redirect_to(events_path)
+    end
   end
 
   def new
@@ -17,12 +21,17 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to(events_path)
     else
-      render('new')
+      flash[:errors] = @event.errors.full_messages
+      redirect_to new_event_path
     end
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
+    if @event.nil?
+      flash[:not_found] = "Not found"
+      redirect_to(events_path)
+    end
   end
 
   def update
@@ -30,7 +39,8 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to(event_path(@event))
     else
-      render('edit')
+      flash[:errors] = @event.errors.full_messages
+      redirect_to edit_event_path
     end
   end
 
@@ -48,5 +58,6 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :description, :date, :isMandatory, :time, :location)
     end
+
 
 end
