@@ -10,7 +10,7 @@ class LoginsController < ApplicationController
         
         redirect_to(point_tracker_tracker_url)
       else
-        redirect_to(login_url), alert: 'authentication_failed'
+        #redirect_to(login_url)
       end
     end
   
