@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       Member.memberID = user.id
       Member.name = user.name
       Member.email = user.email_address
-      
+      logger.info "Updated Member: create was called! ********************************"
       redirect_to point_tracker_tracker_url
     else
       redirect_to request.referrer, alert: 'authentication_failed'
