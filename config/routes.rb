@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'logins#login'
+  root 'login#login'
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
