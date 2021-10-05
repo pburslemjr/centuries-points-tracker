@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'home#index', as: home
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
