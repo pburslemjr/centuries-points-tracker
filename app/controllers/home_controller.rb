@@ -7,12 +7,14 @@ class HomeController < ApplicationController
       Member.memberID = user.id
       Member.name = user.name
       Member.email = user.email_address
-      logger.info "Updated Member: create was called! ********************************"
+      puts "Updated Member: create was called! ********************************"
       redirect_to point_tracker_tracker_url
     else
       redirect_to request.referrer, alert: 'authentication_failed'
     end
   end
+
+  helper_method :create
 
   private
     def authenticate_with_google
