@@ -8,9 +8,9 @@ class HomeController < ApplicationController
       Member.name = user.name
       Member.email = user.email_address
       
-      redirect_to request.referrer
+      redirect_to point_tracker_tracker_url
     else
-      redirect_to("home#index"), alert: 'authentication_failed'
+      redirect_to request.referrer, alert: 'authentication_failed'
     end
   end
 
