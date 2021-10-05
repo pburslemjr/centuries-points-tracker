@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'logins#new'
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
   get 'point_tracker/tracker'
+  get 'home/signedin' => 'logins#home'
   get 'login', to: 'logins#new'
   get 'login/create', to: 'logins#create', as: :create_login
   
