@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_221606) do
+ActiveRecord::Schema.define(version: 2021_10_10_231510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,10 @@ ActiveRecord::Schema.define(version: 2021_10_10_221606) do
   end
 
   create_table "event_list", force: :cascade do |t|
-    t.integer "eventlistID"
     t.integer "memberID"
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "eventID"
     t.integer "eventlistID"
     t.date "date"
     t.string "description"
@@ -43,7 +41,6 @@ ActiveRecord::Schema.define(version: 2021_10_10_221606) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.integer "memberID"
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -51,12 +48,10 @@ ActiveRecord::Schema.define(version: 2021_10_10_221606) do
   end
 
   create_table "service_hour_list", force: :cascade do |t|
-    t.integer "servicehourlistID"
     t.integer "memberID"
   end
 
   create_table "service_hours", force: :cascade do |t|
-    t.integer "servicehoursID"
     t.integer "servicehourlistID"
     t.date "date"
     t.float "hours"
