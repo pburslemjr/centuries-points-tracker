@@ -19,7 +19,7 @@
 
     <% flash.each do |type, msg| %>
       <div class="container alert alert-danger">
-        <%= msg %>
+        <%= msg.join(",") %>
       </div>
     <% end %>
 

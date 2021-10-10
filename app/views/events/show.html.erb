@@ -18,11 +18,11 @@
     </tr>
     <tr>
       <th>Date</th>
-      <td><%= @event.date %></td>
+      <td><%= @event.formatDate %></td>
     </tr>
     <tr>
       <th>Time</th>
-      <td><%= @event.time %></td>
+      <td><%= @event.formatTime %></td>
     </tr>
     <tr>
       <th>Is Mandatory?</th>
@@ -42,3 +42,4 @@
     <div class="col-2"><%= link_to("Delete", delete_event_path(@event), :class => 'action delete') %></div>
 
 </div>
+

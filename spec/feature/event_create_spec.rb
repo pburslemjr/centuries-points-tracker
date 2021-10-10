@@ -14,10 +14,8 @@ RSpec.describe 'Creating an event', type: :feature do
     visit events_path
     expect(page).to have_content('Orientation for new members')
     expect(page).to have_content('Get to meet the team, sign documents, and pay dues')
-    expect(page).to have_content('Get to meet the team, sign documents, and pay dues')
     expect(page).to have_content('ZACH 207')
-    expect(page).to have_content('2021-10-05')
-    expect(page).to have_content('2000-01-01 17:30:00 UTC')
+    expect(page).to have_content('10/05/2021')
   end
 
   scenario "invalid inputs" do

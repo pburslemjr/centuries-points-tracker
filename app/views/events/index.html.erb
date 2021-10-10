@@ -1,8 +1,12 @@
+<% content_for(:html_title) { 'Events' } %>
+
 <div class="events index">
   <h2>Events</h2>
   
   <%= link_to("Add New Event", new_event_path, :class => 'action new') %>
 
+
+  <h3>Upcoming</h3>
   <table class="mt-3 table listing" summary="Event list">
     <tr class="header">
       <th>#</th>
@@ -14,15 +18,16 @@
       <th>Time</th>
       <th>Action</th>
     </tr>
-    <% @events.each do |event| %>
+    <% @upcoming_events.each do |event| %>
     <tr>
       <td><%= event.id %></td>
       <td><%= event.name %></td>
       <td><%= event.description %></td>
       <td><%= event.location %></td>
       <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
-      <td><%= event.date %></td>
-      <td><%= event.time %></td>
+      <td><%= event.formatDate %></td>
+      <td><%= event.formatTime %></td>
+
       <td>
         <div><%= link_to("Show", event_path(event), :class => 'action show') %></div>
         <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
@@ -31,4 +36,39 @@
     </tr>
     <% end %>
   </table>
+
+
+  <h3>Past</h3>
+  <table class="mt-3 table listing" summary="Event list">
+    <tr class="header">
+      <th>#</th>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Is Mandatory</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Action</th>
+    </tr>
+    <% @past_events.each do |event| %>
+    <tr>
+      <td><%= event.id %></td>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.location %></td>
+      <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
+      <td><%= event.formatDate %></td>
+      <td><%= event.formatTime %></td>
+
+
+      <td>
+        <div><%= link_to("Show", event_path(event), :class => 'action show') %></div>
+        <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
+        <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+
 </div>
