@@ -26,4 +26,8 @@ class Event < ApplicationRecord
         end
     end
 
+    def formatLocation
+        return self.location == '' ? '--' : self.location
+    end
+
 end
