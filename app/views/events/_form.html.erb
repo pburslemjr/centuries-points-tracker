@@ -1,4 +1,6 @@
     <%= error_messages_for(f.object) %>
+
+
     
     <div class="card mb-4">
         <div class="card-body" summary="Event form fields">
@@ -14,6 +16,7 @@
             <%= f.label :location, {class: "form-label"} %>
             <%= f.text_field :location, {class: "form-control"} %>
           </div>
+
           <div class="row">
             <div class="col">
               <div class="mb-4">
@@ -27,11 +30,14 @@
                 <%= f.time_field :time, {class: "form-control"} %>
               </div>
             </div>
-          </div>
+
           <div class="mb-2">
             <%= f.label "Make Mandatory", {class: "form-label"} %>
             <%= f.check_box :isMandatory, {class: "form-check-label"} %>
           </div>
+
+
+
         </div>
     </div>
 
