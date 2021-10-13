@@ -10,62 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_231510) do
+ActiveRecord::Schema.define(version: 2021_10_13_225326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_list", force: :cascade do |t|
-    t.integer "memberID"
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "email_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "event_list", force: :cascade do |t|
-    t.integer "memberID"
+  create_table "approved_hours", force: :cascade do |t|
+    t.integer "service_hour_id"
+    t.integer "admin_id"
+    t.date "date_approved"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "attendence_list", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "event_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "eventlistID"
     t.date "date"
     t.string "description"
     t.boolean "isMandatory"
+    t.string "location"
+    t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.time "time"
-    t.string "location"
-    t.datetime "datetime"
-  end
-
-  create_table "member_list", force: :cascade do |t|
-    t.integer "memberID"
   end
 
   create_table "members", force: :cascade do |t|
+    t.string "email_id"
     t.string "name"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "service_hour_list", force: :cascade do |t|
-    t.integer "memberID"
   end
 
   create_table "service_hours", force: :cascade do |t|
-    t.integer "servicehourlistID"
+    t.integer "member_id"
     t.date "date"
-    t.float "hours"
+    t.integer "approval_list_id"
     t.string "description"
-    t.boolean "isApproved"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "service_log_hours", force: :cascade do |t|
-    t.float "hours"
-    t.date "date"
-    t.string "activity"
-    t.string "description_service"
+    t.integer "hours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
