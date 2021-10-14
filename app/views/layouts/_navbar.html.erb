@@ -1,10 +1,15 @@
 <div>
+  Century Mens Society
+  <br>
+  Welcome, <%= Member.name %>
   <nav>
     <ul>
-    <li>Century Mens Society</li>
-    <li><%= link_to "Home", point_tracker_tracker_url %></li>
+    <li></li>
+    <li><%= link_to "Home", home_index_url %></li>
     <li><%= link_to "Service Hours", service_logger_index_path %></li>
     <li><%= link_to "Events", events_path %></li>
+    <li><%= link_to "Log out", login_logout_path %></li>
+    
     </ul>
   </nav>
 </div>

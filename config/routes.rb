@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'login#index'
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
   get 'service_logger/edit'
   get 'service_logger/delete'
   get 'service_logger/show'
+  get 'login/index', to:'login#index'
   
 
   resources :events do
@@ -30,7 +31,8 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
-  get 'point_tracker/tracker'
+  get 'login/logout', to: 'login#logout'
+  
   
   
   
