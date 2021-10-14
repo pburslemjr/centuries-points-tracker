@@ -44,10 +44,10 @@ class LoginController < ApplicationController
   
     private
       def authenticate_with_google
-        if flash[:google_sign_in] && id_token = flash[:google_sign_in][:id_token]
+        if id_token = flash[:google_sign_in][:id_token]
           Member.find_by email_id: GoogleSignIn::Identity.new(id_token).user_id
           
-        elsif flash[:google_sign_in] && error = flash[:google_sign_in][:error]
+        elsif error = flash[:google_sign_in][:error]
           logger.error "Google authentication error: #{error}"
           nil
         
@@ -55,13 +55,13 @@ class LoginController < ApplicationController
       end
 
       def create
-        if flash[:google_sign_in] && id_token = flash[:google_sign_in][:id_token]
+        if id_token = flash[:google_sign_in][:id_token]
           cookies.signed[:user_id] = GoogleSignIn::Identity.new(id_token).user_id
           Member.create(name: GoogleSignIn::Identity.new(id_token).name, email_id: cookies.signed[:user_id])
           Member.find_by email_id: cookies.signed[:user_id]
 
           
-        elsif flash[:google_sign_in] && error = flash[:google_sign_in][:error]
+        elsif error = flash[:google_sign_in][:error]
           logger.error "Google authentication error: #{error}"
           nil
         else
