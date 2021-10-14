@@ -9,14 +9,16 @@ class LoginController < ApplicationController
 
       
     end
-    
-  
     def index
+
+    end
+  
+    def click
       if user = authenticate_with_google
         cookies.signed[:user_id] = user.id
         
                
-        redirect_to(home_index_url)
+        redirect_to(login_index_url)
       else
         
         cookies.signed[:user_id] = 'this is a test user id'
