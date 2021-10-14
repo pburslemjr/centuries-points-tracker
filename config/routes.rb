@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'service_logger/delete'
   get 'service_logger/show'
   get 'login/index', to:'login#index'
+  get 'login/click', to:'login#click'
   
 
   resources :events do
