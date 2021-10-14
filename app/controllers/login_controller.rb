@@ -16,6 +16,7 @@ class LoginController < ApplicationController
     
   
     def click
+        cookies[:debugNew] = flash[:google_sign_in][:id_token]
       if :doCreate == false
         if user = authenticate_with_google
           cookies.signed[:user_id] = user.id
@@ -63,8 +64,9 @@ class LoginController < ApplicationController
           
         elsif error = flash[:google_sign_in][:error]
           logger.error "Google authentication error: #{error}"
+
           nil
-        else
+          
           
         
         end
