@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    Member.find_by email_id: cookies.signed[:user_id]
   end
 
   def create
