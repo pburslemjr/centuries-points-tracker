@@ -9,8 +9,8 @@
 <title>0 points</title>
 
 <div>
-<p>Service Hours</p>
-<table>
+<h2>Service Hours</h3>
+<table class="mt-3 table listing">
   <thead>
     <tr>
       <th>Date</th>
@@ -18,20 +18,35 @@
       <th>Approved</th>
     </tr>
   </thead>
-
- 
+  <tbody>
+    <% @service_hours.each do |service_hour| %>
+      <tr>
+        <td><%= service_hour.date %></td>
+        <td><%= service_hour.hours%></td>
+        <td><%= service_hour.isApproved%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 </div>
 
 <div>
-<p>Events</p>
-<table>
+<h2>Events</h2>
+<table class="mt-3 table listing">
   <thead>
     <tr>
       <th>Date</th>
       <th>Mandatory</th>
     </tr>
   </thead>  
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.date %></td>
+        <td><%= event.isMandatory%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>
