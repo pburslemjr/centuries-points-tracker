@@ -60,6 +60,8 @@ class LoginController < ApplicationController
         elsif flash[:google_sign_in] && error = flash[:google_sign_in][:error]
           logger.error "Google authentication error: #{error}"
           nil
+        else
+          redirect_to(service_logger_index_path)
         
         end
       end
