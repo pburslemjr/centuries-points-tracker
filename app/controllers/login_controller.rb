@@ -65,7 +65,7 @@ class LoginController < ApplicationController
           logger.error "Google authentication error: #{error}"
           nil
         else
-          redirect_to(events_path)
+          
         
         end
       end
