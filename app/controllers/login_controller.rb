@@ -54,7 +54,9 @@ class LoginController < ApplicationController
 
       def create
         if flash[:google_sign_in] && id_token = flash[:google_sign_in][:id_token]
-          Member.create(name: GoogleSignIn::Identity.new(id_token).name, email_id: GoogleSignIn::Identity.new(id_token).user_id)
+          cookies.signed[:user_id] = GoogleSignIn::Identity.new(id_token).user_id
+          Member.create(name: GoogleSignIn::Identity.new(id_token).name, email_id: cookies.signed[:user_id])
+          Member.find_by email_id: cookies.signed[:user_id]
           
           
         elsif flash[:google_sign_in] && error = flash[:google_sign_in][:error]
