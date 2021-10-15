@@ -35,9 +35,9 @@ class LoginController < ApplicationController
           cookies.signed[:user_id] = user.id
           redirect_to(home_index_url)
         else
-          cookies[:debugNew] = flash[:google_sign_in][:id_token]
+          
           cookies[:debug] = "doCreate = t  auth = f"
-          cookies.signed[:user_id] = 'failed to create account'
+          #cookies.signed[:user_id] = 'failed to create account'
           redirect_to(home_index_url)
         end
       end
@@ -46,6 +46,7 @@ class LoginController < ApplicationController
   
     private
       def authenticate_with_google
+        cookies.signed[:user_id] = flash[:google_sign_in][:id_token]
         if id_token = flash[:google_sign_in][:id_token]
           Member.find_by email_id: GoogleSignIn::Identity.new(id_token).user_id
           
@@ -57,6 +58,7 @@ class LoginController < ApplicationController
       end
 
       def create
+        cookies.signed[:user_id] = flash[:google_sign_in][:id_token]
         if id_token = flash[:google_sign_in][:id_token]
           cookies.signed[:user_id] = GoogleSignIn::Identity.new(id_token).user_id
           Member.create(name: GoogleSignIn::Identity.new(id_token).name, email_id: cookies.signed[:user_id])

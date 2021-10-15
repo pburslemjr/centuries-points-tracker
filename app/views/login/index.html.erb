@@ -35,6 +35,9 @@
   <body>
       
   <%= check_box :doCreate,  "Create Account" %>
-    <%= google_sign_in_button 'Sign in with my Google account', proceed_to: login_click_path %>
+    <%= google_sign_in_button 'Sign in with my Google account', proceed_to: login_click_url %>
+    <%= google_sign_in_button proceed_to: login_click_url do %>
+      Sign in with my account
+    <% end %>
   </body>
 </html>
