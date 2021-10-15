@@ -1,6 +1,8 @@
 <% content_for(:html_title) { 'Points Tracker' } %>
 
-<h1>This is the point tracker page :-)</h1>
+<h1>You're logged in! Welcome, <%= @admin.full_name%></h1>
+
+<%= link_to "Sign Out", destroy_admin_session_path %>
 
 
 <!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
@@ -19,11 +21,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @service_hours.each do |service_hour| %>
+    <% @events.each do |event| %>
       <tr>
-        <td><%= service_hour.date %></td>
-        <td><%= service_hour.hours%></td>
-        <td><%= service_hour.isApproved%></td>
+        <td><%= cookies[:current_admin_id] %></td>
       </tr>
     <% end %>
   </tbody>
