@@ -1,10 +1,15 @@
 class CreateAdmins < ActiveRecord::Migration[6.1]
   def change
     create_table :admins do |t|
-      t.string :name
-      t.string :email_token
-      t.timestamps
+      t.string :email, null: false
+      t.string :full_name
+      t.string :uid
+      t.string :avatar_url
+
+      t.timestamps null: false
     end
-    
+
+
+    add_index :admins, :email, unique: true
   end
 end

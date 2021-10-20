@@ -15,15 +15,14 @@ ActiveRecord::Schema.define(version: 2021_10_19_152528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
   create_table "admins", force: :cascade do |t|
-    t.string "name"
-    t.string "email_token"
+    t.string "email", null: false
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
   create_table "approved_hours", force: :cascade do |t|
@@ -39,10 +38,6 @@ ActiveRecord::Schema.define(version: 2021_10_19_152528) do
     t.integer "event_id"
   end
 
-  create_table "event_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
   create_table "events", force: :cascade do |t|
     t.date "date"
     t.string "description"
@@ -56,19 +51,11 @@ ActiveRecord::Schema.define(version: 2021_10_19_152528) do
     t.string "name"
   end
 
-  create_table "member_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
   create_table "members", force: :cascade do |t|
     t.string "email_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "service_hour_list", force: :cascade do |t|
-    t.integer "memberID"
   end
 
   create_table "service_hours", force: :cascade do |t|
@@ -77,15 +64,6 @@ ActiveRecord::Schema.define(version: 2021_10_19_152528) do
     t.integer "approval_list_id"
     t.string "description"
     t.integer "hours"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "service_log_hours", force: :cascade do |t|
-    t.float "hours"
-    t.date "date"
-    t.string "activity"
-    t.string "description_service"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
