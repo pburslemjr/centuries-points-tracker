@@ -1,3 +1,8 @@
+  <% if events.length() == 0 %>
+    <p>There are no events here</p>
+  <% else %>
+  
+  
   <table class="mt-3 table listing" summary="Event list">
     <tr class="header">
       <th>#</th>
@@ -20,10 +25,12 @@
       <td><%= event.formatTime %></td>
 
       <td>
+        <div><%= link_to("Attend", event_path(event), :class => 'action show') %></div>
         <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
         <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
         <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
       </td>
     </tr>
+    <% end %>
     <% end %>
   </table>

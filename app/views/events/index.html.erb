@@ -1,10 +1,17 @@
 <% content_for(:html_title) { 'Events' } %>
 
-<div class="events index">
-  <h2>Events</h2>
-  
-  <%= link_to("Add New Event", new_event_path, :class => 'action new') %>
+<div class="mt-5 container events index">
 
+  <h1 class="lead-1">Your Events</h1>
+  <%= render :partial => 'table', locals: { events: [] } %>
+  <hr>
+
+  
+
+  <div class="clearfix ">
+    <h1 class="float-start">All Events</h1>
+    <%= link_to("Add New Event", new_event_path, :class => 'float-end btn btn-primary action new') %>
+  </div>
 
   <h3>Upcoming</h3>
     <%= render :partial => 'table', locals: { events: @upcoming_events } %>
