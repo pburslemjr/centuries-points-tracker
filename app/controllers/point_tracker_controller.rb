@@ -3,7 +3,7 @@ class PointTrackerController < ApplicationController
   def tracker
     @events = Event.all
     @service_hours = ServiceHour.all
-    @admin = Admin.find_by(uid: cookies[:current_admin_id])
+    @member = Member.find_by(email_id: cookies[:current_member_id])
   end
   
 end

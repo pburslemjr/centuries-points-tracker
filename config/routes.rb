@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   root to: 'point_tracker#tracker'
-  devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
-  devise_scope :admin do
-    get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
-    get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
+  devise_for :members, controllers: { omniauth_callbacks: 'members/omniauth_callbacks' }
+  devise_scope :member do
+    get 'members/sign_in', to: 'members/sessions#new', as: :new_member_session
+    get 'members/sign_out', to: 'members/sessions#destroy', as: :destroy_member_session
   end
   #root 'home#index'
   #service page

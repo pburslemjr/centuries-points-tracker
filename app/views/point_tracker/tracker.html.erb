@@ -1,9 +1,6 @@
 <% content_for(:html_title) { 'Points Tracker' } %>
 
-<h1>You're logged in! Welcome, <%= @admin.full_name%></h1>
-
-<%= link_to "Sign Out", destroy_admin_session_path %>
-
+<h1>You're logged in! Welcome, <%= @member.name%></h1>
 
 <!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
 <br/>
@@ -23,7 +20,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= cookies[:current_admin_id] %></td>
+        <td><%= cookies[:current_member_id] %></td>
       </tr>
     <% end %>
   </tbody>
