@@ -1,0 +1,7 @@
+<h1>Edit Page</h1>
+
+<%= render 'form', book: @service %>
+
+<%= link_to("Back", {controller: "service_logger", action: "index"}, class: "btn btn-primary") %>
+
+<%= link_to("Points Tracker", {controller: "point_tracker", action: "tracker"}, class: "btn btn-primary") %>

@@ -1,33 +1,7 @@
-<%= link_to("<< Back to List", service_logger_index_path, :class => 'back-link') %>
+<h2>Show Service Hours Log</h2>
 
-<div class="events show">
-  <h2>Show Service Hours Log</h2>
+<%= render 'showForm' %>
 
-  <table summary="Event detail view">
-    <tr>
-      <th>Hours</th>
-      <td><%= @service_logger.hours %></td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td><%= @service_logger.description %></td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td><%= @service_logger.date %></td>
-    </tr>
-    <tr>
-      <th>Activity</th>
-      <td><%= @service_logger.isApproved %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @service_logger.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @service_logger.updated_at %></td>
-    </tr>
-  </table>
+<br/>
 
-</div>
+<%= link_to("Back", service_logger_index_path, class: "btn btn-primary") %>

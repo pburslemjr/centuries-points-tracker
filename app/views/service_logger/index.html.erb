@@ -7,7 +7,6 @@
     <tr>
       <th>Hours</th>
       <th>Service Hours ID</th>
-      <th>Service Hour List ID</th>
       <th>Date</th>
       <th>Description</th>
       <th>Approval</th>
@@ -18,20 +17,16 @@
   <tbody>
     <% @service_loggers.each do |service_logger| %>
       <tr>
-        <td><%= service_logger.hours %></td>        
-        <td><%= service_logger.servicehourlistID %></td>
+        <td><%= service_logger.hours %></td>
+        <td><%= service_logger.id %></td>
         <td><%= service_logger.date %></td>
         <td><%= service_logger.description %></td>
         <td><%= service_logger.isApproved %></td>
-
         <td class="row">
-        <div class="col-2"><%= link_to("Show", service_logger_path(service_logger), :class => 'action show') %></div>
-        <div class="col-2"><%= link_to("Edit", edit_service_logger_path(service_logger), :class => 'action show') %></div>
-        <div class="col-2"><%= link_to("Delete", delete_service_logger_path(service_logger), :class => 'action show') %></div>
-        
-      </td>
-
-        
+          <div class="col-2"><%= link_to("Show", service_logger_path(service_logger)) %></div>
+          <div class="col-2"><%= link_to("Edit", edit_service_logger_path(service_logger)) %></div>
+          <div class="col-2"><%= link_to("Delete", delete_service_logger_path(service_logger)) %></div>
+        </td>
       </tr>
     <% end %>
   </tbody>
