@@ -18,9 +18,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @events.each do |event| %>
+    <% @service_hours.each do |service| %>
       <tr>
-        <td><%= cookies[:current_member_id] %></td>
+        <td><%= service.formatDate %></td>
+        <td><%= service.hours %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +41,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.date %></td>
+        <td><%= event.formatDate %></td>
         <td><%= event.isMandatory%></td>
       </tr>
     <% end %>

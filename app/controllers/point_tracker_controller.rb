@@ -1,9 +1,9 @@
 class PointTrackerController < ApplicationController
 
   def tracker
-    @events = Event.all
-    @service_hours = ServiceHour.all
     @member = Member.find_by(email_id: cookies[:current_member_id])
+    @events = Event.all
+    @service_hours = Service.where(member_id: @member.id)
   end
   
 end

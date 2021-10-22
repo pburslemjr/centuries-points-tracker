@@ -1,0 +1,30 @@
+  <% if service_hours.length() == 0 %>
+    <p>There are no service hours logged</p>
+  <% else %>
+  
+  
+  <table class="mt-3 table listing" summary="Event list">
+    <tr class="header">
+      <th>#</th>
+      <th>Hours</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>memid</th>
+    </tr>
+    <% service_hours.each do |service| %>
+    <tr>
+      <td><%= service.id %></td>
+      <td><%= service.hours %></td>
+      <td><%= service.description %></td>
+      <td><%= service.formatDate %></td>
+      <td><%= service.member_id %></td>
+
+      <td>
+        <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
+        <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
+        <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>

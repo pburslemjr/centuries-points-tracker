@@ -1,0 +1,13 @@
+<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+
+<div class="services edit">
+  <h2>Delete Service Hour</h2>
+
+  <%= form_for(@service, :method => 'delete') do |f| %>
+    <p>Are you sure you want to permanently delete this service hour?</p>
+    <div class="form-buttons">
+      <%= f.submit("Delete Service") %>
+    </div>
+
+  <% end %>
+</div>

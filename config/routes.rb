@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end  
 
-  resources :service_logger do
+  resources :services do
     member do
       get :delete
     end

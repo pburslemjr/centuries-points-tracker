@@ -1,0 +1,16 @@
+<% content_for(:html_title) { 'Service' } %>
+
+<div class="mt-5 container services index">
+
+  <h1 class="lead-1">Your Service</h1>
+  <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
+  <hr>
+
+  
+
+  <div class="clearfix ">
+    <%= link_to("Add New Service", new_service_path, :class => 'float-end btn btn-primary action new') %>
+  </div>
+
+
+</div>
