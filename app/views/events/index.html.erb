@@ -3,7 +3,7 @@
 <div class="mt-5 container events index">
 
   <h1 class="lead-1">Your Events</h1>
-  <%= render :partial => 'table', locals: { events: @my_events } %>
+  <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
   <hr>
 
   <div class="clearfix ">
@@ -12,10 +12,10 @@
   </div>
 
   <h3>Upcoming</h3>
-    <%= render :partial => 'table', locals: { events: @upcoming_events } %>
+    <%= render :partial => 'table', locals: { events: @upcoming_events, attended: false } %>
 
   <h3>Past</h3>
-    <%= render :partial => 'table', locals: { events: @past_events } %>
+    <%= render :partial => 'table', locals: { events: @past_events, attended: false } %>
 
 
 </div>
