@@ -1,6 +1,6 @@
 <% content_for(:html_title) { 'Points Tracker' } %>
 
-<h1>You're logged in! Welcome, <%= current_member.isAdmin%></h1>
+<h1>You're logged in! Welcome, <%= current_member.name%></h1>
 
 <!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
 <br/>
@@ -12,6 +12,7 @@
 <table class="mt-3 table listing">
   <thead>
     <tr>
+      <th>Description</th>
       <th>Date</th>
       <th>Number of Hours</th>
       <th>Approved</th>
@@ -20,8 +21,12 @@
   <tbody>
     <% @service_hours.each do |service| %>
       <tr>
+        <td><%= service.description %></td>
         <td><%= service.formatDate %></td>
         <td><%= service.hours %></td>
+        <td><%= image_tag service.getApprovedImgPath, height: 30 %></td>
+        
+        
       </tr>
     <% end %>
   </tbody>

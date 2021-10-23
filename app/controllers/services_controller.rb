@@ -1,11 +1,29 @@
 class ServicesController < ApplicationController
 
-    def index      
-        @service_hours = Service.order(:date)
+    def index
+      @service_hours = nil
+      @greeting = "Your Logged Service Hours"      
+      if current_member.isAdmin == true
+        @service_hours = Service.all.order("date desc")
+        @service_hours_approved = Service.where(isApproved: true).limit(20).order('date asc')
+        @service_hours_unapproved = Service.where(isApproved: false).limit(20).order('date asc')
+        @greeting = "All Service Hours"
+      else
+        @service_hours = Service.where(:member_id => current_member.id).limit(20).order('date desc')
+        
+
+      end      
+        
     end
   
     def show
-      @service = Service.find_by_id(params[:id])
+      @service = nil
+      if current_member.isAdmin 
+        @service = Service.all.order("date desc")
+        
+      else
+        @service = Service.where(:member_id => current_member.id).limit(20).order('date asc')
+      end
       if @service.nil?
         flash[:not_found] = "Not found"
         redirect_to(services_path)
@@ -14,12 +32,14 @@ class ServicesController < ApplicationController
   
     def new
       @service = Service.new
+      
     end
   
     def create
   
       @service = Service.new(service_params)
-      @service.member_id = Member.find_by(email_id: cookies[:current_member_id]).id
+      @service.member_id =  current_member.id
+      @service.isApproved = false
       if @service.save
         redirect_to(services_path)
       else
@@ -53,12 +73,20 @@ class ServicesController < ApplicationController
       @service.destroy
       redirect_to(services_path)
     end
+
+    def approve
+      @service = Service.find(params[:id])
+      @service.update(isApproved: true)
+      redirect_to(services_path)     
+    end
+
+    
   
     private
       def service_params
         params.require(:service).permit(:hours, :date, :description)
       end
-  
-  
+
+      
   end
   

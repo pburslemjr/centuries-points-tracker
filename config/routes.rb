@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :services do
     member do
       get :delete
+      post :approve
     end
   end  
   
