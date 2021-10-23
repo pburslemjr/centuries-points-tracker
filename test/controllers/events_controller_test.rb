@@ -1,27 +1,27 @@
-require "test_helper"
+require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
+  test 'should get index' do
     get events_index_url
     assert_response :success
   end
 
-  test "should get show" do
+  test 'should get show' do
     get events_show_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get events_new_url
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get events_edit_url
     assert_response :success
   end
 
-  test "should get delete" do
+  test 'should get delete' do
     get events_delete_url
     assert_response :success
   end

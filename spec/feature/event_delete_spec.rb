@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting an event', type: :feature do
-  scenario 'success' do
+  it 'success' do
     Event.create!(name: 'Orientation', description: 'not important')
     visit events_path
     expect(page).to have_content('Orientation')

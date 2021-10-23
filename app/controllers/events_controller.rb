@@ -1,17 +1,15 @@
 class EventsController < ApplicationController
-
   def index
     puts "Current time #{Time.now}"
 
     @upcoming_events = Event.order(:datetime).where('datetime > ? or datetime IS NULL', Time.now)
     @past_events = Event.order(:datetime).where('datetime <= ?', Time.now)
-    
   end
 
   def show
     @event = Event.find_by_id(params[:id])
     if @event.nil?
-      flash[:not_found] = "Not found"
+      flash[:not_found] = 'Not found'
       redirect_to(events_path)
     end
   end
@@ -21,11 +19,10 @@ class EventsController < ApplicationController
   end
 
   def create
-
     @event = Event.new(event_params)
 
     if @event.time.nil? ^ @event.date.nil?
-      flash[:errors] = ["Please enter both a day and time, or enter neither."]
+      flash[:errors] = ['Please enter both a day and time, or enter neither.']
       render(new_event_path)
       return
     end
@@ -33,6 +30,13 @@ class EventsController < ApplicationController
     @event.createDateTime
 
     if @event.save
+
+      attendance = AttendanceList.new(event: @event)
+      member = Member.find_by(email_id: cookies[:current_member_id]).id
+      attendance << member
+      attendance.save
+
+
       redirect_to(events_path)
     else
       render('new')
@@ -41,9 +45,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find_by_id(params[:id])
-    if @event.nil?
-      render('edit')
-    end
+    render('edit') if @event.nil?
   end
 
   def update
@@ -67,9 +69,8 @@ class EventsController < ApplicationController
   end
 
   private
-    def event_params
-      params.require(:event).permit(:name, :description, :date, :isMandatory, :time, :location)
-    end
 
-
+  def event_params
+    params.require(:event).permit(:name, :description, :date, :isMandatory, :time, :location)
+  end
 end
