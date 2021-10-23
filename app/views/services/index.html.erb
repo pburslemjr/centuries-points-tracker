@@ -2,8 +2,14 @@
 
 <div class="mt-5 container services index">
 
-  <h1 class="lead-1">Your Service</h1>
+  <h1 class="lead-1"><%=@greeting%></h1>
+  <% if current_member.isAdmin%>
+  <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
+  <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
+  <%else%>
   <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
+  <%end%>
+  
   <hr>
 
   

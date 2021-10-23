@@ -11,4 +11,12 @@ class Service < ApplicationRecord
         end
     end
 
+    def getApprovedImgPath
+        if self.isApproved?
+            return "check.png"
+        else
+            return "ex.png"
+        end
+    end
+
 end

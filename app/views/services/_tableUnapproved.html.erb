@@ -1,5 +1,5 @@
   <% if service_hours.length() == 0 %>
-    <p>There are no service hours logged</p>
+    <p>All Service Hours Approved!</p>
   <% else %>
   
   
@@ -19,7 +19,9 @@
     <td><%= service.hours %></td>
     <td><%= image_tag service.getApprovedImgPath, height: 30 %></td>
 
-      <td>        
+      <td>
+      
+        <div><%= button_to 'Approve', {:controller => "services", :action => "approve", :id => service.id}, {:method=>:post}%></div>
         <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
         <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
         <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
