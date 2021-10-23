@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :description, presence: true, length: { minimum: 3, maximum: 4095 }
-  has_one :attendance_list
+  has_and_belongs_to_many :members
   
 
   def formatDate
@@ -30,7 +30,11 @@ class Event < ApplicationRecord
   end
 
   def formatLocation
-    location == '' ? '--' : location.truncate(15)
+    if location.nil? or location == ''
+      location = '--'
+    else
+      location == location.truncate(15)
+    end
   end
 
   def formatName

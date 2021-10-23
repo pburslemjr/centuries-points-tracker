@@ -7,11 +7,6 @@ class AddMissingTables < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    create_table :attendence_list do |t|      
-      t.integer :member_id
-      t.integer :event_id
-    end
-
     create_table :service_hours do |t|
       t.integer :member_id
       t.date :date

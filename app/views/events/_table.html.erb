@@ -26,6 +26,7 @@
 
       <td>
         <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
+        <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
         <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
         <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
         <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
