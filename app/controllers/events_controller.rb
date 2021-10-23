@@ -30,6 +30,13 @@ class EventsController < ApplicationController
     @event.createDateTime
 
     if @event.save
+
+      attendance = AttendanceList.new(event: @event)
+      member = Member.find_by(email_id: cookies[:current_member_id]).id
+      attendance << member
+      attendance.save
+
+
       redirect_to(events_path)
     else
       render('new')
