@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   resources :events do
     member do
       get :delete
+      get :attend
     end
   end  
+
+  # get 'events/attend'
 
   resources :services do
     member do

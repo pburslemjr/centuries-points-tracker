@@ -2,6 +2,10 @@ class EventsController < ApplicationController
   def index
     puts "Current time #{Time.now}"
 
+    @my_events = []
+    Member.find_by(uid: cookies[:current_member_id]).attendance_list.each do |e|
+      @my_events.append(e.event)
+    end
     @upcoming_events = Event.order(:datetime).where('datetime > ? or datetime IS NULL', Time.now)
     @past_events = Event.order(:datetime).where('datetime <= ?', Time.now)
   end
@@ -30,11 +34,14 @@ class EventsController < ApplicationController
     @event.createDateTime
 
     if @event.save
+      
+      member = Member.find_by(uid: cookies[:current_member_id])
 
       attendance = AttendanceList.new(event: @event)
-      member = Member.find_by(email_id: cookies[:current_member_id]).id
-      attendance << member
+      # attendance.members << member
       attendance.save
+      # member.attendance_list << attendance
+      # member.save
 
 
       redirect_to(events_path)
@@ -65,6 +72,22 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
+    redirect_to(events_path)
+  end
+
+  def attend
+    puts "Hello World"
+
+    @event = Event.find(params[:id])
+    member = Member.find_by(uid: cookies[:current_member_id])
+
+    attendance = @event.attendance_list
+    attendance.members << member
+    attendance.save
+
+    member.attendance_list << attendance
+    member.save
+
     redirect_to(events_path)
   end
 

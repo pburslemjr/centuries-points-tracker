@@ -3,7 +3,7 @@
 <div class="mt-5 container events index">
 
   <h1 class="lead-1">Your Events</h1>
-  <%= render :partial => 'table', locals: { events: [] } %>
+  <%= render :partial => 'table', locals: { events: @my_events } %>
   <hr>
 
   <div class="clearfix ">
