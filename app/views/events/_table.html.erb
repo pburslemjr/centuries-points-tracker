@@ -17,8 +17,8 @@
     <% events.each do |event| %>
     <tr>
       <td><%= event.id %></td>
-      <td><%= event.name %></td>
-      <td><%= event.description %></td>
+      <td><%= event.formatName %></td>
+      <td class="text-break"><%= event.description %></td>
       <td><%= event.formatLocation %></td>
       <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
       <td><%= event.formatDate %></td>

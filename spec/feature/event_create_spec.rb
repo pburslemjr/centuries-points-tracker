@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating an event', type: :feature do
-  scenario 'valid inputs' do
+  it 'valid inputs' do
     visit new_event_path
     fill_in 'Name', with: 'Orientation for new members'
     fill_in 'Description', with: 'Get to meet the team, sign documents, and pay dues'
@@ -18,11 +18,10 @@ RSpec.describe 'Creating an event', type: :feature do
     expect(page).to have_content('10/05/2021')
   end
 
-  scenario "invalid inputs" do
+  it 'invalid inputs' do
     visit new_event_path
     fill_in 'Name', with: ''
     click_on 'Create Event'
     expect(page).to have_content("Name can't be blank")
   end
-
 end

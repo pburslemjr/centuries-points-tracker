@@ -3,7 +3,7 @@
 <%= link_to("<< Back to List", events_path, :class => 'back-link') %>
 
 
-<div class="events new">
+<div class="events container new">
   <h2>Create Event</h2>
   <p>This is a prototype page</p>
 
@@ -11,7 +11,7 @@
 
     <%= render(:partial => 'form', :locals => {:f => f}) %>
 
-    <div class="form-buttons">
+    <div class="mx-3 form-buttons">
       <%= f.submit "Create Event", class: "btn btn-primary" %>
     </div>
 
