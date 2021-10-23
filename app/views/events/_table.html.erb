@@ -10,6 +10,7 @@
       <th>Description</th>
       <th>Location</th>
       <th>Is Mandatory</th>
+      <th>Attendees</th>
       <th>Date</th>
       <th>Time</th>
       <th>Action</th>
@@ -21,6 +22,7 @@
       <td class="text-break"><%= event.description %></td>
       <td><%= event.formatLocation %></td>
       <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
+      <td><%=event.members.count%></td>
       <td><%= event.formatDate %></td>
       <td><%= event.formatTime %></td>
 
