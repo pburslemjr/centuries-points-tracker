@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting an event', type: :feature do
-  it 'success' do
+
+  before do
     Event.create!(name: 'Orientation', description: 'not important')
+  end
+
+  it 'success' do
+    visit '/'
+    click_on 'Login with Google'
     visit events_path
     expect(page).to have_content('Orientation')
     click_on 'Delete'

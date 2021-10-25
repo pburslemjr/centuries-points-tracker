@@ -2,8 +2,13 @@
 
 require 'rails_helper'
 
+
+
 RSpec.describe 'Creating an event', type: :feature do
+
   it 'valid inputs' do
+    visit '/'
+    click_on 'Login with Google'
     visit new_event_path
     fill_in 'Name', with: 'Orientation for new members'
     fill_in 'Description', with: 'Get to meet the team, sign documents, and pay dues'
@@ -19,9 +24,18 @@ RSpec.describe 'Creating an event', type: :feature do
   end
 
   it 'invalid inputs' do
+    visit '/'
+    click_on 'Login with Google'
     visit new_event_path
     fill_in 'Name', with: ''
     click_on 'Create Event'
     expect(page).to have_content("Name can't be blank")
   end
+
+
+  it 'not logged in' do
+    visit new_event_path
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  end
+
 end
