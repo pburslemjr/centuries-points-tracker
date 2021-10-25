@@ -44,7 +44,7 @@
     </tr>
   </thead>  
   <tbody>
-    <% @events.each do |event| %>
+    <% @current_member.events.each do |event| %>
       <tr>
         <td><%= event.format_date %></td>
         <td><%= event.isMandatory%></td>

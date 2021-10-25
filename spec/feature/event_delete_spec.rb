@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting an event', type: :feature do
-
   before do
     Event.create!(name: 'Orientation', description: 'not important')
   end
