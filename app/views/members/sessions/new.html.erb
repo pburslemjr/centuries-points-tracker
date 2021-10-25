@@ -8,11 +8,6 @@
       font-weight: bold;
   }
   
-  .text-box {
-      margin-left: 44vw;
-     margin-top: 42vh;
-  }
-  
   .btn:link,
   .btn:visited {
       text-transform: uppercase;
@@ -78,23 +73,38 @@
       }
   }
     </style>
-  </head>
-  <body>
-  <div class="text-box">
-    <%= link_to "Login with Google", member_google_oauth2_omniauth_authorize_path, {class: 'btn btn-white btn-animate'} %>
+
+    <div style="margin-top:3vh; text-align:center; font-size:30px">
+      <% if flash.any? %>
+        <% flash.each do |key, value| -%>
+          <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
+        <% end -%>
+      <% end %>
+    </div>
     
-  </div>
+    
+  </head>
+
+  <body>
     <section class="vh-100">
       <div class="container py-5 h-100">
-
         <div class="row d-flex align-items-center justify-content-center h-100">
+
           <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="/assets/logo.png" class="img-fluid" alt="CMS logo">
+          <p>
             
+            <div style="margin-top:5vh; text-align:center;">
+              <img src="/assets/logo.png" class="img-fluid" alt="CMS logo">
+            </div>
+            <div style="margin-top:5vh; text-align:center; margin-left:-250px;">
+              <%= link_to "Login with Google", member_google_oauth2_omniauth_authorize_path, {class: 'btn btn-white btn-animate'} %>
+            </div>
+              
+            </p>
           </div>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            
-          </div>
+
+
+
         </div>
       </div>
     </section>
