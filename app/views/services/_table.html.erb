@@ -5,8 +5,6 @@
   
   <table class="mt-3 table listing" summary="Event list">
     <tr class="header">
-      
-      
       <th>Description</th>
       <th>Date</th>
       <th>Hours</th>      
@@ -19,11 +17,11 @@
     <td><%= service.hours %></td>
     <td><%= image_tag service.approved_img_path, height: 30 %></td>
 
-      <td>        
-        <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
-        <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
-        <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
-      </td>
+    <td>        
+      <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
+      <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
+      <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
+    </td>
     </tr>
     <% end %>
     <% end %>
