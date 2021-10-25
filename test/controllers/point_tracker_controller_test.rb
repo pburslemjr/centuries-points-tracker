@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class PointTrackerControllerTest < ActionDispatch::IntegrationTest
-  test "should get tracker" do
+  test 'should get tracker' do
     get point_tracker_tracker_url
     assert_response :success
   end

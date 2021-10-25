@@ -9,7 +9,9 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
       sign_in_and_redirect member, event: :authentication
     else
-      flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+      flash[:alert] =
+        t 'devise.omniauth_callbacks.failure', kind: 'Google',
+                                               reason: "#{auth.info.email} is not authorized."
       redirect_to new_member_session_path
     end
   end
@@ -30,7 +32,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @from_google_params ||= {
       uid: auth.uid,
       email: auth.info.email,
-      full_name: auth.info.name,
+      full_name: auth.info.name
     }
   end
 

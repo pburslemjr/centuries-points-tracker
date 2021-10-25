@@ -1,13 +1,14 @@
 class EventsController < ApplicationController
   def index
-
     member = Member.find_by(uid: cookies[:current_member_id])
     @my_events = member.events
 
     ordered = Event.order(:datetime)
 
-    @upcoming_events = ordered.where('datetime > ? or datetime IS NULL', Time.now).reject {|w| @my_events.include? w}
-    @past_events = ordered.where('datetime <= ?', Time.now).reject {|w| @my_events.include? w}
+    @upcoming_events = ordered.where('datetime > ? or datetime IS NULL', Time.now).reject do |w|
+      @my_events.include? w
+    end
+    @past_events = ordered.where('datetime <= ?', Time.now).reject { |w| @my_events.include? w }
   end
 
   def show

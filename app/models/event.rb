@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :description, presence: true, length: { minimum: 3, maximum: 4095 }
   has_and_belongs_to_many :members
-  
+
   # scope :filter_by_member, -> (member) { joins(:members).where.not( members: { id: member.id } ) }
 
   def formatDate
@@ -30,16 +30,7 @@ class Event < ApplicationRecord
     end
   end
 
-  def formatLocation
-    if location.nil? or location == ''
-      location = '--'
-    else
-      location == location.truncate(15)
-    end
-  end
-
   def formatName
     name.truncate(30)
   end
-
 end

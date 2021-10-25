@@ -1,7 +1,5 @@
 class InfoController < ApplicationController
-  def tos
-  end
+  def tos; end
 
-  def privacy
-  end
+  def privacy; end
 end

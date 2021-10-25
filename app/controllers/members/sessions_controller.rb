@@ -10,6 +10,6 @@ class Members::SessionsController < Devise::SessionsController
   end
 
   def new
-    render :layout => false
+    render layout: false
   end
 end

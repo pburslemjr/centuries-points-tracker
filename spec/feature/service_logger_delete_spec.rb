@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting a service logger entry', type: :feature do
-  scenario 'success' do
+  it 'success' do
     ServiceHour.create!(description: 'not important')
     visit service_logger_index_path
     expect(page).to have_content('not important')
