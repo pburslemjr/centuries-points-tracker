@@ -6,16 +6,16 @@
   <table summary="Service detail view">
     <tr>
       <th>Hours</th>
-      <td><%= @service.hours %></td>
+      <td><%= @service.first.hours %></td>
       
     </tr>
     <tr>
       <th>Description</th>
-      <td><%= @service.description %></td>
+      <td><%= @service.first.description %></td>
     </tr>
     <tr>
       <th>Date</th>
-      <td><%= @service.format_date %></td>
+      <td><%= @service.first.format_date %></td>
     </tr>
   </table>
 
