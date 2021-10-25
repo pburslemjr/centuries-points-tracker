@@ -22,9 +22,9 @@
     <% @service_hours.each do |service| %>
       <tr>
         <td><%= service.description %></td>
-        <td><%= service.formatDate %></td>
+        <td><%= service.format_date %></td>
         <td><%= service.hours %></td>
-        <td><%= image_tag service.getApprovedImgPath, height: 30 %></td>
+        <td><%= image_tag service.approved_img_path, height: 30 %></td>
         
         
       </tr>
@@ -46,7 +46,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.formatDate %></td>
+        <td><%= event.format_date %></td>
         <td><%= event.isMandatory%></td>
       </tr>
     <% end %>

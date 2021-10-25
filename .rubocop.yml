@@ -18,6 +18,7 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
     - '.git/**/*'
+    - 'Gemfile'
 
 Metrics/LineLength:
   Max: 100
@@ -28,6 +29,12 @@ Metrics/BlockLength:
     - spec/**/*
 
 Style/Documentation:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Style/GuardClause:
   Enabled: false
 
 Layout/IndentationWidth:

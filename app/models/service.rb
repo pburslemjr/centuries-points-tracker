@@ -3,7 +3,7 @@ class Service < ApplicationRecord
   validates :date, presence: true
   validates :description, presence: true, length: { minimum: 3, maximum: 4095 }
 
-  def formatDate
+  def format_date
     if date.nil?
       '--'
     else
@@ -11,7 +11,7 @@ class Service < ApplicationRecord
     end
   end
 
-  def getApprovedImgPath
+  def approved_img_path
     if isApproved?
       'check.png'
     else

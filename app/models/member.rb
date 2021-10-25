@@ -3,7 +3,7 @@ class Member < ApplicationRecord
   has_and_belongs_to_many :events
 
   def self.from_google(uid:, full_name:, email:)
-    return nil unless Whitelist.find_by(email: email) != nil
+    return nil unless Whitelist.find_by(email: email).nil?
 
     create_with(uid: uid, name: full_name, email: email,
                 isAdmin: Whitelist.find_by(email: email).isAdmin).find_or_create_by!(uid: uid)

@@ -43,7 +43,7 @@ class ServicesController < ApplicationController
   end
 
   def edit
-    @service = Service.find_by_id(params[:id])
+    @service = Service.find_by(params[:id])
     render('edit') if @service.nil?
   end
 

@@ -15,9 +15,9 @@
     <% service_hours.each do |service| %>
     <tr>
     <td><%= service.description %></td>
-    <td><%= service.formatDate %></td>
+    <td><%= service.format_date %></td>
     <td><%= service.hours %></td>
-    <td><%= image_tag service.getApprovedImgPath, height: 30 %></td>
+    <td><%= image_tag service.approved_img_path, height: 30 %></td>
 
       <td>
         <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>

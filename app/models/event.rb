@@ -3,9 +3,7 @@ class Event < ApplicationRecord
   validates :description, presence: true, length: { minimum: 3, maximum: 4095 }
   has_and_belongs_to_many :members
 
-  # scope :filter_by_member, -> (member) { joins(:members).where.not( members: { id: member.id } ) }
-
-  def formatDate
+  def format_date
     if datetime.nil?
       '--'
     else

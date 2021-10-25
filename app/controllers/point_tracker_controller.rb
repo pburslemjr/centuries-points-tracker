@@ -5,7 +5,7 @@ class PointTrackerController < ApplicationController
       @service_hours = Service.where(member_id: current_member.id).order('date desc')
     else
       @service_hours = Service.all.order('date desc')
-      print('Service is in admin view')
+      Rails.logger.debug 'Service is in admin view'
     end
   end
 end
