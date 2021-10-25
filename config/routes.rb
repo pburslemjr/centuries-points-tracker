@@ -31,6 +31,12 @@ Rails.application.routes.draw do
       post :approve
     end
   end  
+
+  resources :whitelists do
+    member do
+      get :delete
+    end
+  end
   
   get 'dashboard/index'
   get 'dashboard/properties'

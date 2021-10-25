@@ -1,0 +1,15 @@
+<%= link_to("<< Back to List", whitelists_path, :class => 'back-link') %>
+
+<div class="whitelists container edit">
+  <h2>Edit User</h2>
+
+  <%= form_for(@user) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit "Edit User", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>
