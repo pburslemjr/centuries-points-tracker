@@ -14,9 +14,11 @@
 
   
 
+  <% if !current_member.isAdmin %>
   <div class="clearfix ">
     <%= link_to("Add New Service", new_service_path, :class => 'float-end btn btn-primary action new') %>
   </div>
+  <% end %>
 
 
 </div>
