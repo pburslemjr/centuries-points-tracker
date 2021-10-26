@@ -37,4 +37,15 @@ RSpec.describe Event, type: :model do
     subject.date = nil
     expect(subject).to be_valid
   end
+
+  it 'has a member' do
+    subject.date = nil
+    member_a = Member.create!(name: 'Jeff')
+    member_b = Member.create!(name: 'Janice')
+    subject.members << member_a
+    subject.members << member_b
+
+    expect(subject.members.first).to eq member_a
+    expect(subject.members.second).to eq member_b
+  end
 end

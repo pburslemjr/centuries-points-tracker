@@ -1,22 +1,16 @@
 class WhitelistsController < ApplicationController
   def index
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @users = Whitelist.all
   end
 
   def new
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.new
   end
 
   def create
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.new(whitelist_params)
     if @user.save
       redirect_to(events_path)
@@ -26,17 +20,13 @@ class WhitelistsController < ApplicationController
   end
 
   def edit
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
-    @user = Whitelist.find_by_id(params[:id])
+    redirect_to root_path if current_member.isAdmin == false
+    @user = Whitelist.find_by(id: params[:id])
     render('edit') if @user.nil?
   end
 
   def update
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.find(params[:id])
     if @user.update(whitelist_params)
       redirect_to(event_path(@user))
@@ -47,16 +37,12 @@ class WhitelistsController < ApplicationController
   end
 
   def delete
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.find(params[:id])
   end
 
   def destroy
-    if current_member.isAdmin == false
-      redirect_to root_path
-    end
+    redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.find(params[:id])
     @user.destroy
     redirect_to(whitelists_path)
@@ -67,6 +53,4 @@ class WhitelistsController < ApplicationController
   def whitelist_params
     params.require(:user).permit(:email, :isAdmin)
   end
-
 end
-  
