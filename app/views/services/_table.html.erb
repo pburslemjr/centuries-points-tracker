@@ -3,7 +3,7 @@
   <% else %>
   
   
-  <table class="mt-3 table listing" summary="Event list">
+  <table class="mt-3 table listing" summary="Service list">
     <tr class="header">
       <th>Description</th>
       <th>Date</th>
@@ -12,10 +12,11 @@
     </tr>
     <% service_hours.each do |service| %>
     <tr>
-    <td><%= service.description %></td>
-    <td><%= service.format_date %></td>
-    <td><%= service.hours %></td>
-    <td><%= image_tag service.approved_img_path, height: 30 %></td>
+      <td><%= service.description %></td>
+      <td><%= service.format_date %></td>
+      <td><%= service.hours %></td>
+      <td><%= image_tag service.approved_img_path, height: 30 %></td>
+      
 
     <td>        
       <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>

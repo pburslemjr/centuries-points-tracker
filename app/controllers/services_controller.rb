@@ -15,6 +15,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find_by_id(params[:id])
+    
     if @service.nil?
       flash[:not_found] = 'Not found'
       redirect_to(services_path)
@@ -46,7 +47,7 @@ class ServicesController < ApplicationController
     if @service.update(service_params)
       redirect_to(service_path(@service))
     else
-      flash[:errors] = @service.errors.full_messages
+      flash[:danger] = @service.errors.full_messages
       redirect_to edit_service_path
     end
   end
