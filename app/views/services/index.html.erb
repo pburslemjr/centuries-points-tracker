@@ -1,0 +1,24 @@
+<% content_for(:html_title) { 'Service' } %>
+
+<div class="mt-5 container services index">
+
+  <h1 class="lead-1"><%=@greeting%></h1>
+  <% if current_member.isAdmin%>
+  <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
+  <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
+  <%else%>
+  <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
+  <%end%>
+  
+  <hr>
+
+  
+
+  <% if !current_member.isAdmin %>
+  <div class="clearfix ">
+    <%= link_to("Add New Service", new_service_path, :class => 'float-end btn btn-primary action new') %>
+  </div>
+  <% end %>
+
+
+</div>

@@ -1,0 +1,19 @@
+<% content_for(:html_title) { 'Create Service' } %>
+
+<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+
+
+<div class="service new">
+  <h2>Create Service</h2>
+  <p>This is a prototype page</p>
+
+  <%= form_for(@service, :url => services_path, :method => 'post') do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit "Create Service", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

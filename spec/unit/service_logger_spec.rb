@@ -1,32 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe ServiceHour, :type => :model do
-
-  subject {
-    described_class.new(description: "Anything",
+RSpec.describe Service, type: :model do
+  subject do
+    described_class.new(description: 'Anything',
                         hours: 44,
-                        date: DateTime.now
-                        )
-  }
+                        date: DateTime.now)
+  end
 
-  it "is valid with valid attributes" do
+  it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it "is not valid without a description" do 
+  it 'is not valid without a description' do
     subject.description = nil
-    expect(subject).to_not be_valid
+    expect(subject).not_to be_valid
   end
 
-  it "is not valid without hours" do 
+  it 'is not valid without hours' do
     subject.hours = nil
-    expect(subject).to_not be_valid
+    expect(subject).not_to be_valid
   end
 
-  it "is not valid without a date" do 
+  it 'is not valid without a date' do
     subject.date = nil
-    expect(subject).to_not be_valid
+    expect(subject).not_to be_valid
   end
-
-
 end

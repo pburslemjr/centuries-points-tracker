@@ -10,62 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_231510) do
+ActiveRecord::Schema.define(version: 2021_10_23_190032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
-  create_table "event_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
   create_table "events", force: :cascade do |t|
-    t.integer "eventlistID"
     t.date "date"
     t.string "description"
     t.boolean "isMandatory"
+    t.string "location"
+    t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
     t.time "time"
-    t.string "location"
     t.datetime "datetime"
+    t.string "name"
   end
 
-  create_table "member_list", force: :cascade do |t|
-    t.integer "memberID"
+  create_table "events_members", id: false, force: :cascade do |t|
+    t.bigint "member_id"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_events_members_on_event_id"
+    t.index ["member_id"], name: "index_events_members_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
+    t.string "uid"
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "isAdmin"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "service_hour_list", force: :cascade do |t|
-    t.integer "memberID"
-  end
-
-  create_table "service_hours", force: :cascade do |t|
-    t.integer "servicehourlistID"
+  create_table "services", force: :cascade do |t|
+    t.integer "member_id"
     t.date "date"
-    t.float "hours"
     t.string "description"
-    t.boolean "isApproved"
+    t.integer "hours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "isApproved"
   end
 
-  create_table "service_log_hours", force: :cascade do |t|
-    t.float "hours"
-    t.date "date"
-    t.string "activity"
-    t.string "description_service"
+  create_table "whitelists", force: :cascade do |t|
+    t.string "email", null: false
+    t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

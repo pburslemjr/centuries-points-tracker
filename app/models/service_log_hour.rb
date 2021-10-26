@@ -1,3 +1,0 @@
-class ServiceLogHour < ApplicationRecord
-    
-end

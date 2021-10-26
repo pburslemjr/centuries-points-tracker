@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root to: 'point_tracker#tracker'
+  devise_for :members, controllers: { omniauth_callbacks: 'members/omniauth_callbacks' }
+  devise_scope :member do
+    get 'members/sign_in', to: 'members/sessions#new', as: :new_member_session
+    get 'members/sign_out', to: 'members/sessions#destroy', as: :destroy_member_session
+  end
+  #root 'home#index'
   #service page
   get 'service_logger/new'
   get 'service_logger/index'
@@ -12,14 +18,25 @@ Rails.application.routes.draw do
   resources :events do
     member do
       get :delete
+      get :attend
+      get :unattend
     end
   end  
 
-  resources :service_logger do
+  # get 'events/attend'
+
+  resources :services do
+    member do
+      get :delete
+      post :approve
+    end
+  end  
+
+  resources :whitelists do
     member do
       get :delete
     end
-  end  
+  end
   
   get 'dashboard/index'
   get 'dashboard/properties'
@@ -31,6 +48,7 @@ Rails.application.routes.draw do
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
   get 'point_tracker/tracker'
+  get 'point_tracker/admin'
   
   
   

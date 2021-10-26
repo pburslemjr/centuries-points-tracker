@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a service logger entry', type: :feature do
-  scenario 'valid inputs' do
+  it 'valid inputs' do
     visit new_service_logger_path
     fill_in 'Hours', with: '80'
     fill_in 'Description', with: 'bla bla bla'
@@ -14,5 +14,4 @@ RSpec.describe 'Creating a service logger entry', type: :feature do
     expect(page).to have_content('bla bla bla')
     expect(page).to have_content('2021-10-05')
   end
-
 end

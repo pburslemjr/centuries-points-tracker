@@ -1,0 +1,32 @@
+  <% if service_hours.length() == 0 %>
+    <p>All Service Hours Approved!</p>
+  <% else %>
+  
+  
+  <table class="mt-3 table listing" summary="Event list">
+    <tr class="header">
+      
+      
+      <th>Description</th>
+      <th>Date</th>
+      <th>Hours</th>      
+      <th>Approved?</th>
+    </tr>
+    <% service_hours.each do |service| %>
+    <tr>
+    <td><%= service.description %></td>
+    <td><%= service.format_date %></td>
+    <td><%= service.hours %></td>
+    <td><%= image_tag service.approved_img_path, height: 30 %></td>
+
+      <td>
+      
+        <div><%= button_to 'Approve', {:controller => "services", :action => "approve", :id => service.id}, {:method=>:post}%></div>
+        <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
+        <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
+        <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>
