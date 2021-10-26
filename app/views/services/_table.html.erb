@@ -19,8 +19,10 @@
 
     <td>        
       <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
+      <% if !service.isApproved %>
       <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
       <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
+      <% end %>
     </td>
     </tr>
     <% end %>

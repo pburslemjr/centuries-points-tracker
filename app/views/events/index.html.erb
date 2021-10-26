@@ -1,14 +1,17 @@
 <% content_for(:html_title) { 'Events' } %>
 
 <div class="mt-5 container events index">
-
-  <h1 class="lead-1">Your Events</h1>
+  <% if !current_member.isAdmin %>
+  <h1 class="lead-1">Attended Events</h1>
   <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
   <hr>
+  <% end %>
 
   <div class="clearfix ">
     <h1 class="float-start">All Events</h1>
+    <% if current_member.isAdmin %>
     <%= link_to("Add New Event", new_event_path, :class => 'float-end btn btn-primary action new') %>
+    <% end %>
   </div>
 
   <h3>Upcoming</h3>
