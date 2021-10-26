@@ -34,38 +34,38 @@ RSpec.describe 'Creating an event', type: :feature do
   end
 
   # test attended
-  it 'attend then unattend' do
-    login
-    create_new_event
-    visit events_path
-    expect(page).to have_content('Attend')
-    click_link 'Attend'
-    expect(page).to have_content('Unattend')
-    click_link 'Unattend'
-    expect(page).to have_content('Attend')
-  end
+  # it 'attend then unattend' do
+  #   login
+  #   create_new_event
+  #   visit events_path
+  #   expect(page).to have_content('Attend')
+  #   click_link 'Attend'
+  #   expect(page).to have_content('Unattend')
+  #   click_link 'Unattend'
+  #   expect(page).to have_content('Attend')
+  # end
 
-  it 'attend then show details' do
-    login
-    create_new_event
-    visit events_path
-    click_link 'Attend'
-    click_link 'Details'
-    expect(page).to have_content(user_shown_on_attendees_list)
-  end
+  # it 'attend then show details' do
+  #   login
+  #   create_new_event
+  #   visit events_path
+  #   click_link 'Attend'
+  #   click_link 'Details'
+  #   expect(page).to have_content(user_shown_on_attendees_list)
+  # end
 
-  it 'attend then unattend then show details' do
-    login
-    create_new_event
-    visit events_path
-    click_link 'Attend'
-    click_link 'Details'
-    expect(page).to have_content(user_shown_on_attendees_list)
-    visit events_path
-    click_link 'Unattend'
-    click_link 'Details'
-    expect(page).not_to have_content(user_shown_on_attendees_list)
-  end
+  # it 'attend then unattend then show details' do
+  #   login
+  #   create_new_event
+  #   visit events_path
+  #   click_link 'Attend'
+  #   click_link 'Details'
+  #   expect(page).to have_content(user_shown_on_attendees_list)
+  #   visit events_path
+  #   click_link 'Unattend'
+  #   click_link 'Details'
+  #   expect(page).not_to have_content(user_shown_on_attendees_list)
+  # end
 
   # test logging in
   it 'not logged in' do
