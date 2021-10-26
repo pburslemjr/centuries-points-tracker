@@ -14,13 +14,7 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = nil
-    @service = if current_member.isAdmin
-                 Service.all.order('date desc')
-
-               else
-                 Service.where(member_id: current_member.id).limit(20).order('date asc')
-               end
+    @service = Service.find_by_id(params[:id])
     if @service.nil?
       flash[:not_found] = 'Not found'
       redirect_to(services_path)
