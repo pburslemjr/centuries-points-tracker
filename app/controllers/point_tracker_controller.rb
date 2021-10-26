@@ -15,7 +15,7 @@ class PointTrackerController < ApplicationController
     end
 
     @events = Event.all
-    @members = Member..where(isAdmin: false)
+    @members = Member.all
     @service_hours = Service.all
     Rails.logger.debug 'Service is in admin view'
   end
