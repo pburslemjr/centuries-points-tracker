@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @members.where(isAdmin: false).each do |member| %>
+    <% @members.each do |member| %>
       <tr>
         <td><%= member.name %></td>
         <td><%= @service_hours.where(member_id: member.id, isApproved: true,).sum(:hours) %></td>
