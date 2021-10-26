@@ -65,7 +65,7 @@ class WhitelistsController < ApplicationController
   private
 
   def whitelist_params
-    params.require(:user).permit(:email, :isAdmin)
+    params.require(:whitelist).permit(:email, :isAdmin)
   end
 
 end
