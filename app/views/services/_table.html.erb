@@ -18,11 +18,13 @@
       <td><%= image_tag service.approved_img_path, height: 30 %></td>
       
 
-      <td>        
-        <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
-        <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
-        <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
-      </td>
+    <td>        
+      <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
+      <% if !service.isApproved %>
+      <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
+      <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
+      <% end %>
+    </td>
     </tr>
     <% end %>
     <% end %>

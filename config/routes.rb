@@ -31,6 +31,12 @@ Rails.application.routes.draw do
       post :approve
     end
   end  
+
+  resources :whitelists do
+    member do
+      get :delete
+    end
+  end
   
   get 'dashboard/index'
   get 'dashboard/properties'
@@ -42,6 +48,7 @@ Rails.application.routes.draw do
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
   get 'point_tracker/tracker'
+  get 'point_tracker/admin'
   
   
   

@@ -1,0 +1,8 @@
+
+
+
+<div class="mt-5 container whitelists index">
+      <h1 class="lead-1">Whitelisted Users</h1>
+      <%= render :partial => 'table', locals: { users: @users, attended: true } %>
+      <%= link_to("Add New User", new_whitelist_path, :class => 'float-end btn btn-primary action new') %>
+</div>

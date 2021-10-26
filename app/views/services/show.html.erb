@@ -17,10 +17,20 @@
       <th>Date</th>
       <td><%= @service.format_date %></td>
     </tr>
+    <tr>
+      <th>Approved?</th>
+      <td>
+      <% if @service.isApproved %>
+      <%= image_tag @service.approved_img_path, height: 30 %>
+      <% else %>
+      <%= image_tag @service.approved_img_path, height: 30 %>
+      <% end %>
+       </td>
+    </tr>
   </table>
-
+    <% if !current_member.isAdmin && !@service.isApproved %>
     <div class="col-2"><%= link_to("Edit", edit_service_path(@service), :class => 'action edit') %></div>
     <div class="col-2"><%= link_to("Delete", delete_service_path(@service), :class => 'action delete') %></div>
-
+    <% end %>
 </div>
 
