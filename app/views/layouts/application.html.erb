@@ -22,9 +22,16 @@
   </head>
 
   <body>
+
     <% if flash.any? %>
       <% flash.each do |key, value| -%>
-        <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
+        <% if value.instance_of? Array %>
+          <% value.each do |sub_value| -%>
+            <section class="alert alert-<%= key %>"><%= sub_value %></section>
+          <% end %>
+        <% else %>
+          <section class="alert alert-<%= key %>"><%= key %><%= value.html_safe %></section>
+        <% end %>
       <% end -%>
     <% end %>
     <%= yield %>
