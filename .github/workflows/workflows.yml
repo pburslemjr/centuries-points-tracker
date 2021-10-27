@@ -40,7 +40,7 @@ jobs:
       - name: Run tests
         run: bundler exec rspec .
       - name: Run brakeman
-        run: brakeman -o brakeman.txt
+        run: bundler exec brakeman -o brakeman.txt
       - name: Run rubocop
         run: bundler exec rubocop --out rubocop.txt
       - name: Upload coverage results
