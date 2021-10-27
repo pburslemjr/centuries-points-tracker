@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.time.nil? ^ @event.date.nil?
-      flash[:errors] = ['Please enter both a day and time, or enter neither.']
+      flash[:danger] = ['Please enter both a day and time, or enter neither.']
       render(new_event_path)
       return
     end
@@ -51,7 +51,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to(event_path(@event))
     else
-      flash[:errors] = @event.errors.full_messages
+      flash[:danger] = @event.errors.full_messages
       redirect_to edit_event_path
     end
   end

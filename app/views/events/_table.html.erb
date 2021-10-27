@@ -28,15 +28,19 @@
 
       <td>
 
+      <% if !current_member.isAdmin %>
         <% if attended %>
           <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
         <% else %>
           <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
         <% end %>
+        <% end %>
         <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
+        <% if current_member.isAdmin %>
         <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
         <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
-      </td>
+        <% end %>
+        </td>
     </tr>
     <% end %>
     <% end %>
