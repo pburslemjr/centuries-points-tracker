@@ -13,7 +13,7 @@ class WhitelistsController < ApplicationController
     redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.new(whitelist_params)
     if @user.save
-      redirect_to(events_path)
+      redirect_to(whitelists_path)
     else
       render('new')
     end
@@ -29,7 +29,7 @@ class WhitelistsController < ApplicationController
     redirect_to root_path if current_member.isAdmin == false
     @user = Whitelist.find(params[:id])
     if @user.update(whitelist_params)
-      redirect_to(event_path(@user))
+      redirect_to(whitelist_path(@user))
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to edit_whitelist_path
@@ -51,6 +51,6 @@ class WhitelistsController < ApplicationController
   private
 
   def whitelist_params
-    params.require(:user).permit(:email, :isAdmin)
+    params.require(:whitelist).permit(:email, :isAdmin)
   end
 end
