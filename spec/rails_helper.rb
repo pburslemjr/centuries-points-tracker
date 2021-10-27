@@ -66,4 +66,5 @@ end
 def login
   visit '/'
   click_on 'Login with Google'
+  expect(page).not_to have_content('Login with Google')
 end
