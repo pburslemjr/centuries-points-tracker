@@ -6,15 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:wght@300;800&display=swap');
+
       body {
         font-family: sans-serif;
         /* background-color: #81d4fa; */
         background-image: url("https://media.istockphoto.com/photos/empty-gray-studio-room-used-as-background-for-display-your-products-picture-id913062234?k=20&m=913062234&s=612x612&w=0&h=dJ8lsrW_xbu6IvN7wK5rHnMqIYdquNbl5fYebUiYYuc=");
-        font-weight: bold;
+        /* font-weight: bold; */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
       }
+
+      header{
+        font-family: 'Architects Daughter', cursive;
+        font-size: 5rem;
+        padding-bottom: 7.5rem;
+        text-align: center;
+      }
+
+      .flex-container {
+        display: flex;
+      }
+
+      .flex-child {
+        flex: 1;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center; 
+      }  
       
       .btn:link,
       .btn:visited {
@@ -38,7 +57,7 @@
       }
       
       .btn-white {
-          background-color: #fff;
+          background-color: #d1d1d1;
           color: #777;
       }
       
@@ -68,18 +87,6 @@
           animation: moveInBottom 5s ease-out;
           animation-fill-mode: backwards;
       }
-      
-      @keyframes moveInBottom {
-          0% {
-              opacity: 0;
-              transform: translateY(30px);
-          }
-      
-          100% {
-              opacity: 1;
-              transform: translateY(0px);
-          }
-      }
     </style>
 
     <div style="margin-top:3vh; text-align:center; font-size:30px">
@@ -91,17 +98,30 @@
     </div>
 
     <title>Century Men's Society</title>
-
     <link rel="icon" href="https://static.wixstatic.com/media/824189_dec9a71d425542d1923d14bd631a2a35~mv2.png/v1/crop/x_37,y_0,w_539,h_527/fill/w_44,h_43,al_c,q_85,usm_0.66_1.00_0.01/LOGOwhite.webp">
   </head>
   <body>
-    <p>
-      <div style="margin-top:5vh; text-align:center;">
-        <img src="/assets/logo.png" class="img-fluid" alt="CMS logo">
+    <header>
+      <%# <img src="https://static.wixstatic.com/media/824189_dec9a71d425542d1923d14bd631a2a35~mv2.png/v1/crop/x_37,y_0,w_539,h_527/fill/w_44,h_43,al_c,q_85,usm_0.66_1.00_0.01/LOGOwhite.webp" alt=""> %>
+      CENTURY MENS SOCIETY
+    </header>
+
+    <section class="flex-container context">
+      <div class="flex-child" style="font-size: 3.3rem;">
+        <p><span style="color: ">H</span>UMILITY</p>
+        <p>LOYALTY</p>
+        <p>SERVICE</p>
+        <span style="color: maroon">TRADITION</span>
       </div>
-      <div style="margin-top:5vh; text-align:center; margin-left:-250px;">
-        <%= link_to "Login with Google", member_google_oauth2_omniauth_authorize_path, {class: 'btn btn-white btn-animate'} %>
-      </div>    
-    </p>
+
+      <div class="flex-child">
+        <div style="text-align:center;">
+          <img src="/assets/logo.png" class="img-fluid" alt="CMS logo">
+        </div>
+        <div style="text-align:center; margin-left:-250px;">
+          <%= link_to "Login with Google", member_google_oauth2_omniauth_authorize_path, {class: 'btn btn-7 btn-7b btn-white btn-animate', style: 'font-weight: 500'} %>
+        </div>    
+      </div>
+    </section>
   </body>
 </html>
