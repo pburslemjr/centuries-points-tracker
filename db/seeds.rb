@@ -15,8 +15,9 @@ whitelist_data = [
   [ "deananderson@tamu.edu", false ],
   [ "andersondeant@gmail.com", true ],
   [ "mivoli98@tamu.edu", false ],
-  [ "mibeophi2@gmail.com", true ]
-  
+  [ "mibeophi2@gmail.com", true ],
+  [ "kakadtejas27@gmail.com", true ],
+  [ "tejvijsan27@tamu.edu", false ]
 ]
 
 whitelist_data.each do |email, isAdmin|
