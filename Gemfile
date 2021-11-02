@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem "brakeman"
+  gem "table_print"
 end
 
 group :development do
