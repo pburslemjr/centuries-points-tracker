@@ -28,11 +28,14 @@
 
       <td>
 
+      <% if DateTime.now() >= event.datetime %>
       <% if !current_member.isAdmin %>
+     
         <% if attended %>
           <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
         <% else %>
           <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
+        <% end %>
         <% end %>
         <% end %>
         <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
