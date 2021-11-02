@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   root to: 'point_tracker#tracker'
   devise_for :members, controllers: { omniauth_callbacks: 'members/omniauth_callbacks' }
   devise_scope :member do
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
       post :approve
     end
   end  
+
+  resources :member
+
 
   resources :whitelists do
     member do

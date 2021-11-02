@@ -1,0 +1,55 @@
+<% content_for(:html_title) {"Member Summary" } %>
+<%= link_to("<< Back to Members", member_index_path, :class => 'back-link') %>
+
+<div class="service show">
+  <h2>Member Summary</h2>
+
+  <table summary="Member detail view">
+    <tr>
+      <th>Name</th>
+      <td><%=@member.name%></td>
+      
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%=@member.email%></td>
+    </tr>
+    <tr>
+      <th>Admin Account?</th>
+      <td>
+      <% if @member.isAdmin %>
+      Yes
+      <% else %>
+      No
+      <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>Total Service Hours</th>
+      <td><%= @member.getService %></td>
+    </tr>
+    <tr>
+      <th>Participation Percentage</th>
+      <td>
+        <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+        <%= @member.getPP %>%
+        <% end %>
+       </td>
+    </tr>
+    <tr>
+      <th>Missed Mandatory Events</th>
+      <td>
+      <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+      
+        <%= @member.getMM %>
+        <% end %>
+       </td>
+    </tr>
+  </table>
+    
+</div>
+

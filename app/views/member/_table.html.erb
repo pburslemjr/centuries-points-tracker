@@ -1,0 +1,83 @@
+<% if members.length() == 0 %>
+<p>There are no members yet!</p>
+<% else %>
+
+
+<table class="mt-3 table listing" summary="Service list">
+<tr class="header">
+  <th>
+  <% if params[:sort] == "name" || params[:sort].nil? %>  
+  <%= link_to "Name", :sort => "name", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <% else %>
+  <%= link_to "Name", :sort => "name", :reverse => false %>
+  <% end %>
+  </th>
+  <th>
+  <% if params[:sort] == "email" %>  
+  <%= link_to "Email", :sort => "email", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <% else %>
+  <%= link_to "Email", :sort => "email", :reverse => false %>
+  <% end %>
+  
+  <th>
+  <% if params[:sort] == "pp" %>  
+  <%= link_to "PP", :sort => "pp", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <% else %>
+  <%= link_to "PP", :sort => "pp", :reverse => false %>
+  <% end %>
+
+  
+  <th>
+  <% if params[:sort] == "mm" %>  
+  <%= link_to "Missed Mandatory", :sort => "mm", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <% else %>
+  <%= link_to "Missed Mandatory", :sort => "mm", :reverse => false %>
+  <% end %>
+  
+     
+  <th>
+  <% if params[:sort] == "hours" %>  
+  <%= link_to "Hours", :sort => "hours", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <% else %>
+  <%= link_to "Hours", :sort => "hours", :reverse => false %>
+  <% end %>
+  
+</tr>
+<% members.each do |member| %>
+<tr>
+  <td><%= member.name %></td>
+  <td><%= member.email %></td>
+
+  <td>
+  <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+        <%= member.getPP %>%
+        <% end %>
+  </td>
+  <td>
+  <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+      
+        <%= member.getMM %>
+        <% end %>
+  </td>
+  <td><%=member.getService%></td>
+  
+  
+
+<td>        
+  <div><%= link_to("Details", member_path(member), :class => 'action show') %></div>
+  <% if !member.isAdmin %>
+  <div><%= link_to("Make Admin", edit_member_path(member), :class => 'action edit') %></div>
+  <%else%>
+  <div><%= link_to("Make Member", edit_member_path(member), :class => 'action edit') %></div>
+  <% end %>
+  
+  
+</td>
+</tr>
+<% end %>
+<% end %>
+</table>

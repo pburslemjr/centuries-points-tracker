@@ -19,6 +19,11 @@
         <%= link_to "Whitelist", whitelists_path, class: "nav-link"  %>
       </li>
       <% end %>
+      <% if current_member.isAdmin? %>
+      <li class="nav-item">
+        <%= link_to "Members", member_index_path, class: "nav-link"  %>
+      </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Sign Out", destroy_member_session_path, class: "nav-link"  %>
       </li>
