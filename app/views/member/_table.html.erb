@@ -1,0 +1,51 @@
+<% if members.length() == 0 %>
+<p>There are no members yet!</p>
+<% else %>
+
+
+<table class="mt-3 table listing" summary="Service list">
+<tr class="header">
+  <th>Name</th>
+  <th>Email</th>
+  <th>PP</th>
+  <th>Missed Mandatory</th>      
+  <th>Hours</th>
+</tr>
+<% members.each do |member| %>
+<tr>
+  <td><%= member.name %></td>
+  <td><%= member.email %></td>
+
+  <td>
+  <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+        <%= ((member.events.length().to_f / @past_events.length()) * 100.to_f).round(2) %>%
+        <% end %>
+  </td>
+  <td>
+  <% if @past_events.length() == 0 %>
+        No events have occured!
+        <% else %>
+      
+        <%= @past_events.select {|e| e.isMandatory}.length() - member.events.select {|e| e.isMandatory}.length() %>
+        <% end %>
+  </td>
+  <td><%=Service.where(member_id: member.id).sum(:hours)%></td>
+  
+  
+
+<td>        
+  <div><%= link_to("Details", member_path(member), :class => 'action show') %></div>
+  <% if !member.isAdmin %>
+  <div><%= link_to("Make Admin", edit_member_path(member), :class => 'action edit') %></div>
+  <%else%>
+  <div><%= link_to("Make Member", edit_member_path(member), :class => 'action edit') %></div>
+  <% end %>
+  
+  
+</td>
+</tr>
+<% end %>
+<% end %>
+</table>
