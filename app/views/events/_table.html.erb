@@ -28,7 +28,7 @@
 
       <td>
 
-      <% if DateTime.now() >= event.datetime %>
+      <% if event.datetime.nil? || DateTime.now() >= event.datetime %>
       <% if !current_member.isAdmin %>
      
         <% if attended %>

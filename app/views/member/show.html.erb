@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th>Total Service Hours</th>
-      <td><%= @total_service_hours %></td>
+      <td><%= @member.getService %></td>
     </tr>
     <tr>
       <th>Participation Percentage</th>
@@ -34,7 +34,7 @@
         <% if @past_events.length() == 0 %>
         No events have occured!
         <% else %>
-        <%= ((@member.events.length().to_f / @past_events.length()) * 100.to_f).round(2) %>%
+        <%= @member.getPP %>%
         <% end %>
        </td>
     </tr>
@@ -45,7 +45,7 @@
         No events have occured!
         <% else %>
       
-        <%= @past_events.select {|e| e.isMandatory}.length() - @member.events.select {|e| e.isMandatory}.length() %>
+        <%= @member.getMM %>
         <% end %>
        </td>
     </tr>
