@@ -68,3 +68,31 @@ def login
   click_on 'Login with Google'
   expect(page).not_to have_content('Login with Google')
 end
+
+def forceWhitelist
+  whitelist_data = [
+    [ "paul-b-tamu@tamu.edu", false ],
+    [ "centurymens.social@gmail.com", true ],
+    [ "ammar918@gmail.com", true ],
+    [ "siddiqi918@tamu.edu", false ],
+    [ "siddiqi91899@gmail.com", false ],
+    [ "deananderson@tamu.edu", false ],
+    [ "andersondeant@gmail.com", true ],
+    [ "mivoli98@tamu.edu", false ],
+    [ "mibeophi2@gmail.com", true ]
+  
+  ]
+
+  whitelist_data.each do |email, isAdmin|
+    if Whitelist.find_by(email: email).nil?
+      Whitelist.create( email: email, isAdmin: isAdmin )
+    end
+
+  end
+
+  tp Whitelist.all
+
+end
+
+puts "TEST"
+forceWhitelist
