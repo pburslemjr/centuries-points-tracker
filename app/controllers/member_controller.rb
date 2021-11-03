@@ -49,7 +49,7 @@ class MemberController < ApplicationController
   def sort_arrow
     if params[:reverse] == 'true'
       '#8681;'
-    elsif params[:reverse] == 'false'
+    else
       '#8679;'
     end
   end
