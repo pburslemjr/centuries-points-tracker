@@ -53,7 +53,7 @@ RSpec.describe 'Creating an event', type: :feature do
     fill_in 'Name', with: ''
     fill_in 'Date', with: '18/12/2021'
     click_on 'Create Event'
-    expect(page).to have_content("Please enter both a day and time, or enter neither.")
+    expect(page).to have_content('Please enter both a day and time, or enter neither.')
   end
 
   # test attended
