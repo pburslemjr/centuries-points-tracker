@@ -63,7 +63,16 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-def login
+
+def login_as_admin
+  use_admin
+  visit '/'
+  click_on 'Login with Google'
+  expect(page).not_to have_content('Login with Google')
+end
+
+def login_as_user
+  use_user
   visit '/'
   click_on 'Login with Google'
   expect(page).not_to have_content('Login with Google')
@@ -90,5 +99,30 @@ def force_white_list
   tp Whitelist.all
 end
 
-puts 'TEST'
+def use_admin
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '12345678910',
+                                                                       info: {
+                                                                         email: 'ammar918@gmail.com',
+                                                                         first_name: 'Ammar',
+                                                                         last_name: 'Siddiqi'
+                                                                       }
+                                                                     })
+end
+
+def use_user
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '12345678910',
+                                                                       info: {
+                                                                         email: 'paul-b-tamu@tamu.edu',
+                                                                         first_name: 'Paul',
+                                                                         last_name: 'Paul'
+                                                                       }
+                                                                     })
+end
+
+OmniAuth.config.test_mode = true
+use_admin
 force_white_list
