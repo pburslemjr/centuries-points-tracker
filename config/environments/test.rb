@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -60,13 +60,12 @@ Rails.application.configure do
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-    provider: "google_oauth2",
-      uid: "12345678910",
-      info: {
-        email: "ammar918@gmail.com",
-        first_name: "Ammar",
-        last_name: "Siddiqi"
-      }
-    })
-
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '12345678910',
+                                                                       info: {
+                                                                         email: 'ammar918@gmail.com',
+                                                                         first_name: 'Ammar',
+                                                                         last_name: 'Siddiqi'
+                                                                       }
+                                                                     })
 end

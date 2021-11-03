@@ -11,38 +11,35 @@ class Member < ApplicationRecord
                 isAdmin: Whitelist.find_by(email: email).isAdmin).find_or_create_by!(uid: uid)
   end
 
-  def getService
-    return Service.where(member_id: self.id).sum(:hours)
+  def sort_service
+    Service.where(member_id: id).sum(:hours)
   end
 
-  def getPP
+  def sort_pp
     ordered = Event.order(:datetime)
-   
-    @past_events = ordered.where('datetime <= ?', Time.now).or(ordered.where(datetime: nil))
 
-    if @past_events.nil?
-      return "Past events is Nil!"
-    end
-    if @past_events.length() == 0
-      return "No events!"
+    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+
+    return 'Past events is Nil!' if @past_events.nil?
+
+    if @past_events.length.zero?
+      'No events!'
     else
-      return ((events.length().to_f / @past_events.length()) * 100.to_f).round(2)
+      ((events.length.to_f / @past_events.length) * 100.to_f).round(2)
     end
-     
   end
 
-  def getMM
+  def sort_mm
     ordered = Event.order(:datetime)
-   
-    @past_events = ordered.where('datetime <= ?', Time.now).or(ordered.where(datetime: nil))
 
-    if @past_events.nil?
-      return "Past events is Nil!"
-    end
-    if @past_events.length() == 0
-      return "No events!"
-    else    
-      return @past_events.select {|e| e.isMandatory}.length() - events.select {|e| e.isMandatory}.length()
+    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+
+    return 'Past events is Nil!' if @past_events.nil?
+
+    if @past_events.length.zero?
+      'No events!'
+    else
+      @past_events.count(&:isMandatory) - events.count(&:isMandatory)
     end
   end
 end

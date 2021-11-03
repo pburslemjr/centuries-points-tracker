@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -75,5 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 end
 
-ENV['GOOGLE_OAUTH_CLIENT_ID'] = '283295306020-ngi5ljn5lp3e973llfqm0m6hp9ck9u0f.apps.googleusercontent.com'
+ENV['GOOGLE_OAUTH_CLIENT_ID'] =
+  '283295306020-ngi5ljn5lp3e973llfqm0m6hp9ck9u0f.apps.googleusercontent.com'
 ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = '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'

@@ -1,6 +1,5 @@
 class AddMissingTables < ActiveRecord::Migration[6.1]
   def change
-    
     create_table :members do |t|
       t.string :email_id
       t.string :name
@@ -15,8 +14,8 @@ class AddMissingTables < ActiveRecord::Migration[6.1]
       t.integer :hours
       t.timestamps
     end
-    
-    create_table :events do |t|     
+
+    create_table :events do |t|
       t.date :date
       t.string :description
       t.boolean :isMandatory

@@ -7,19 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 whitelist_data = [
-  [ "paul-b-tamu@tamu.edu", false ],
-  [ "centurymens.social@gmail.com", true ],
-  [ "ammar918@gmail.com", true ],
-  [ "siddiqi918@tamu.edu", false ],
-  [ "siddiqi91899@gmail.com", false ],
-  [ "deananderson@tamu.edu", false ],
-  [ "andersondeant@gmail.com", true ],
-  [ "mivoli98@tamu.edu", false ],
-  [ "mibeophi2@gmail.com", true ]
-  
+  ['paul-b-tamu@tamu.edu', false],
+  ['centurymens.social@gmail.com', true],
+  ['ammar918@gmail.com', true],
+  ['siddiqi918@tamu.edu', false],
+  ['siddiqi91899@gmail.com', false],
+  ['deananderson@tamu.edu', false],
+  ['andersondeant@gmail.com', true],
+  ['mivoli98@tamu.edu', false],
+  ['mibeophi2@gmail.com', true]
+
 ]
 
 whitelist_data.each do |email, isAdmin|
-  Whitelist.create( email: email, isAdmin: isAdmin )
+  Whitelist.create(email: email, isAdmin: isAdmin)
 end
-

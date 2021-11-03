@@ -7,21 +7,21 @@
 <tr class="header">
   <th>
   <% if params[:sort] == "name" || params[:sort].nil? %>  
-  <%= link_to "Name", :sort => "name", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <%= link_to "Name", :sort => "name", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "Name", :sort => "name", :reverse => false %>
   <% end %>
   </th>
   <th>
   <% if params[:sort] == "email" %>  
-  <%= link_to "Email", :sort => "email", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <%= link_to "Email", :sort => "email", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "Email", :sort => "email", :reverse => false %>
   <% end %>
   
   <th>
   <% if params[:sort] == "pp" %>  
-  <%= link_to "PP", :sort => "pp", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <%= link_to "PP", :sort => "pp", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "PP", :sort => "pp", :reverse => false %>
   <% end %>
@@ -29,7 +29,7 @@
   
   <th>
   <% if params[:sort] == "mm" %>  
-  <%= link_to "Missed Mandatory", :sort => "mm", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <%= link_to "Missed Mandatory", :sort => "mm", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "Missed Mandatory", :sort => "mm", :reverse => false %>
   <% end %>
@@ -37,7 +37,7 @@
      
   <th>
   <% if params[:sort] == "hours" %>  
-  <%= link_to "Hours", :sort => "hours", :reverse => (!@reverse) %> &<%= getSortArrow %>  
+  <%= link_to "Hours", :sort => "hours", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "Hours", :sort => "hours", :reverse => false %>
   <% end %>
@@ -52,7 +52,7 @@
   <% if @past_events.length() == 0 %>
         No events have occured!
         <% else %>
-        <%= member.getPP %>%
+        <%= member.sort_pp %>%
         <% end %>
   </td>
   <td>
@@ -60,10 +60,10 @@
         No events have occured!
         <% else %>
       
-        <%= member.getMM %>
+        <%= member.sort_mm %>
         <% end %>
   </td>
-  <td><%=member.getService%></td>
+  <td><%=member.sort_service%></td>
   
   
 

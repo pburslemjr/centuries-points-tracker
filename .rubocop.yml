@@ -6,8 +6,10 @@ require:
   - rubocop-rspec
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/**/*'
+    - 'db/*'
     - 'script/**/*'
     - 'bin/**/*'
     - 'config/**/*'
@@ -20,8 +22,23 @@ AllCops:
     - '.git/**/*'
     - 'Gemfile'
 
+Style/CaseLikeIf:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 100
+
+Metrics/AbcSize:
+  Max: 800
+
+Metrics/MethodLength:
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
