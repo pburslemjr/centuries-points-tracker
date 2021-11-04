@@ -19,8 +19,15 @@ class Event < ApplicationRecord
     end
   end
 
+  def formatted
+    if !datetime.nil?
+      self.time.strftime('%H:%M')
+    end
+  end
+
   def createDateTime
     if !time.nil? and !date.nil?
+      time.change(:usec => 0)
       event_date = date
       event_time = time.change(year: event_date.year, month: event_date.month,
                                day: event_date.day)
@@ -31,4 +38,9 @@ class Event < ApplicationRecord
   def formatName
     name.truncate(30)
   end
+
+  def to_s
+    "Name:'#{self.name}' Description:'#{self.description}' Location: '#{self.location}' Datetime '#{self.datetime}' (Date '#{self.date}' Time '#{self.time}')"
+  end
+
 end

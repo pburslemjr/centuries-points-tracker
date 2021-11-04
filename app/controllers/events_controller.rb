@@ -48,6 +48,8 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.date = params[:event][:date]
+    @event.time = params[:event][:time]
 
     if @event.time.nil? ^ @event.date.nil?
       flash[:danger] = ['Please enter both a day and time, or enter neither.']
@@ -57,7 +59,7 @@ class EventsController < ApplicationController
 
     @event.createDateTime
 
-    if @event.update(event_params)
+    if @event.save
       redirect_to(event_path(@event))
     else
       flash[:danger] = @event.errors.full_messages
