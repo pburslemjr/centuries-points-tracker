@@ -48,6 +48,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.update(event_params)
     @event.date = params[:event][:date]
     @event.time = params[:event][:time]
 
