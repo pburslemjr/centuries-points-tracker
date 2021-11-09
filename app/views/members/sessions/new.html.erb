@@ -5,133 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:wght@300;800&display=swap');
-
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        background-image: url("https://media.istockphoto.com/photos/empty-gray-studio-room-used-as-background-for-display-your-products-picture-id913062234?k=20&m=913062234&s=612x612&w=0&h=dJ8lsrW_xbu6IvN7wK5rHnMqIYdquNbl5fYebUiYYuc=");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      header{
-        font-family: 'Volkhov', serif;
-        font-size: 5rem;
-        padding-bottom: 7rem;
-        padding-top: 2rem;
-        text-align: center;
-      }
-
-      /* Error pop-up styling */
-
-      .alert {
-        color: red;
-        font-family: Montserrat;
-        font-weight: 700;
-        margin: 0 auto;
-        padding-top: 1rem;
-        text-align: center;
-        width: 50%;
-      }
-
-      /* Page content styling */
-
-      .moto-left{
-        font-size: 3.5rem; 
-        padding-top: 2rem;
-      }
-
-      .login-button{
-        font-weight: bold;
-        text-align: center; 
-        margin-left: -250px;
-      }
-
-      .right-logo{
-        text-align: center;
-        padding-bottom: 3rem;
-      }
-
-      /* flex conatiner */
-
-      .flex-container {
-        display: flex;
-      }
-
-      .flex-child {
-        flex: 1;
-        font-family: 'Montserrat', sans-serif;
-        text-align: center; 
-      }  
-
-      /* Google sign in button styling */
+    <div class="blink">
       
-      .btn:link,
-      .btn:visited {
-          text-transform: uppercase;
-          text-decoration: none;
-          padding: 15px 40px;
-          display: inline-block;
-          border-radius: 100px;
-          transition: all .2s;
-          position: absolute;
-      }
-      
-      .btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-      
-      .btn:active {
-          transform: translateY(-1px);
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      }
-      
-      .btn-white {
-          background-color: #d1d1d1;
-          color: #777;
-      }
-      
-      .btn::after {
-          content: "";
-          display: inline-block;
-          height: 100%;
-          width: 100%;
-          border-radius: 100px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: -1;
-          transition: all .4s;
-      }
-      
-      .btn-white::after {
-          background-color: #fff;
-      }
-      
-      .btn:hover::after {
-          transform: scaleX(1.4) scaleY(1.6);
-          opacity: 0;
-      }
-      
-      .btn-animated {
-          animation: moveInBottom 5s ease-out;
-          animation-fill-mode: backwards;
-      }
-    </style>
-
-    <div class="alert">
       <% if flash.any? %>
         <% flash.each do |key, value| -%>
           <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
         <% end -%>
       <% end %>
     </div>
+
+    <%= stylesheet_link_tag 'logins.css' %>
 
     <title>Century Men's Society</title>
   </head>

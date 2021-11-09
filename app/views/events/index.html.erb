@@ -1,24 +1,37 @@
-<% content_for(:html_title) { 'Events' } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    
+    <% content_for(:html_title) { 'Events' } %>
 
-<div class="mt-5 container events index">
-  <% if !current_member.isAdmin %>
-  <h1 class="lead-1">Attended Events</h1>
-  <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
-  <hr>
-  <% end %>
+    <div class="mt-5 container events index">
+      <% if !current_member.isAdmin %>
+      <h1 class="lead-1">Attended Events</h1>
+      <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
+      <hr>
+      <% end %>
 
-  <div class="clearfix ">
-    <h1 class="float-start">All Events</h1>
-    <% if current_member.isAdmin %>
-    <%= link_to("Add New Event", new_event_path, :class => 'float-end btn btn-primary action new') %>
-    <% end %>
-  </div>
+      <div class="clearfix ">
+        <h1 class="float-start">All Events</h1>
+      </div>
 
-  <h3>Upcoming</h3>
-    <%= render :partial => 'table', locals: { events: @upcoming_events, attended: false } %>
+      <h3>Upcoming</h3>
+        <%= render :partial => 'table', locals: { events: @upcoming_events, attended: false } %>
 
-  <h3>Past</h3>
-    <%= render :partial => 'table', locals: { events: @past_events, attended: false } %>
+      <h3>Past</h3>
+        <%= render :partial => 'table', locals: { events: @past_events, attended: false } %>
 
+      <% if current_member.isAdmin %>
+        <div class="form-buttons">
+          <%= button_to("Create", new_event_path, :class => 'btn btn-primary action new') %>
+        </div>
+      <% end %>
 
-</div>
+    </div>
+  </body>
+</html>
