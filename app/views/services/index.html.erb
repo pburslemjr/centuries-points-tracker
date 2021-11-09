@@ -1,24 +1,42 @@
-<% content_for(:html_title) { 'Service' } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-<div class="mt-5 container services index">
+    .btn{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      width: 10rem;
+    }
+  </style>
+  <body>
+    <% content_for(:html_title) { 'Service' } %>
 
-  <h1 class="lead-1"><%=@greeting%></h1>
-  <% if current_member.isAdmin%>
-  <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
-  <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
-  <%else%>
-  <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
-  <%end%>
-  
-  <hr>
+      <div class="mt-5 container services index">
 
-  
+        <h1 class="lead-1"><%= @greeting %></h1>
+        
+        <% if current_member.isAdmin %>
+          <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
+          <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
+        <% else %>
+          <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
+        <% end %>
+        
+        <hr>
 
-  <% if !current_member.isAdmin %>
-  <div class="clearfix ">
-    <%= link_to("Create", new_service_path, :class => 'float-end btn btn-primary action new') %>
-  </div>
-  <% end %>
-
-
-</div>
+        <% if !current_member.isAdmin %>
+          <div class="form-buttons">
+            <%= button_to("Create", new_service_path, :class => 'btn btn-primary action new') %>
+          </div>
+        <% end %>
+      </div>
+  </body>
+</html>
