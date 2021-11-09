@@ -1,0 +1,55 @@
+<% content_for(:html_title) { 'Points Tracker' } %>
+
+<h1>You're logged in! Welcome, <%= current_member.name%></h1>
+
+<!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
+<br/>
+
+<div class="mt-5 container home index">
+<h2>Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h3>
+<table class="mt-3 table listing">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Number of Hours</th>
+      <th>Approved</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @service_hours.each do |service| %>
+      <tr>
+        <td><%= service.description %></td>
+        <td><%= service.format_date %></td>
+        <td><%= service.hours %></td>
+        <td><%= image_tag service.approved_img_path, height: 30 %></td>
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<div class="mt-5 container home index">
+<h2>Events: </h2>
+<table class="mt-3 table listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Mandatory</th>
+    </tr>
+  </thead>  
+  <tbody>
+    <% @current_member.events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.format_date %></td>
+        <td><%= event.isMandatory%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

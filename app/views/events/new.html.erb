@@ -1,0 +1,19 @@
+<% content_for(:html_title) { 'Create Event' } %>
+
+<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
+
+
+<div class="events container new">
+  <h2>Create Event</h2>
+  <p>This is a prototype page</p>
+
+  <%= form_for(@event, :url => events_path, :method => 'post') do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <div class="mx-3 form-buttons">
+      <%= f.submit "Create Event", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

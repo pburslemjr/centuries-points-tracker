@@ -1,0 +1,15 @@
+<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+
+<div class="services edit">
+  <h2>Edit Service</h2>
+
+  <%= form_for(@service) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit "Edit Service", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

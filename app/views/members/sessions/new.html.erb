@@ -1,0 +1,112 @@
+<html lang="en">
+  <head>
+    
+    <style>
+    body {
+      font-family: sans-serif;
+      background-color: #81d4fa;
+      font-weight: bold;
+  }
+  
+  .btn:link,
+  .btn:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 40px;
+      display: inline-block;
+      border-radius: 100px;
+      transition: all .2s;
+      position: absolute;
+  }
+  
+  .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-white {
+      background-color: #fff;
+      color: #777;
+  }
+  
+  .btn::after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border-radius: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+  
+  .btn-white::after {
+      background-color: #fff;
+  }
+  
+  .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+  }
+  
+  .btn-animated {
+      animation: moveInBottom 5s ease-out;
+      animation-fill-mode: backwards;
+  }
+  
+  @keyframes moveInBottom {
+      0% {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+  
+      100% {
+          opacity: 1;
+          transform: translateY(0px);
+      }
+  }
+    </style>
+
+    <div style="margin-top:3vh; text-align:center; font-size:30px">
+      <% if flash.any? %>
+        <% flash.each do |key, value| -%>
+          <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
+        <% end -%>
+      <% end %>
+    </div>
+    
+    
+  </head>
+
+  <body>
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+
+          <div class="col-md-8 col-lg-7 col-xl-6">
+          <p>
+            
+            <div style="margin-top:5vh; text-align:center;">
+              <img src="/assets/logo.png" class="img-fluid" alt="CMS logo">
+            </div>
+            <div style="margin-top:5vh; text-align:center; margin-left:-250px;">
+              <%= link_to "Login with Google", member_google_oauth2_omniauth_authorize_path, {class: 'btn btn-white btn-animate'} %>
+            </div>
+              
+            </p>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
