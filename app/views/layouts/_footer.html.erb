@@ -24,28 +24,18 @@
                     </div>
                     <div class="col-sm-3 my-sm-0 mt-5">
                         <ul class="nav">
-                            <%# <li class="mt-0">Term & condition</li> %>
                             <li>
-                                <%# <%= link_to "Term & condition", services_path  %> 
-                                <p><a style="text-decoration:none" href="#"  class="text-secondary" >Term & condition</a></p>
+                                 <%= link_to "Term & Service", tos_path, class: "nav-link"  %>
                             </li>
-                            <%# <li>Security</li>  %>
                         </ul>
                     </div>
-                    <%# <div class="col-sm-3 my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0">Privacy and Policy</li>
-                            <li>Use Cases</li>
-                            <li>Customers Services</li>
+                    <div class="col-sm-3 my-sm-0 mt-5">
+                        <ul class="nav">
+                            <li class="mt-0">
+                            <%= link_to "Privacy and Policy", privacy_path, class: "nav-link"  %>
+                            </li>
                         </ul>
-                    </div> %>
-                    <%# <div class="col-sm-3 my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0">Company</li>
-                            <li>About</li>
-                            <li>Careers- <span class="Careers">We're-hiring</span></li>
-                        </ul>
-                    </div> %>
+                    </div>
                 </div>
             </div>
         </div>
