@@ -98,10 +98,14 @@ def force_white_list
 end
 
 def force_members
-  Member.create(name: 'Ammar Siddiqi', isAdmin: true, email: 'ammar918@gmail.com', 
-    uid: 12345678910) if Member.find_by(uid: 12345678910).nil?
-  Member.create(name: 'Paul Paul', isAdmin: false, email: 'paul-b-tamu@tamu.edu', 
-    uid: 12345678919) if Member.find_by(uid: 12345678919).nil?
+  if Member.find_by(uid: 12_345_678_910).nil?
+    Member.create(name: 'Ammar Siddiqi', isAdmin: true, email: 'ammar918@gmail.com',
+                  uid: 12_345_678_910)
+  end
+  if Member.find_by(uid: 12_345_678_919).nil?
+    Member.create(name: 'Paul Paul', isAdmin: false, email: 'paul-b-tamu@tamu.edu',
+                  uid: 12_345_678_919)
+  end
 
   tp Member.all
 end
