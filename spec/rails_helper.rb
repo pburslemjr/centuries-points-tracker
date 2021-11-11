@@ -79,23 +79,31 @@ end
 
 def force_white_list
   whitelist_data = [
-    ['paul-b-tamu@tamu.edu', false],
-    ['centurymens.social@gmail.com', true],
-    ['ammar918@gmail.com', true],
-    ['siddiqi918@tamu.edu', false],
-    ['siddiqi91899@gmail.com', false],
-    ['deananderson@tamu.edu', false],
-    ['andersondeant@gmail.com', true],
-    ['mivoli98@tamu.edu', false],
-    ['mibeophi2@gmail.com', true]
-
+    'paul-b-tamu@tamu.edu',
+    'centurymens.social@gmail.com',
+    'ammar918@gmail.com',
+    'siddiqi918@tamu.edu',
+    'siddiqi91899@gmail.com',
+    'deananderson@tamu.edu',
+    'andersondeant@gmail.com',
+    'mivoli98@tamu.edu',
+    'mibeophi2@gmail.com'
   ]
 
-  whitelist_data.each do |email, admin|
-    Whitelist.create(email: email, isAdmin: admin) if Whitelist.find_by(email: email).nil?
+  whitelist_data.each do |email|
+    Whitelist.create(email: email) if Whitelist.find_by(email: email).nil?
   end
 
   tp Whitelist.all
+end
+
+def force_members
+  Member.create(name: 'Ammar Siddiqi', isAdmin: true, email: 'ammar918@gmail.com', 
+    uid: 12345678910) if Member.find_by(uid: 12345678910).nil?
+  Member.create(name: 'Paul Paul', isAdmin: false, email: 'paul-b-tamu@tamu.edu', 
+    uid: 12345678919) if Member.find_by(uid: 12345678919).nil?
+
+  tp Member.all
 end
 
 def use_admin
@@ -113,7 +121,7 @@ end
 def use_user
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
                                                                        provider: 'google_oauth2',
-                                                                       uid: '12345678910',
+                                                                       uid: '12345678919',
                                                                        info: {
                                                                          email: 'paul-b-tamu@tamu.edu',
                                                                          first_name: 'Paul',
@@ -125,3 +133,4 @@ end
 OmniAuth.config.test_mode = true
 use_admin
 force_white_list
+force_members

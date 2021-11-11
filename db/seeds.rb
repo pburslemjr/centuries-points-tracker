@@ -19,7 +19,8 @@ whitelist_data = [
 ]
 
 whitelist_data.each do |email|
-  Whitelist.create(email: email)
+  Whitelist.create(email: email) if Whitelist.find_by(email: email).nil?
 end
 
-Member.create(name: 'Dean Anderson', isAdmin: true, email: 'andersondeant@gmail.com', uid: 114113468747151673770)
+Member.create(name: 'Dean Anderson', isAdmin: true, email: 'andersondeant@gmail.com', 
+  uid: 114113468747151673770) if Member.find_by(uid: 114113468747151673770).nil?
