@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
-    @my_events = current_member.events
+    member = Member.find_by(uid: cookies[:current_member_id])
+    @my_events = member.events
 
     ordered = Event.order(:datetime)
 
@@ -79,15 +80,17 @@ class EventsController < ApplicationController
 
   def attend
     @event = Event.find(params[:id])
-    current_member.events << @event
-    current_member.save
+    member = Member.find_by(uid: cookies[:current_member_id])
+    member.events << @event
+    member.save
     redirect_to(events_path)
   end
 
   def unattend
     @event = Event.find(params[:id])
-    current_member.events.delete(@event)
-    current_member.save
+    member = Member.find_by(uid: cookies[:current_member_id])
+    member.events.delete(@event)
+    member.save
     redirect_to(events_path)
   end
 
