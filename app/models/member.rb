@@ -7,8 +7,7 @@ class Member < ApplicationRecord
 
     return nil if Whitelist.find_by(email: email).nil?
 
-    create_with(uid: uid, name: full_name, email: email,
-                isAdmin: Whitelist.find_by(email: email).isAdmin).find_or_create_by!(uid: uid)
+    create_with(uid: uid, name: full_name, email: email, isAdmin: false).find_or_create_by!(uid: uid)
   end
 
   def sort_service

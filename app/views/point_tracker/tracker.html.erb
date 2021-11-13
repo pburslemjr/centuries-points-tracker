@@ -33,20 +33,22 @@
 </div>
 
 <div class="mt-5 container home index">
-<h2>Events: </h2>
+<h2>Events: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %> mandatory events attended</h2>
 <table class="mt-3 table listing">
   <thead>
     <tr>
       <th>Name</th>
       <th>Date</th>
+      <th>Description</th>
       <th>Mandatory</th>
     </tr>
   </thead>  
   <tbody>
-    <% @current_member.events.each do |event| %>
+    <% @upcoming_events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
         <td><%= event.format_date %></td>
+        <td><%= event.description %></td>
         <td><%= event.isMandatory%></td>
       </tr>
     <% end %>
