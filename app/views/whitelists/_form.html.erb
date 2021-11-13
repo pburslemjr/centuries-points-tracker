@@ -8,6 +8,11 @@
             <%= f.label :email, {class: "form-label"} %>
             <%= f.text_field :email, {class: "form-control", required: true} %>
           </div>
+
+          <div class="mb-2">
+            <%= f.label "User is an Admin", {class: "form-label"} %>
+            <%= f.check_box :isAdmin, {class: "form-check-label"} %>
+          </div>
         </div>
     </div>
 

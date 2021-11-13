@@ -25,7 +25,7 @@ AllCops:
 Style/CaseLikeIf:
   Enabled: false
 
-Layout/LineLength:
+Metrics/LineLength:
   Max: 110
 
 Metrics/AbcSize:
@@ -56,9 +56,6 @@ Style/GuardClause:
 
 Layout/IndentationWidth:
   Width: 2
-
-Layout/EndOfLine:
-  Enabled: False
 
 Naming/ClassAndModuleCamelCase:
   Enabled: true
