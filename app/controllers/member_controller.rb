@@ -76,7 +76,7 @@ class MemberController < ApplicationController
     else
       @member.update(isAdmin: true)
     end
-    redirect_to(member_path)
+    redirect_to(member_index_path)
   end
 
   def update; end
