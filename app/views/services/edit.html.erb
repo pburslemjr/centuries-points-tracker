@@ -1,15 +1,44 @@
-<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Service</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+    
+    h2{
+      font-family: 'Archivo Black', sans-serif;
+      margin: 5rem auto;
+      text-align: center;
+    }
 
-<div class="services edit">
-  <h2>Edit Service</h2>
+    .btn{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-top: 5rem;
+    }
+    
+    .card{
+      margin: auto 50rem;
+    }
 
-  <%= form_for(@service) do |f| %>
-
-    <%= render(:partial => 'form', :locals => {:f => f}) %>
-
-    <div class="form-buttons">
-      <%= f.submit "Edit Service", class: "btn btn-primary" %>
+    .form-buttons{
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="services edit">
+      <h2>Edit Service</h2>
+      <%= form_for(@service) do |f| %>
+        <%= render(:partial => 'form', :locals => {:f => f}) %> 
+        <div class="form-buttons">
+          <%= f.submit "EDIT", class: "btn btn-primary" %>
+          <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
+        </div>
+      <% end %>
     </div>
-
-  <% end %>
-</div>
+  </body>
+</html>

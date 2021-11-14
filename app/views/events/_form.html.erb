@@ -1,42 +1,43 @@
-    <%= error_messages_for(f.object) %>
+<%= error_messages_for(f.object) %>
 
-
-    
-    <div class="card mb-4 p-3">
-        <div class="card-body" summary="Event form fields">
-          <div class="mb-3">
-            <%= f.label :name, {class: "form-label"} %>
-            <%= f.text_field :name, {class: "form-control", placeholder: "Provide a short name for this event...", required: true} %>
-          </div>
-          <div class="mb-3">
-            <%= f.label :description, {class: "form-label"} %>
-            <%= f.text_area :description, {class: "form-control", placeholder: "Include any details about the event here...", required: true} %>
-          </div>
-          <div class="mb-4">
-            <%= f.label :location, {class: "form-label"} %>
-            <%= f.text_field :location, {class: "form-control", placeholder: "Set a location for this event..."} %>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <div class="mb-4">
-                <%= f.label :date, {class: "form-label"} %>
-                <%= f.date_field :date, {min: Date.yesterday, class: "form-control"} %>
-              </div>
-            </div>
-            <div class="col">
-              <div class="mb-4">
-                <%= f.label :time, {class: "form-label"} %>
-                <%= f.time_field :time, {value: @event.formatted, class: "form-control"} %>
-              </div>
-            </div>
-
-          <div class="mb-2">
-            <%= f.label "Make Mandatory", {class: "form-label"} %>
-            <%= f.check_box :isMandatory, {class: "form-check-label"} %>
-          </div>
-        </div>
+<div class="card mb-4 p-3">
+  <div class="card-body" summary="Event form fields">
+    <div class="mb-3">
+      <%= f.label :name, {class: "form-label"} %>
+      <%= f.text_field :name, {class: "form-control", placeholder: "Provide a short name for this event...", required: true} %>
     </div>
 
+    <div class="mb-3">
+      <%= f.label :description, {class: "form-label"} %>
+      <%= f.text_area :description, {class: "form-control", placeholder: "Include any details about the event here...", required: true} %>
+    </div>
 
-  
+    <div class="mb-4">
+      <%= f.label :location, {class: "form-label"} %>
+      <%= f.text_field :location, {class: "form-control", placeholder: "Set a location for this event..."} %>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="mb-4">
+          <%= f.label :date, {class: "form-label"} %>
+          <%= f.date_field :date, {min: Date.today, class: "form-control"} %>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-4">
+          <%= f.label :time, {class: "form-label"} %>
+          <%= f.time_field :time, {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label "Make Mandatory", {class: "form-label"} %>
+      <%= f.check_box :isMandatory, {class: "form-check-label"} %>
+    </div>
+  </div>
+</div>
+
+
