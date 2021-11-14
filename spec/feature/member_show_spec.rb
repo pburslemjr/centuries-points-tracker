@@ -7,19 +7,17 @@ RSpec.describe 'Show Members', type: :feature do
   it 'visit members' do
     login_as_admin
     visit member_index_path
-    
   end
 
   it 'sort members' do
     login_as_admin
     visit member_index_path
-    click_on 'Missed Mandatory' 
-    click_on 'Missed Mandatory' 
+    click_on 'Missed Mandatory'
+    click_on 'Missed Mandatory'
     click_on 'PP'
     click_on 'PP'
     click_on 'Hours'
     click_on 'Hours'
-    
   end
 
   it 'view member' do
@@ -35,6 +33,5 @@ RSpec.describe 'Show Members', type: :feature do
     expect(page).to have_content('Make Admin')
     first('.item').click_link('Make Admin')
     expect(page).to have_content('Make Member')
-    
   end
 end
