@@ -7,13 +7,22 @@
     <title>Document</title>
   </head>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+
+    h2{
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
 
     .btn{
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
-      width: 10rem;
-      margin-bottom: 0.5rem;
+      margin-top: 5rem;
+    }
+
+    .container{
+      font-family: 'Montserrat', sans-serif;
     }
   </style>
   <body>
@@ -24,7 +33,7 @@
       <%= form_for(@event, :url => events_path, :method => 'post') do |f| %>
         <%= render(:partial => 'form', :locals => {:f => f}) %>
         <div class="mx-3 form-buttons">
-          <%= f.submit "Create Event", class: "btn btn-primary" %>
+          <%= f.submit "CREATE", class: "btn btn-primary" %>
           <%= link_to("BACK", events_path, :class => 'back-link btn btn-primary') %>
         </div>
       <% end %>

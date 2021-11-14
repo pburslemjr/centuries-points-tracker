@@ -7,36 +7,80 @@
     <title>Document</title>
   </head>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+
+    .col{
+      margin: 0 3rem;
+    }
+
+    h1{
+      text-align: center;
+      font-family: 'Archivo Black', sans-serif;
+      margin-bottom: 10rem;
+    }
+
+    h2{
+      font-family: 'Montserrat', sans-serif;
+      margin: 5rem auto;
+    }
+
+    p{
+      font-weight: 500;
+    }
+
+    th{
+      text-align: center;
+    }
+
+    td{
+      font-family: 'Montesserat', sans-serif;
+    }
 
     .btn{
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
       margin-bottom: 0.5rem;
-      width: 10rem;
+    }
+
+    .container{
+      font-family: 'Montserrat', sans-serif;
+      margin: 10rem auto;
+      text-align: center;
+    }
+
+    .form-buttons{
+      text-align: center;
     }
   </style>
   <body>
     <% content_for(:html_title) { 'Service' } %>
+    <div class="mt-5 container services index">
+      <h1><%= @greeting %></h1>
 
-      <div class="mt-5 container services index">
-
-        <h1 class="lead-1"><%= @greeting %></h1>
-        
-        <% if current_member.isAdmin %>
-          <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
-          <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
-        <% else %>
-          <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
-        <% end %>
-        
-        <hr>
-
-        <% if !current_member.isAdmin %>
-          <div class="form-buttons">
-            <%= button_to("Create", new_service_path, :class => 'btn btn-primary action new') %>
+      <% if current_member.isAdmin %>
+        <div class="row">
+          <div class="col">
+            <%= render :partial => 'tableUnapproved', locals: { service_hours: @service_hours_unapproved } %>
           </div>
-        <% end %>
-      </div>
+          <div class="col">
+            <%= render :partial => 'tableApproved', locals: { service_hours: @service_hours_approved } %>
+          </div>
+        </div>    
+      <% else %>
+        <%= render :partial => 'table', locals: { service_hours: @service_hours } %>
+      <% end %>
+
+      <% if !current_member.isAdmin %>
+        <div class="form-buttons">
+          <%= link_to("CREATE", new_service_path, :class => 'btn btn-primary action new') %>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>
+
+
+
+
+
+

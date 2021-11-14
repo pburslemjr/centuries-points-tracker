@@ -1,10 +1,8 @@
-  <% if events.length() == 0 %>
-    <p>There are no events here</p>
-  <% else %>
-  
-  
-  <table class="mt-3 table listing" summary="Event list">
-    <tr class="header">
+<% if events.length() == 0 %>
+  <p>There are no events here</p>
+<% else %>
+  <table class="table table-striped" summary="Event list">
+    <tr>
       <th>#</th>
       <th>Event</th>
       <th>Description</th>
@@ -16,32 +14,30 @@
       <th>Action</th>
     </tr>
     <% events.each do |event| %>
-    <tr>
-      <td><%= event.id %></td>
-      <td><%= event.formatName %></td>
-      <td class="text-break"><%= event.description %></td>
-      <td><%= event.location %></td>
-      <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
-      <td><%=event.members.count%></td>
-      <td><%= event.format_date %></td>
-      <td><%= event.formatTime %></td>
-
-      <td>
-
-      <% if !current_member.isAdmin %>
-        <% if attended %>
-          <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
-        <% else %>
-          <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
-        <% end %>
-        <% end %>
-        <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
-        <% if current_member.isAdmin %>
-        <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
-        <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
-        <% end %>
+      <tr>
+        <td><%= event.id %></td>
+        <td><%= event.formatName %></td>
+        <td class="text-break"><%= event.description %></td>
+        <td><%= event.location %></td>
+        <td class="center"><%= event.isMandatory ? 'Yes' : 'No' %></td>
+        <td><%=event.members.count%></td>
+        <td><%= event.format_date %></td>
+        <td><%= event.formatTime %></td>
+        <td>
+          <% if !current_member.isAdmin %>
+            <% if attended %>
+              <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
+            <% else %>
+              <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
+            <% end %>
+          <% end %>
+          <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
+          <% if current_member.isAdmin %>
+            <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
+            <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
+          <% end %>
         </td>
-    </tr>
-    <% end %>
+      </tr>
     <% end %>
   </table>
+<% end %>

@@ -12,7 +12,6 @@
     .btn{
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
-      width: 10rem;
       margin-bottom: 0.5rem;
     }
   </style>
@@ -24,7 +23,7 @@
       <%= form_for(@service, :url => services_path, :method => 'post') do |f| %>
         <%= render(:partial => 'form', :locals => {:f => f}) %>
         <div class="mx-3 form-buttons">
-          <%= f.submit "Create Service", class: "btn btn-primary" %>
+          <%= f.submit "CREATE", class: "btn btn-primary" %>
           <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
         </div>
       <% end %>

@@ -1,18 +1,17 @@
-  
-  <table class="mt-3 table listing" summary="Whitelist">
-    <tr class="header">
-      <th>Email</th>
-      <th>Admin</th>
-    </tr>
-    <% users.each do |user| %>
+<table class="table table-striped" summary="Whitelist">
+  <tr>
+    <th>Email</th>
+    <th>Admin</th>
+    <th>Actions</th>
+  </tr>
+  <% users.each do |user| %>
     <tr>
       <td><%= user.email %></td>
       <td><%= user.isAdmin %></td>
-
       <td>
         <div><%= link_to("Make Admin", edit_whitelist_path(user), :class => 'action edit') %></div>
         <div><%= link_to("Delete", delete_whitelist_path(user), :class => 'action delete') %></div>
       </td>
     </tr>
-    <% end %>
-  </table>
+  <% end %>
+</table>

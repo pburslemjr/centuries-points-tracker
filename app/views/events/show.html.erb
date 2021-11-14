@@ -9,14 +9,28 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
+    h2{
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
     .btn{
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
-      width: 10rem;
-      margin-bottom: 0.5rem;
+      margin-top: 5rem;
     }
 
-    .table-name{
+    .container{
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 10rem;
+    }
+
+    .col.right{
+      margin: 0 10rem;
+    }
+
+    .form-buttons{
       text-align: center;
     }
   </style>
@@ -60,21 +74,31 @@
             </tr>
           </table>
         </div>
-        <div class="col">
-          <h2 class="table-name">Attendees</h2>
-          <ul>
-            <% @event.members.each do |member| %>
-              <li><%= member.name %> (<%= member.email %>)</li>
-            <% end %>
-          </ul>
+        <div class="col right">
+          <table class="table table-striped" summary="Event list">
+            <h2 class="table-name">Attendees</h2>
+            <thead>
+            </thead>
+              <th>Name</th>
+              <th>Email ID</th>
+            <thead>
+            <tbody>
+              <% @event.members.each do |member| %>
+                <tr>
+                  <td><%= member.name %></td>
+                  <td><%= member.email %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
       <% if current_member.isAdmin %>
         <div class="form-buttons">
           <p>
-            <%= button_to("EDIT", edit_event_path(@event), :class => 'action edit btn btn-primary') %>
-            <%= button_to("DELETE", delete_event_path(@event), :class => 'action delete btn btn-primary') %>
-            <%= button_to("BACK", events_path, :class => 'back-link btn btn-primary') %>
+            <%= link_to("EDIT", edit_event_path(@event), :class => 'action edit btn btn-primary') %>
+            <%= link_to("DELETE", delete_event_path(@event), :class => 'action delete btn btn-primary') %>
+            <%= link_to("BACK", events_path, :class => 'back-link btn btn-primary') %>
           </p>
         </div>
       <% end %>
