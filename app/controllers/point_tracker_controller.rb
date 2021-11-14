@@ -1,18 +1,13 @@
 class PointTrackerController < ApplicationController
   def tracker
-    if current_member.isAdmin
-      redirect_to point_tracker_admin_url
-    end
+    redirect_to point_tracker_admin_url if current_member.isAdmin
 
     @events = Event.all
     @service_hours = Service.where(member_id: current_member.id).order('date desc')
-
   end
 
   def admin
-    if !current_member.isAdmin
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_member.isAdmin
 
     @events = Event.all
     @members = Member.all

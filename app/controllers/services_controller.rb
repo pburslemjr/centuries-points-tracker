@@ -14,8 +14,8 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find_by_id(params[:id])
-    
+    @service = Service.find_by(id: params[:id])
+
     if @service.nil?
       flash[:not_found] = 'Not found'
       redirect_to(services_path)
