@@ -26,7 +26,7 @@
     font-family: 'Montesserat', sans-serif;
   }
 
-  .blink {
+  /* .blink {
     animation: blinkingText 1.5s infinite;
     color: red;
     font-family: Montserrat;
@@ -43,7 +43,7 @@
     50%{    color: rgb(255, 180, 180); }
     75%{    color: rgb(255, 90, 90); }
     100%{   color: red; }
-  }
+  } */
 
   .container{
     font-family: 'Montserrat', sans-serif;
@@ -61,12 +61,6 @@
 </style>
 <body>
   <% content_for(:html_title) { 'Points Tracker' } %>
-
-  <div class="blink" style="font-size: 3rem">
-    <p>Admin View for <%= current_member.name%><p>
-  </div>
-
-  <br/>
 
   <div class="container mt-5 events show">
     <div class="row">

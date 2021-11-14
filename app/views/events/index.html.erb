@@ -8,6 +8,10 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
 
+    hr{
+      margin: 10rem auto;
+    }
+
     h1{
       font-family: 'Archivo Black', sans-serif;
       text-align: center;
@@ -54,10 +58,8 @@
         <h1>Attended Events</h1>
         <br>
         <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
-        <br>
+        <hr>
       <% end %>
-
-      <br>
 
       <h1>All Events</h1>
 

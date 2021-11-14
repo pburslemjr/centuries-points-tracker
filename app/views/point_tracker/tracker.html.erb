@@ -11,11 +11,11 @@
 
     h1{
       font-family: 'Archivo Black', sans-serif;
-      margin: 5rem auto;
     }
 
     p{
       font-weight: 500;
+      margin-bottom: 1rem;
     }
 
     th{
@@ -26,28 +26,8 @@
       font-family: 'Montesserat', sans-serif;
     }
 
-    .blink {
-      animation: blinkingText 1.5s infinite;
-      color: red;
-      font-family: Montserrat;
-      font-weight: 700;
-      margin: 0 auto;
-      padding-top: 1rem;
-      text-align: center;
-      width: 50%;
-    }
-
-    @keyframes blinkingText{
-      0%{     color: red;    }
-      25%{    color: rgb(255, 90, 90); }
-      50%{    color: rgb(255, 180, 180); }
-      75%{    color: rgb(255, 90, 90); }
-      100%{   color: red; }
-    }
-
     .container{
       font-family: 'Montserrat', sans-serif;
-      margin: 10rem auto;
       text-align: center;
     }
 
@@ -60,13 +40,8 @@
     }
   </style>
   <body>
+    <%= flash[:alert] %>
     <% content_for(:html_title) { 'Points Tracker' } %>
-
-    <div class="blink" style="font-size: 3rem">
-      <p>You have successfuly signed, <%= current_member.name%>!<p>
-    </div>
-
-    <br/>
 
     <div class="container mt-5 events show">
       <div class="row">
@@ -94,7 +69,7 @@
         </div>
         <div class="col right">
           <table class="table table-striped" summary="Event detail view">
-            <h1>Events</h1>
+            <h1 style="margin-bottom: 4rem">Events</h1>
             <thead>
               <tr>
                 <th>Description</th>

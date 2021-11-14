@@ -8,10 +8,16 @@
   </head>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+    
+    h1{
+      font-family: 'Archivo Black', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
 
-    table{
-      justify-content: center;
-      margin-top: 3rem;
+    .button-group{
+      margin-top: 5rem;
+      text-align: center;
     }
 
     .service{
@@ -33,7 +39,7 @@
   </style>
   <body>
     <div class="service show">
-      <h2 class="table-name">Show Service</h2>
+      <h1 class="table-name">Show Service</h1>
       <table class="table table-striped" summary="Service detail view">
         <tr>
           <th>Hours</th>
@@ -59,10 +65,12 @@
         </tr>
       </table>
       <% if !current_member.isAdmin && !@service.isApproved %>
-        <div class="col-2"><%= link_to("EDIT", edit_service_path(@service), :class => 'action edit') %></div>
-        <div class="col-2"><%= link_to("DELETE", delete_service_path(@service), :class => 'action delete') %></div>
+        <p class="button-group">
+          <%= link_to("EDIT", edit_service_path(@service), :class => 'action edit btn btn-primary') %>
+          <%= link_to("DELETE", delete_service_path(@service), :class => 'action delete btn btn-primary') %>
+          <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
+        </p>
       <% end %>
-      <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
     </div>
   </body>
 </html>

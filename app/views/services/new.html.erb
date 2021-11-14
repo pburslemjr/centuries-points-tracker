@@ -7,7 +7,22 @@
     <title>Document</title>
   </head>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+
+    .form-buttons{
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    .service.new{
+      margin: auto 60rem;
+    }
+
+    h1{
+      text-align: center;
+      font-family: 'Archivo Black', sans-serif;
+      margin: 5rem auto;
+    }
 
     .btn{
       font-family: 'Montserrat', sans-serif;
@@ -19,7 +34,7 @@
     <% content_for(:html_title) { 'Create Service' } %>
     
     <div class="service new">
-      <h2>Create Service</h2>
+      <h1>Create Service</h1>
       <%= form_for(@service, :url => services_path, :method => 'post') do |f| %>
         <%= render(:partial => 'form', :locals => {:f => f}) %>
         <div class="mx-3 form-buttons">
