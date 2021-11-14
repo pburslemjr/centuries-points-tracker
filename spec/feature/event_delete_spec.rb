@@ -6,7 +6,7 @@ RSpec.describe 'Deleting an event', type: :feature do
   end
 
   it 'success' do
-    login
+    login_as_admin
     visit events_path
     expect(page).to have_content('Orientation')
     click_on 'Delete'

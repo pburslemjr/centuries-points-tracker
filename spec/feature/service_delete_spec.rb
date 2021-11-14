@@ -7,7 +7,7 @@ RSpec.describe 'Deleting a service logger entry', type: :feature do
   end
 
   it 'success' do
-    login
+    login_as_admin
     visit services_path
     expect(page).to have_content('not important')
     click_on 'Delete'

@@ -1,0 +1,14 @@
+<% content_for(:html_title) { 'Members' } %>
+<meta charset="UTF-8">
+
+<div class="mt-5 container services index">
+
+  <h1 class="lead-1">Members</h1>
+  
+  <%= render :partial => 'table', locals: { members: @members } %>
+  
+  <hr>
+
+
+
+</div>
