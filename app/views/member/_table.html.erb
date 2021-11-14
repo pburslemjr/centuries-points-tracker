@@ -6,7 +6,9 @@
 <table class="mt-3 table listing" summary="Service list">
 <tr class="header">
   <th>
-  <% if params[:sort] == "name" || params[:sort].nil? %>  
+  <% if params[:sort] != "name" %>
+  <%= link_to "Name", :sort => "name", :reverse => false %>
+  <% elsif params[:sort] == "name"%>  
   <%= link_to "Name", :sort => "name", :reverse => (!@reverse) %> &<%= sort_arrow %>  
   <% else %>
   <%= link_to "Name", :sort => "name", :reverse => false %>
@@ -44,7 +46,7 @@
   
 </tr>
 <% members.each do |member| %>
-<tr>
+<tr class="item">
   <td><%= member.name %></td>
   <td><%= member.email %></td>
 

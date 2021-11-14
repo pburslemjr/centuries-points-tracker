@@ -24,3 +24,6 @@ end
 
 Member.create(name: 'Dean Anderson', isAdmin: true, email: 'andersondeant@gmail.com', 
   uid: 114113468747151673770) if Member.find_by(uid: 114113468747151673770).nil?
+
+Member.create(name: 'Social Officer', isAdmin: true, email: 'centurymens.social@gmail.com', 
+  uid: 111544716742928397153) if Member.find_by(uid: 111544716742928397153).nil?
