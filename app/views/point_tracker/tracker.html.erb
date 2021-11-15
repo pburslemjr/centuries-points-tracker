@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1>Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
+            <h1> Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
             <p>(<%= @service_hours.where(isApproved: true).sum(:hours) %> approved)</p>
             <thead>
               <tr>
