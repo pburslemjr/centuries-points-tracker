@@ -2,14 +2,8 @@
 <%= link_to("<< Back to Members", member_index_path, :class => 'back-link') %>
 
 <div class="service show">
-  <h2>Member Summary</h2>
-
-  <table summary="Member detail view">
-    <tr>
-      <th>Name</th>
-      <td><%=@member.name%></td>
-      
-    </tr>
+  <h1><%=@member.name%></h1>  
+  <table class="table table-striped" summary="Member detail view">
     <tr>
       <th>Email</th>
       <td><%=@member.email%></td>
@@ -36,7 +30,7 @@
         <% else %>
         <%= @member.sort_pp %>%
         <% end %>
-       </td>
+      </td>
     </tr>
     <tr>
       <th>Missed Mandatory Events</th>
@@ -47,9 +41,8 @@
       
         <%= @member.sort_mm %>
         <% end %>
-       </td>
+      </td>
     </tr>
   </table>
-    
 </div>
 
