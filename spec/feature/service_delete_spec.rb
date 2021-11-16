@@ -11,7 +11,7 @@ RSpec.describe 'Deleting a service logger entry', type: :feature do
     visit services_path
     expect(page).to have_content('not important')
     click_on 'Delete'
-    click_on 'Delete Service'
+    click_on 'DELETE'
     visit services_path
     expect(page).not_to have_content('not important')
   end

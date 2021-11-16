@@ -7,7 +7,7 @@ RSpec.describe 'Updating a service logger entry', type: :feature do
                                   isApproved: false)
     visit edit_service_path(id: orientation.id)
     fill_in 'Description', with: 'new description'
-    click_on 'Edit Service'
+    click_on 'EDIT'
     expect(page).to have_content('new description')
   end
 
@@ -17,7 +17,7 @@ RSpec.describe 'Updating a service logger entry', type: :feature do
                                   isApproved: false)
     visit edit_service_path(id: orientation.id)
     fill_in 'Description', with: ''
-    click_on 'Edit Service'
+    click_on 'EDIT'
     expect(page).to have_content('Description is too short')
   end
 end

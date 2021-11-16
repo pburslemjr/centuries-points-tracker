@@ -7,7 +7,7 @@ def create_test_event
 end
 
 def user_shown_on_attendees_list
-  'Paul Paul (paul-b-tamu@tamu.edu)'
+  'Paul Paul paul-b-tamu@tamu.edu'
 end
 
 RSpec.describe 'Creating an event', type: :feature do
@@ -18,7 +18,7 @@ RSpec.describe 'Creating an event', type: :feature do
     fill_in 'Name', with: 'Orientation for new members'
     fill_in 'Description', with: 'Get to meet the team, sign documents, and pay dues'
     fill_in 'Location', with: 'ZACH 207'
-    click_on 'Create Event'
+    click_on 'CREATE'
     visit events_path
     expect(page).to have_content('Orientation for new members')
     expect(page).to have_content('Get to meet the team, sign documents, and pay dues')
@@ -32,7 +32,7 @@ RSpec.describe 'Creating an event', type: :feature do
     fill_in 'Description', with: 'Get to meet the team, sign documents, and pay dues'
     fill_in 'Date', with: '18/12/2021'
     fill_in 'Time', with: '18:00'
-    click_on 'Create Event'
+    click_on 'CREATE'
     visit events_path
     expect(page).to have_content('Orientation for new members')
     expect(page).to have_content('Get to meet the team, sign documents, and pay dues')
@@ -43,7 +43,7 @@ RSpec.describe 'Creating an event', type: :feature do
     login_as_admin
     visit new_event_path
     fill_in 'Name', with: ''
-    click_on 'Create Event'
+    click_on 'CREATE'
     expect(page).to have_content("Name can't be blank")
   end
 
@@ -52,7 +52,7 @@ RSpec.describe 'Creating an event', type: :feature do
     visit new_event_path
     fill_in 'Name', with: ''
     fill_in 'Date', with: '18/12/2021'
-    click_on 'Create Event'
+    click_on 'CREATE'
     expect(page).to have_content('Please enter both a day and time, or enter neither.')
   end
 

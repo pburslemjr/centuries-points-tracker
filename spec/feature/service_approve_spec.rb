@@ -5,7 +5,7 @@ def create_new_service
   fill_in 'Hours', with: '80'
   fill_in 'Description', with: 'bla bla bla'
   fill_in 'Date', with: '2021-10-05'
-  click_on 'Create Service'
+  click_on 'CREATE'
 end
 
 RSpec.describe 'Checking approved/unapproved services', type: :feature do

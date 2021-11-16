@@ -9,7 +9,7 @@ RSpec.describe 'Creating a service logger entry', type: :feature do
     fill_in 'Hours', with: '80'
     fill_in 'Description', with: 'bla bla bla'
     fill_in 'Date', with: '2021-10-05'
-    click_on 'Create Service'
+    click_on 'CREATE'
     visit services_path
     expect(page).to have_content('80')
     expect(page).to have_content('bla bla bla')

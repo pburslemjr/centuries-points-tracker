@@ -74,6 +74,7 @@ def login_as_user
   use_user
   visit '/'
   click_on 'Login with Google'
+  # puts page.body
   expect(page).not_to have_content('Login with Google')
 end
 
