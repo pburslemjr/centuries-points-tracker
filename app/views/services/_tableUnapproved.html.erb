@@ -7,7 +7,8 @@
     <tr class="header">
       <th>Description</th>
       <th>Date</th>
-      <th>Hours</th>      
+      <th>Hours</th>
+      <th>Submitted By</th>      
       <th>Approved?</th>
       <th>Actions</th>
     </tr>
@@ -16,6 +17,11 @@
         <td><%= service.description %></td>
         <td><%= service.format_date %></td>
         <td><%= service.hours %></td>
+        <td>
+        <% unless Member.find_by(id: service.member_id).nil? || Member.find_by(id: service.member_id) == 0 %>
+          <%= Member.find_by(id: service.member_id).name %>
+        <% end %>
+        </td>
         <td><%= image_tag service.approved_img_path, height: 30, alt: "unapproved x", class: "x"  %></td>
         <td>
           <div><%= button_to 'Approve', {:controller => "services", :class => "btn btn-primary", :action => "approve", :id => service.id}, {:method=>:post}%></div>

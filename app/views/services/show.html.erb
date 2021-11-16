@@ -22,7 +22,7 @@
 
     .service{
       text-align: left;
-      margin: auto 50rem;
+      margin: 10%;
     }
 
     .table-name{
@@ -64,13 +64,13 @@
           </td>
         </tr>
       </table>
-      <% if !current_member.isAdmin && !@service.isApproved %>
-        <p class="button-group">
+      <p class="button-group">
+      <% if !current_member.isAdmin && !@service.isApproved %>        
           <%= link_to("EDIT", edit_service_path(@service), :class => 'action edit btn btn-primary') %>
-          <%= link_to("DELETE", delete_service_path(@service), :class => 'action delete btn btn-primary') %>
-          <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
-        </p>
+          <%= link_to("DELETE", delete_service_path(@service), :class => 'action delete btn btn-primary') %>     
       <% end %>
+      <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
+      </p>        
     </div>
   </body>
 </html>
