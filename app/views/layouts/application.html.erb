@@ -20,7 +20,6 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= render 'layouts/navbar' %>
     <style>
       .flash__alert   { color: red; }
       .flash__notice  { color: blue; }
@@ -29,6 +28,8 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
+
     <% if flash.any? %>
       <% flash.each do |key, value| -%>
         <% if value.instance_of? Array %>
