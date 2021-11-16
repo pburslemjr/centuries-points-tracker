@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   def index
-    member = Member.find_by(uid: cookies[:current_member_id])
-    @my_events = member.events
+    @my_events = current_member.events
 
     ordered = Event.order(:datetime)
 
@@ -48,7 +47,19 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event.update(event_params)
+    @event.update(event_params)
+    @event.date = params[:event][:date]
+    @event.time = params[:event][:time]
+
+    if @event.time.nil? ^ @event.date.nil?
+      flash[:danger] = ['Please enter both a day and time, or enter neither.']
+      render(new_event_path)
+      return
+    end
+
+    @event.createDateTime
+
+    if @event.save
       redirect_to(event_path(@event))
     else
       flash[:danger] = @event.errors.full_messages
@@ -68,17 +79,15 @@ class EventsController < ApplicationController
 
   def attend
     @event = Event.find(params[:id])
-    member = Member.find_by(uid: cookies[:current_member_id])
-    member.events << @event
-    member.save
+    current_member.events << @event
+    current_member.save
     redirect_to(events_path)
   end
 
   def unattend
     @event = Event.find(params[:id])
-    member = Member.find_by(uid: cookies[:current_member_id])
-    member.events.delete(@event)
-    member.save
+    current_member.events.delete(@event)
+    current_member.save
     redirect_to(events_path)
   end
 

@@ -1,24 +1,89 @@
-<% content_for(:html_title) { 'Events' } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
 
-<div class="mt-5 container events index">
-  <% if !current_member.isAdmin %>
-  <h1 class="lead-1">Attended Events</h1>
-  <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
-  <hr>
-  <% end %>
+    hr{
+      margin: 10rem auto;
+    }
 
-  <div class="clearfix ">
-    <h1 class="float-start">All Events</h1>
+    h1{
+      font-family: 'Archivo Black', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    h2{
+      font-family: 'Montserrat', sans-serif;
+      margin: 5rem auto;
+    }
+
+    p{
+      font-weight: 500;
+    }
+
+    th{
+      text-align: center;
+    }
+
+    td{
+      font-family: 'Montesserat', sans-serif;
+    }
+    
+    .btn{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-top: 5rem;
+    }
+
+    .container{
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+    }
+
+    .form-buttons{
+      text-align: center;
+    }
+  </style>
+  <body>
+    <% content_for(:html_title) { 'Events' } %>
+    <%# container events index %>
+    <div class="mt-5 ">
+      <% if !current_member.isAdmin %>
+        <h1>Attended Events</h1>
+        <br>
+        <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
+        <hr>
+      <% end %>
+
+      <h1>All Events</h1>
+
+      <div class="container mt-5 events show">
+        <div class="row">
+          <div class="col left">
+            <table class="table table-striped" summary="Event detail view">
+              <h2>Upcoming</h2>
+              <%= render :partial => 'table', locals: { events: @upcoming_events, attended: false } %>
+            </table>
+          </div>
+          <div class="col right">
+            <table class="table table-striped" summary="Event detail view">
+              <h2>Past</h2>
+              <%= render :partial => 'table', locals: { events: @past_events, attended: false } %>
+            </table>
+          </div>
+        </div>
+      </div>
+
     <% if current_member.isAdmin %>
-    <%= link_to("Add New Event", new_event_path, :class => 'float-end btn btn-primary action new') %>
-    <% end %>
-  </div>
-
-  <h3>Upcoming</h3>
-    <%= render :partial => 'table', locals: { events: @upcoming_events, attended: false } %>
-
-  <h3>Past</h3>
-    <%= render :partial => 'table', locals: { events: @past_events, attended: false } %>
-
-
-</div>
+        <div class="form-buttons">
+          <%= link_to("CREATE", new_event_path, :class => 'btn btn-primary action new') %>
+        </div>
+      <% end %>
+  </body>
+</html>

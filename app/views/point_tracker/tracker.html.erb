@@ -1,55 +1,95 @@
-<% content_for(:html_title) { 'Points Tracker' } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@500&display=swap');
 
-<h1>You're logged in! Welcome, <%= current_member.name%></h1>
+    h1{
+      font-family: 'Archivo Black', sans-serif;
+    }
 
-<!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
-<br/>
+    p{
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
 
-<div class="mt-5 container home index">
-<h2>Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h3>
-<table class="mt-3 table listing">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Number of Hours</th>
-      <th>Approved</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @service_hours.each do |service| %>
-      <tr>
-        <td><%= service.description %></td>
-        <td><%= service.format_date %></td>
-        <td><%= service.hours %></td>
-        <td><%= image_tag service.approved_img_path, height: 30 %></td>
-        
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    th{
+      text-align: center;
+    }
 
-</div>
+    td{
+      font-family: 'Montesserat', sans-serif;
+    }
 
-<div class="mt-5 container home index">
-<h2>Events: </h2>
-<table class="mt-3 table listing">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Mandatory</th>
-    </tr>
-  </thead>  
-  <tbody>
-    <% @current_member.events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.format_date %></td>
-        <td><%= event.isMandatory%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+    .container{
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+    }
+
+    .col.left{
+      margin-right: 3rem;
+    }
+
+    .col.right{
+      margin-left: 3rem;
+    }
+  </style>
+  <body>
+    <%= flash[:alert] %>
+    <% content_for(:html_title) { 'Points Tracker' } %>
+    <div class="container mt-5 events show">
+      <div class="row">
+        <div class="col left">
+          <table class="table table-striped" summary="Event detail view">
+            <h1> Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
+            <p>(<%= @service_hours.where(isApproved: true).sum(:hours) %> approved)</p>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Mandatory</th>
+              </tr>
+            </thead>  
+            <tbody>
+              <% @current_member.events.each do |event| %>
+                <tr>
+                  <td><%= event.name %></td>
+                  <td><%= event.format_date %></td>
+                  <td><%= event.isMandatory%></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col right">
+          <table class="table table-striped" summary="Event detail view">            
+            <h1 style="margin-bottom: 4rem">Events: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %> mandatory events attended</h1>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Number of Hours</th>
+                <th>Approved</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @service_hours.each do |service| %>
+                <tr>
+                  <td><%= service.description %></td>
+                  <td><%= service.format_date %></td>
+                  <td><%= service.hours %></td>
+                  <td><%= image_tag service.approved_img_path, height: 30 %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

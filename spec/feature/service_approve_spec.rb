@@ -10,7 +10,7 @@ end
 
 RSpec.describe 'Checking approved/unapproved services', type: :feature do
   it 'left unapproved' do
-    login
+    login_as_admin
     create_new_service
     visit services_path
     expect(page).to have_css('img.x')
@@ -20,7 +20,7 @@ RSpec.describe 'Checking approved/unapproved services', type: :feature do
   end
 
   it 'make approved' do
-    login
+    login_as_admin
     create_new_service
     visit services_path
     click_on 'Approve'

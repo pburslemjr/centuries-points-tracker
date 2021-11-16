@@ -63,7 +63,78 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-def login
+def login_as_admin
+  use_admin
   visit '/'
   click_on 'Login with Google'
+  expect(page).not_to have_content('Login with Google')
 end
+
+def login_as_user
+  use_user
+  visit '/'
+  click_on 'Login with Google'
+  expect(page).not_to have_content('Login with Google')
+end
+
+def force_white_list
+  whitelist_data = [
+    'paul-b-tamu@tamu.edu',
+    'centurymens.social@gmail.com',
+    'ammar918@gmail.com',
+    'siddiqi918@tamu.edu',
+    'siddiqi91899@gmail.com',
+    'deananderson@tamu.edu',
+    'andersondeant@gmail.com',
+    'mivoli98@tamu.edu',
+    'mibeophi2@gmail.com'
+  ]
+
+  whitelist_data.each do |email|
+    Whitelist.create(email: email) if Whitelist.find_by(email: email).nil?
+  end
+
+  tp Whitelist.all
+end
+
+def force_members
+  if Member.find_by(uid: 12_345_678_910).nil?
+    Member.create(name: 'Ammar Siddiqi', isAdmin: true, email: 'ammar918@gmail.com',
+                  uid: 12_345_678_910)
+  end
+  if Member.find_by(uid: 12_345_678_919).nil?
+    Member.create(name: 'Paul Paul', isAdmin: false, email: 'paul-b-tamu@tamu.edu',
+                  uid: 12_345_678_919)
+  end
+
+  tp Member.all
+end
+
+def use_admin
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '12345678910',
+                                                                       info: {
+                                                                         email: 'ammar918@gmail.com',
+                                                                         first_name: 'Ammar',
+                                                                         last_name: 'Siddiqi'
+                                                                       }
+                                                                     })
+end
+
+def use_user
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '12345678919',
+                                                                       info: {
+                                                                         email: 'paul-b-tamu@tamu.edu',
+                                                                         first_name: 'Paul',
+                                                                         last_name: 'Paul'
+                                                                       }
+                                                                     })
+end
+
+OmniAuth.config.test_mode = true
+use_admin
+force_white_list
+force_members

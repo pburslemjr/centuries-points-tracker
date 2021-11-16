@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Updating a service logger entry', type: :feature do
   it 'valid inputs' do
-    login
+    login_as_admin
     orientation = Service.create!(description: 'anything', hours: 4, date: '2021-10-05',
                                   isApproved: false)
     visit edit_service_path(id: orientation.id)
@@ -12,7 +12,7 @@ RSpec.describe 'Updating a service logger entry', type: :feature do
   end
 
   it 'invalid inputs' do
-    login
+    login_as_admin
     orientation = Service.create!(description: 'anything', hours: 4, date: '2021-10-05',
                                   isApproved: false)
     visit edit_service_path(id: orientation.id)
