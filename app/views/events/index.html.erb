@@ -52,8 +52,8 @@
   </style>
   <body>
     <% content_for(:html_title) { 'Events' } %>
-
-    <div class="mt-5 container events index">
+    <%# container events index %>
+    <div class="mt-5 ">
       <% if !current_member.isAdmin %>
         <h1>Attended Events</h1>
         <br>
