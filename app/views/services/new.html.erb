@@ -1,19 +1,47 @@
-<% content_for(:html_title) { 'Create Service' } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
 
-<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+    .form-buttons{
+      margin-top: 5rem;
+      text-align: center;
+    }
 
+    .service.new{
+      margin: 10%;
+    }
 
-<div class="service new">
-  <h2>Create Service</h2>
-  <p>This is a prototype page</p>
+    h1{
+      text-align: center;
+      font-family: 'Archivo Black', sans-serif;
+      margin: 5rem auto;
+    }
 
-  <%= form_for(@service, :url => services_path, :method => 'post') do |f| %>
-
-    <%= render(:partial => 'form', :locals => {:f => f}) %>
-
-    <div class="form-buttons">
-      <%= f.submit "Create Service", class: "btn btn-primary" %>
+    .btn{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+  <body>
+    <% content_for(:html_title) { 'Create Service' } %>
+    
+    <div class="service new">
+      <h1>Create Service</h1>
+      <%= form_for(@service, :url => services_path, :method => 'post') do |f| %>
+        <%= render(:partial => 'form', :locals => {:f => f}) %>
+        <div class="mx-3 form-buttons">
+          <%= f.submit "CREATE", class: "btn btn-primary" %>
+          <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
+        </div>
+      <% end %>
     </div>
-
-  <% end %>
-</div>
+  </body>
+</html>

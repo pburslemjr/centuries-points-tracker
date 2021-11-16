@@ -1,36 +1,78 @@
-<%= link_to("<< Back to List", services_path, :class => 'back-link') %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
+    
+    h1{
+      font-family: 'Archivo Black', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
 
-<div class="service show">
-  <h2>Show Service</h2>
+    .button-group{
+      margin-top: 5rem;
+      text-align: center;
+    }
 
-  <table summary="Service detail view">
-    <tr>
-      <th>Hours</th>
-      <td><%= @service.hours %></td>
-      
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td><%= @service.description %></td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td><%= @service.format_date %></td>
-    </tr>
-    <tr>
-      <th>Approved?</th>
-      <td>
-      <% if @service.isApproved %>
-      <%= image_tag @service.approved_img_path, height: 30 %>
-      <% else %>
-      <%= image_tag @service.approved_img_path, height: 30 %>
+    .service{
+      text-align: left;
+      margin: 10%;
+    }
+
+    .table-name{
+      font-family: 'Archivo Black', sans-serif;
+      text-align: center;
+    }
+
+    .btn{
+      font-family: 'Montserrat', sans-serif;
+      width: 10rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="service show">
+      <h1 class="table-name">Show Service</h1>
+      <table class="table table-striped" summary="Service detail view">
+        <tr>
+          <th>Hours</th>
+          <td><%= @service.hours %></td> 
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td><%= @service.description %></td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td><%= @service.format_date %></td>
+        </tr>
+        <tr>
+          <th>Approved?</th>
+          <td>
+            <% if @service.isApproved %>
+              <%= image_tag @service.approved_img_path, height: 30 %>
+            <% else %>
+              <%= image_tag @service.approved_img_path, height: 30 %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <p class="button-group">
+      <% if !current_member.isAdmin && !@service.isApproved %>        
+          <%= link_to("EDIT", edit_service_path(@service), :class => 'action edit btn btn-primary') %>
+          <%= link_to("DELETE", delete_service_path(@service), :class => 'action delete btn btn-primary') %>     
       <% end %>
-       </td>
-    </tr>
-  </table>
-    <% if !current_member.isAdmin && !@service.isApproved %>
-    <div class="col-2"><%= link_to("Edit", edit_service_path(@service), :class => 'action edit') %></div>
-    <div class="col-2"><%= link_to("Delete", delete_service_path(@service), :class => 'action delete') %></div>
-    <% end %>
-</div>
+      <%= link_to("BACK", services_path, :class => 'back-link btn btn-primary') %>
+      </p>        
+    </div>
+  </body>
+</html>
 
+    

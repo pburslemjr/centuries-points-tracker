@@ -1,5 +1,6 @@
-<nav class="navbar navbar-dark bg-dark navbar-expand-md">
-  <a class="navbar-brand" href="#">Century Mens Society</a>
+
+<nav class="ml-2 navbar navbar-dark bg-dark navbar-expand-md" style="padding: 0;">
+  <a class="navbar-brand" href="/">Century Mens Society</a>
   <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,9 +16,12 @@
         <%= link_to "Events", events_path, class: "nav-link"  %>
       </li>
       <% if current_member.isAdmin? %>
-      <li class="nav-item">
-        <%= link_to "Whitelist", whitelists_path, class: "nav-link"  %>
-      </li>
+        <li class="nav-item">
+          <%= link_to "Whitelist", whitelists_path, class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Members", member_index_path, class: "nav-link"  %>
+        </li>
       <% end %>
       <li class="nav-item">
         <%= link_to "Sign Out", destroy_member_session_path, class: "nav-link"  %>

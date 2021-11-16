@@ -1,8 +1,24 @@
 
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
 
+    h1{
+      font-family: 'Archivo Black', sans-serif;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
 
-<div class="mt-5 container whitelists index">
-      <h1 class="lead-1">Whitelisted Users</h1>
+    .form-buttons{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-top: 5rem;
+      text-align: center;
+    }
+  </style>
+    <div class="mt-5 container whitelists index">
+      <h1>Whitelisted Users</h1>
       <%= render :partial => 'table', locals: { users: @users, attended: true } %>
-      <%= link_to("Add New User", new_whitelist_path, :class => 'float-end btn btn-primary action new') %>
-</div>
+      <div class="form-buttons">
+        <%= link_to("Add New User", new_whitelist_path, :class => "btn btn-primary action new") %>
+      </div>
+    </div>    
