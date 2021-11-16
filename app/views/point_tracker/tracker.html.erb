@@ -46,8 +46,7 @@
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1> Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
-            <p>(<%= @service_hours.where(isApproved: true).sum(:hours) %> approved)</p>
+            <h1 style="margin-bottom: 4rem">Events: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %> mandatory events attended</h1>            
             <thead>
               <tr>
                 <th>Name</th>
@@ -68,7 +67,8 @@
         </div>
         <div class="col right">
           <table class="table table-striped" summary="Event detail view">            
-            <h1 style="margin-bottom: 4rem">Events: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %> mandatory events attended</h1>
+          <h1> Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
+          <p>(<%= @service_hours.where(isApproved: true).sum(:hours) %> approved)</p>
             <thead>
               <tr>
                 <th>Description</th>
