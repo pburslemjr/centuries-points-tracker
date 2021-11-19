@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   # get 'admin/create_event'
   get 'tos' => 'info#tos'
   get 'privacy' => 'info#privacy'
+  get 'help' => 'info#help'
   get 'home/index'
   get 'service_logger/new', to: 'service_logger#new'
   post 'service_logger/index', to: 'service_logger#create'
