@@ -1,6 +1,6 @@
 # Project
 
-[project.com](https://project.com)
+[centuries-points-tracker.herokuapp.com/](https://centuries-points-tracker.herokuapp.com/)
 
 ## Install
 
@@ -8,7 +8,7 @@
 
 ```shell
 git clone https://github.com/pburslemjr/centuries-points-tracker.git
-cd project
+cd centuries-points-tracker
 ```
 
 ### Check your Ruby version
@@ -27,31 +27,27 @@ rbenv install 2.5.1
 
 ### Install dependencies
 
-Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
+Using [Bundler](https://github.com/bundler/bundler):
 
 ```shell
-bundle && yarn
+sudo apt-get install libpq-dev
+gem install bundler
+bundler install
 ```
-
-### Set environment variables
-
-Using [Figaro](https://github.com/laserlemon/figaro):
-
-See [config/application.yml.sample](https://github.com/juliendargelos/project/blob/master/config/application.yml.sample) and contact the developer: [contact@juliendargelos.com](mailto:contact@juliendargelos.com) (sensitive data).
 
 ### Initialize the database
 
 ```shell
-rails db:create db:migrate db:seed
+bundler exec rails db:create RAILS_ENV=test --trace
+bundler exec rails db:migrate RAILS_ENV=test --trace
+bundler exec rails db:seed RAILS_ENV=test --trace
 ```
 
-### Add heroku remotes
-
-Using [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli):
-
+## Run tests
 ```shell
-heroku git:remote -a project
-heroku git:remote --remote heroku-staging -a project-staging
+bundler exec rspec .
+bundler exec brakeman -o brakeman.txt
+bundler exec rubocop --out rubocop.txt
 ```
 
 ## Serve
@@ -60,26 +56,6 @@ heroku git:remote --remote heroku-staging -a project-staging
 rails s
 ```
 
-## Deploy
-
-### With Heroku pipeline (recommended)
-
-Push to Heroku staging remote:
-
-```shell
-git push heroku-staging
-```
-
-Go to the Heroku Dashboard and [promote the app to production](https://devcenter.heroku.com/articles/pipelines) or use Heroku CLI:
-
-```shell
-heroku pipelines:promote -a project-staging
-```
-
-### Directly to production (not recommended)
-
-Push to Heroku production remote:
-
-```shell
-git push heroku
-```
+## CI/CD and GitHub Actions
+When implementing a feature, create a pull request and merge to main. Upon merging to main, the GitHub actions will run a series of automated building and testing of code.
+Merging to the Dev branch will automatically deploy the newly written code to the test website. Merging to the main branch will automatically deploy the newly written code to the production website.
