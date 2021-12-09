@@ -24,6 +24,7 @@
         </td>
         <td><%= image_tag service.approved_img_path, height: 30, alt: "approved checkmark", class: "check" %></td>
         <td>
+          <div><%= button_to 'Unapprove', {:controller => "services", :class => "btn btn-primary", :action => "unapprove", :id => service.id}, {:method=>:post}%></div>
           <div><%= link_to("Details", service_path(service), :class => 'action show') %></div>
           <div><%= link_to("Edit", edit_service_path(service), :class => 'action edit') %></div>
           <div><%= link_to("Delete", delete_service_path(service), :class => 'action delete') %></div>
