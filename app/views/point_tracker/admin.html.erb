@@ -238,12 +238,11 @@
   </style>
     <% content_for(:html_title) { 'Points Tracker' } %>
 
-    <h1>You're logged in to Admin View! Welcome, <%= current_member.name%></h1>
-
     <!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
     <br/>
 
     <div class="mt-5 container home index">
+    <h2 class="center">Welcome to Admin View, <%= current_member.name%></h2><br>
       <table id="ParticipationTable" class="table table-striped">
         <h1>Member Participation:</h1>
           <tr>
