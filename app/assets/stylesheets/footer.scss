@@ -6,7 +6,7 @@ body {
 }
 
 .container-fluid {
-    margin-top: 330px;
+    // margin-top: 350px;
     color: #000 !important
 }
 
@@ -139,4 +139,22 @@ li {
 
 .nav-link {
     background-color: unset!important;
+}
+
+html,
+body {
+    height: 100%!important;
+}
+
+body {
+    display: flex!important;
+    flex-direction: column!important;
+}
+
+.content {
+    flex: 1 0 auto!important;
+}
+
+.footer {
+    flex-shrink: 0!important;
 }
