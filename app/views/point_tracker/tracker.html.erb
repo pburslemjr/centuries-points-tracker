@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@500&display=swap');
 
@@ -39,14 +32,17 @@
       margin-left: 3rem;
     }
   </style>
-  <body>
+
     <%= flash[:alert] %>
     <% content_for(:html_title) { 'Points Tracker' } %>
+
     <div class="container mt-5 events show">
+    <h2 class="center">Welcome To The Member Home Page, <%= current_member.name%></h2><br><br><br>
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1 style="margin-bottom: 4rem">Events: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %> mandatory events attended</h1>            
+            <h1>Event Participation: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %></h1>  
+            <h2>Upcoming Events</h2>       
             <thead>
               <tr>
                 <th>Name</th>
@@ -55,7 +51,7 @@
               </tr>
             </thead>  
             <tbody>
-              <% @current_member.events.each do |event| %>
+              <% @upcoming_events.each do |event| %>
                 <tr>
                   <td><%= event.name %></td>
                   <td><%= event.format_date %></td>
@@ -67,8 +63,8 @@
         </div>
         <div class="col right">
           <table class="table table-striped" summary="Event detail view">            
-          <h1> Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %> approved</h1>
-          <p>(<%= @service_hours.where(isApproved: true).sum(:hours) %> approved)</p>
+          <h1>Approved Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %></h1>
+          <h2>Service Hours</h2>    
             <thead>
               <tr>
                 <th>Description</th>
@@ -91,5 +87,3 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
