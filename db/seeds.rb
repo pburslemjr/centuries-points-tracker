@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 whitelist_data = [
-  'paul-b-tamu@tamu.edu',
   'centurymens.social@gmail.com',
   'ammar918@gmail.com',
   'siddiqi918@tamu.edu',
