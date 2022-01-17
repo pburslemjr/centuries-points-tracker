@@ -8,13 +8,9 @@
 
 whitelist_data = [
   'centurymens.social@gmail.com',
-  'ammar918@gmail.com',
-  'siddiqi918@tamu.edu',
-  'siddiqi91899@gmail.com',
-  'deananderson@tamu.edu',
-  'andersondeant@gmail.com',
-  'mivoli98@tamu.edu',
-  'mibeophi2@gmail.com'
+  'cew3275@tamu.edu',
+  'centurymens.president@gmail.com',
+  'carterwiegand0@gmail.com'
 ]
 
 whitelist_data.each do |email|
@@ -29,3 +25,5 @@ Member.create(name: 'Social Officer', isAdmin: true, email: 'centurymens.social@
 
 Member.create(name: 'Nguyen Nguyen', isAdmin: true, email: 'mibeophi2@gmail.com', 
   uid: 112406362166503766840) if Member.find_by(uid: 112406362166503766840).nil?
+
+

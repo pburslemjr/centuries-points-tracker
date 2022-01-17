@@ -4,6 +4,7 @@
 
     h1{
       font-family: 'Archivo Black', sans-serif;
+      
     }
 
     p{
@@ -13,6 +14,7 @@
 
     th{
       text-align: center;
+      
     }
 
     td{
@@ -31,17 +33,37 @@
     .col.right{
       margin-left: 3rem;
     }
+    @media (max-width: 1000px) {
+      .col.left{
+        margin-right: 0rem;
+      }
+  
+      .col.right{
+        margin-left: 0rem;
+      }
+
+      h1{
+      
+      font-size: 8vw;
+    }
+    th{
+      
+      font-size: 2.5vw;
+      
+    }
+    
+}
   </style>
 
     <%= flash[:alert] %>
     <% content_for(:html_title) { 'Points Tracker' } %>
 
     <div class="container mt-5 events show">
-    <h2 class="center">Welcome To The Member Home Page, <%= current_member.name%></h2><br><br><br>
+    <h2 class="center">Welcome To The Member Home Page, <%= current_member.name%></h2><br>
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1>Event Participation: <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %></h1>  
+            <h1>Event Participation: <br> <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %></h1>  
             <h2>Upcoming Events</h2>       
             <thead>
               <tr>
@@ -63,7 +85,7 @@
         </div>
         <div class="col right">
           <table class="table table-striped" summary="Event detail view">            
-          <h1>Approved Service Hours: <%= @service_hours.where(isApproved: true).sum(:hours) %></h1>
+          <h1>Approved Service Hours:<br><%= @service_hours.where(isApproved: true).sum(:hours) %></h1>
           <h2>Service Hours</h2>    
             <thead>
               <tr>

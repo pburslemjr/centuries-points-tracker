@@ -49,6 +49,31 @@
     .form-buttons{
       text-align: center;
     }
+    @media (max-width: 1000px) {
+      .col{
+        margin-right: 0rem;
+      }
+  
+      .col{
+        margin-left: 0rem;
+      }
+
+      h1{
+      
+      font-size: 8vw;
+    }
+    th{
+      
+      font-size: 2.2vw;
+    }
+    tr{
+      font-size: 2.6vw;
+    }
+    .table>:not(caption)>*>*{
+      padding: 0.1rem 0.1rem;
+    }
+    
+  }
   </style>
   <body>
     <% content_for(:html_title) { 'Events' } %>

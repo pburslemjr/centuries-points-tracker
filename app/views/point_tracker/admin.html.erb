@@ -197,6 +197,7 @@
 
     th{
       text-align: center;
+      
     }
 
     td{
@@ -235,6 +236,30 @@
     .col.right{
       margin-left: 3rem;
     }
+    @media (max-width: 1000px) {
+      .col.left{
+        margin-right: 0rem;
+      }
+  
+      .col.right{
+        margin-left: 0rem;
+      }
+
+      h1{
+      
+      font-size: 8vw;
+    }
+    th{
+      
+      font-size: 2.2vw;
+    }
+    tr{
+      font-size: 2vw;
+    }
+    
+  }
+    
+    
   </style>
     <% content_for(:html_title) { 'Points Tracker' } %>
 
