@@ -9,6 +9,7 @@ class PointTrackerController < ApplicationController
     ordered = Event.order(:datetime)
     @upcoming_events = ordered.where('datetime > ? or datetime IS NULL', Time.zone.now)
     @service_hours = Service.where(member_id: current_member.id).order('date desc')
+    @event_num = Event.where('datetime < ?', Time.zone.now).length
   end
 
   def admin

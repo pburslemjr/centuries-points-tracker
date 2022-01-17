@@ -24,21 +24,28 @@ class Member < ApplicationRecord
     if @past_events.length.zero?
       'No events!'
     else
-      ((events.length.to_f / @past_events.length) * 100.to_f).round(2)
+      ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
+      
     end
   end
 
-  def sort_mm
-    ordered = Event.order(:datetime)
+  def sort_mm(uid:)
+    return nil if Member.find_by(uid: uid).nil?
+    @curr_member = Member.find_by(uid: uid)
+    ordered = Event.order(:datetime)  
+    @past_m = ordered.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
+    @member_mandatory_event_num = @curr_member.events.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+    return 'Past mandatory events is Nil!' if @past_m.nil?
 
-    return 'Past events is Nil!' if @past_events.nil?
-
-    if @past_events.length.zero?
-      'No events!'
+    if @past_m == 0
+      'No mandatory events have happened yet!'
     else
-      @past_events.count(&:isMandatory) - events.count(&:isMandatory)
+      if @member_mandatory_event_num == 0
+        @past_m
+      else
+      @past_m - @member_mandatory_event_num 
+      end
     end
   end
 end

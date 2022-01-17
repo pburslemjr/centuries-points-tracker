@@ -63,7 +63,8 @@
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1>Event Participation: <br> <%= @member_mandatory_event_num %> / <%=@mandatory_event_num %></h1>  
+            <h1>Event Participation:</h1> <br><h4> <%= @mandatory_event_num - @member_mandatory_event_num %> Missed Mandatory Event<% if @mandatory_event_num - @member_mandatory_event_num != 1%><%= 's' %> <% end %></h4>
+            <h4><%= 100*current_member.events.where('datetime < ?', Time.now).length / @event_num %>% Attended</h4>  
             <h2>Upcoming Events</h2>       
             <thead>
               <tr>

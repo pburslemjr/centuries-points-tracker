@@ -62,7 +62,7 @@
         No events have occured!
         <% else %>
       
-        <%= member.sort_mm %>
+        <%= member.sort_mm(uid: member.uid) %>
         <% end %>
   </td>
   <td><%=member.sort_service%></td>
