@@ -10,7 +10,8 @@ whitelist_data = [
   'centurymens.social@gmail.com',
   'cew3275@tamu.edu',
   'centurymens.president@gmail.com',
-  'carterwiegand0@gmail.com'
+  'carterwiegand0@gmail.com',
+  'paul-b-tamu@tamu.edu'
 ]
 
 whitelist_data.each do |email|
