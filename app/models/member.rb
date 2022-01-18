@@ -48,4 +48,8 @@ class Member < ApplicationRecord
       end
     end
   end
+
+  def get_mm
+    return sort_mm(uid: Member.find_by(id: id).uid)
+  end
 end

@@ -17,9 +17,9 @@ class MemberController < ApplicationController
                  end
                elsif params[:sort] == 'mm'
                  if @reverse
-                   Member.all.sort_by(&:sort_mm)
+                   Member.all.sort_by(&:get_mm)
                  else
-                   Member.all.sort_by(&:sort_mm).reverse!
+                   Member.all.sort_by(&:get_mm).reverse!
                  end
                elsif params[:sort] == 'hours'
                  if @reverse
