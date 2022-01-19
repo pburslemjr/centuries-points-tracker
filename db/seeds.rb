@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-whitelist_data = [
+other_whitelist_data = [
   'centurymens.social@gmail.com',
   'cew3275@tamu.edu',
   'centurymens.president@gmail.com',
@@ -16,6 +16,66 @@ whitelist_data = [
   'centurymens.service@gmail.com'
   
 ]
+
+whitelist_data = [
+ 'tuckh2019@tamu.edu',
+'Jroo@tamu.edu',
+'will_gibbens@tamu.edu',
+'loganswingle@tamu.edu',
+'Ethanirsik@tamu.edu',
+'Lukegools@tamu.edu',
+'Daniel.kirby@tamu.edu',
+'hkayman@tamu.edu',
+'Hunterh22@tamu.edu',
+'hojunchae@tamu.edu',
+'Bdyokley@tamu.edu',
+'Ckwon219@tamu.edu',
+'kutayebik@tamu.edu',
+'hults@tamu.edu',
+'jacksongarrison@tamu.edu',
+'alex.wachowicz1@tamu.edu',
+'jacksontodd3@tamu.edu',
+'Jarrettpoehl@tamu.edu',
+'binhdocao@tamu.edu',
+'Sam.allen78@tamu.edu',
+'Grayson.mcguire@tamu.edu',
+'Ajchristian15@tamu.edu',
+'Cew3275@tamu.edu',
+'j.bauer2018@tamu.edu',
+'dillardpace@tamu.edu',
+'Maisonw1@tamu.edu',
+'Knorbs10@tamu.edu',
+'andremach1@tamu.edu',
+'coltonh2@tamu.edu',
+'crh2001@tamu.edu',
+'bradymarek@tamu.edu',
+'Paul-b-tamu@tamu.edu',
+'jsd6427@tamu.edu',
+'andrew.pickard@tamu.edu',
+'lanerobey@tamu.edu',
+'Kylebeck10@tamu.edu',
+'brettbtaylor44@tamu.edu',
+'Barrett3001@tamu.edu',
+'shaffer.russell@tamu.edu',
+'calvinwhitaker@tamu.edu',
+'Bmguynes@tamu.edu',
+'edreecemangal@tamu.edu',
+'Davidbobo@tamu.edu',
+'dylan5023@tamu.edu',
+'Raahinmomin@tamu.edu',
+'gallums@tamu.edu',
+'jcollins2000@tamu.edu',
+'claytonduggan.cd@tamu.edu',
+'vmnguyen1@tamu.edu',
+'centurymens.social@gmail.com',
+'cew3275@tamu.edu',
+'centurymens.president@gmail.com',
+'carterwiegand0@gmail.com',
+'paul-b-tamu@tamu.edu',
+'centurymens.vp@gmail.com',
+'centurymens.service@gmail.com'
+]
+
 
 whitelist_data.each do |email|
   Whitelist.create(email: email) if Whitelist.find_by(email: email).nil?
