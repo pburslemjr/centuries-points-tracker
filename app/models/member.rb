@@ -3,11 +3,12 @@ class Member < ApplicationRecord
   has_and_belongs_to_many :events
 
   def self.from_google(uid:, full_name:, email:)
-    # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
+     #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
-    return nil if Whitelist.find_by(email: email.downcase).nil?
+    return nil if Whitelist.where("lower(email) = ?", email.downcase).nil?
+    
 
-    create_with(uid: uid, name: full_name, email: email, isAdmin: false).find_or_create_by!(uid: uid)
+    create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
 
   def sort_service
