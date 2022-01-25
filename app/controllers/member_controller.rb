@@ -17,9 +17,9 @@ class MemberController < ApplicationController
                  end
                elsif params[:sort] == 'mm'
                  if @reverse
-                   Member.all.sort_by(&:sort_mm)
+                   Member.all.sort_by(&:get_mm)
                  else
-                   Member.all.sort_by(&:sort_mm).reverse!
+                   Member.all.sort_by(&:get_mm).reverse!
                  end
                elsif params[:sort] == 'hours'
                  if @reverse
@@ -36,6 +36,7 @@ class MemberController < ApplicationController
     ordered = Event.order(:datetime)
 
     @past_events = ordered.where('datetime <= ?', Time.zone.now)
+    @past_mandatory = @past_events.where(isMandatory: true).length
   end
 
   def reset_sorting

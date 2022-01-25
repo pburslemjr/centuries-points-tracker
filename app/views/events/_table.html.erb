@@ -2,8 +2,7 @@
   <p>There are no events here</p>
 <% else %>
   <table class="table table-striped" summary="Event list">
-    <tr>
-      <th>#</th>
+    <tr>      
       <th>Event</th>
       <th>Description</th>
       <th>Location</th>
@@ -15,7 +14,7 @@
     </tr>
     <% events.each do |event| %>
       <tr>
-        <td><%= event.id %></td>
+        
         <td><%= event.formatName %></td>
         <td class="text-break"><%= event.description %></td>
         <td><%= event.location %></td>

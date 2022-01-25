@@ -27,7 +27,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <%= render 'layouts/navbar' %>
 
     <% if flash.any? %>
@@ -41,7 +41,7 @@
         <% end %>
       <% end -%>
     <% end %>
-    <%= yield %>
+    <div class="mb-3"><%= yield %></div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

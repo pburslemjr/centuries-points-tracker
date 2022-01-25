@@ -3,11 +3,12 @@ class Member < ApplicationRecord
   has_and_belongs_to_many :events
 
   def self.from_google(uid:, full_name:, email:)
-    # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
+     #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
-    return nil if Whitelist.find_by(email: email).nil?
+    return nil if Whitelist.where("lower(email) = ?", email.downcase).nil?
+    
 
-    create_with(uid: uid, name: full_name, email: email, isAdmin: false).find_or_create_by!(uid: uid)
+    create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
 
   def sort_service
@@ -24,21 +25,32 @@ class Member < ApplicationRecord
     if @past_events.length.zero?
       'No events!'
     else
-      ((events.length.to_f / @past_events.length) * 100.to_f).round(2)
+      ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
+
     end
   end
 
-  def sort_mm
+  def sort_mm(uid:)
+    return nil if Member.find_by(uid: uid).nil?
+
+    @curr_member = Member.find_by(uid: uid)
     ordered = Event.order(:datetime)
+    @past_m = ordered.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
+    @member_mandatory_event_num = @curr_member.events.where(isMandatory: true).where('datetime <= ?',
+                                                                                     Time.zone.now).length
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+    return 'Past mandatory events is Nil!' if @past_m.nil?
 
-    return 'Past events is Nil!' if @past_events.nil?
-
-    if @past_events.length.zero?
-      'No events!'
+    if @past_m.zero?
+      'No mandatory events have happened yet!'
+    elsif @member_mandatory_event_num.zero?
+      @past_m
     else
-      @past_events.count(&:isMandatory) - events.count(&:isMandatory)
+      @past_m - @member_mandatory_event_num
     end
+  end
+
+  def get_mm
+    sort_mm(uid: Member.find_by(id: id).uid)
   end
 end

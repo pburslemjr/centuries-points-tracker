@@ -3,7 +3,7 @@
 <% else %>
 
 
-<table class="mt-3 table listing" summary="Service list">
+<table class="table table-striped" summary="Member list">
 <tr class="header">
   <th>
   <% if params[:sort] != "name" %>
@@ -62,7 +62,7 @@
         No events have occured!
         <% else %>
       
-        <%= member.sort_mm %>
+        <%= member.sort_mm(uid: member.uid) %>
         <% end %>
   </td>
   <td><%=member.sort_service%></td>

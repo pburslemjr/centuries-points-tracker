@@ -197,6 +197,7 @@
 
     th{
       text-align: center;
+      
     }
 
     td{
@@ -235,16 +236,39 @@
     .col.right{
       margin-left: 3rem;
     }
+    @media (max-width: 1000px) {
+      .col.left{
+        margin-right: 0rem;
+      }
+  
+      .col.right{
+        margin-left: 0rem;
+      }
+
+      h1{
+      
+      font-size: 8vw;
+    }
+    th{
+      
+      font-size: 2.2vw;
+    }
+    tr{
+      font-size: 2vw;
+    }
+    
+  }
+    
+    
   </style>
     <% content_for(:html_title) { 'Points Tracker' } %>
-
-    <h1>You're logged in to Admin View! Welcome, <%= current_member.name%></h1>
 
     <!-- <%= link_to("Home", {controller: "home", action: "index"}) %> -->
     <br/>
 
     <div class="mt-5 container home index">
-      <table id="ParticipationTable" class="table table-striped">
+    <h2 class="center">Welcome to Admin View, <%= current_member.name%></h2><br>
+    <table id="ParticipationTable" class="table table-striped">
         <h1>Member Participation:</h1>
           <tr>
             <th id="col1" style="cursor:pointer" onclick="sortTableName(0)">Member</th>

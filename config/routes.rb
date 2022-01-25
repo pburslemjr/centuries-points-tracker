@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     member do
       get :delete
       post :approve
+      post :unapprove
     end
   end
 

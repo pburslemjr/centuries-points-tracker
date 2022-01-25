@@ -49,6 +49,37 @@
     .form-buttons{
       text-align: center;
     }
+    @media (max-width: 1000px) {
+      .col{
+        margin-right: 0rem;
+      }
+  
+      .col{
+        margin-left: 0rem;
+      }
+
+      h1{
+      
+      font-size: 8vw;
+    }
+    th{
+      
+      font-size: 2vw;
+    }
+    tr{
+      font-size: 2vw;
+    }
+    .table>:not(caption)>*>*{
+      padding: 0.1rem 0.1rem;
+    }
+    h1 {
+      margin: 1rem;
+    }
+    h2 {
+      margin: 1rem;
+    }
+    
+  }
   </style>
   <body>
     <% content_for(:html_title) { 'Events' } %>
@@ -60,10 +91,11 @@
         <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
         <hr>
       <% end %>
+    </div>
 
       <h1>All Events</h1>
 
-      <div class="container mt-5 events show">
+      <div class="container mt-5 mb-5 events show">
         <div class="row">
           <div class="col left">
             <table class="table table-striped" summary="Event detail view">

@@ -68,6 +68,12 @@ class ServicesController < ApplicationController
     redirect_to(services_path)
   end
 
+  def unapprove
+    @service = Service.find(params[:id])
+    @service.update(isApproved: false)
+    redirect_to(services_path)
+  end
+
   private
 
   def service_params
