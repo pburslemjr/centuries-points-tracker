@@ -140,6 +140,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    newrelic_rpm (8.3.0)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
@@ -324,6 +325,7 @@ DEPENDENCIES
   google_sign_in
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  newrelic_rpm
   omniauth (~> 1.9.1)
   omniauth-google-oauth2 (~> 0.8.2)
   pg (~> 1.1)
