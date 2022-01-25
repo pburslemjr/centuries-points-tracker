@@ -37,8 +37,6 @@ class MemberController < ApplicationController
 
     @past_events = ordered.where('datetime <= ?', Time.zone.now)
     @past_mandatory = @past_events.where(isMandatory: true).length
-    
-    
   end
 
   def reset_sorting
