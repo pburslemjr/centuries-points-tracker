@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   def self.from_google(uid:, full_name:, email:)
     # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
-    return nil if Whitelist.find_by(email: email).nil?
+    return nil if Whitelist.find_by(email: email.downcase).nil?
 
     create_with(uid: uid, name: full_name, email: email, isAdmin: false).find_or_create_by!(uid: uid)
   end
