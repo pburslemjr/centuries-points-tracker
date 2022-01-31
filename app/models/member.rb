@@ -6,7 +6,7 @@ class Member < ApplicationRecord
      #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
     return nil if Whitelist.where("lower(email) = ?", email.downcase).nil?
-    
+
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -18,7 +18,7 @@ class Member < ApplicationRecord
   def sort_pp
     ordered = Event.order(:datetime)
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
 
     return 'Past events is Nil!' if @past_events.nil?
 
@@ -26,14 +26,14 @@ class Member < ApplicationRecord
       'No events!'
     else
       ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
-      
+
     end
   end
 
   def sort_mm(uid:)
     return nil if Member.find_by(uid: uid).nil?
     @curr_member = Member.find_by(uid: uid)
-    ordered = Event.order(:datetime)  
+    ordered = Event.order(:datetime)
     @past_m = ordered.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
     @member_mandatory_event_num = @curr_member.events.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
 
@@ -45,7 +45,7 @@ class Member < ApplicationRecord
       if @member_mandatory_event_num == 0
         @past_m
       else
-      @past_m - @member_mandatory_event_num 
+      @past_m - @member_mandatory_event_num
       end
     end
   end
