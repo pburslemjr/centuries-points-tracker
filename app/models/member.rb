@@ -23,7 +23,7 @@ class Member < ApplicationRecord
     return 'Past events is Nil!' if @past_events.nil?
 
     if @past_events.length.zero?
-      'No non-mandatory events!'
+      '100'
     else
       ((events.where('datetime <= ?', Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
 
