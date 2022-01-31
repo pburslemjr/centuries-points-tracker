@@ -5,7 +5,7 @@
     table = document.getElementById("ParticipationTable");
     switching = true;
     // Set the sorting direction to ascending:
-    dir = "asc";
+    dir = "asc";    
     addArrow(n + 1, true);
     /* Make a loop that will continue until
     no switching has been done: */
@@ -24,7 +24,7 @@
         y = rows[i + 1].getElementsByTagName("TD")[n];
         /* Check if the two rows should switch place,
         based on the direction, asc or desc: */
-        if (dir == "asc") {
+        if (dir == "asc") {          
           if (x.innerHTML.localeCompare(y.innerHTML) == 1) {
             shouldSwitch = true;
             break;
@@ -44,13 +44,13 @@
         // Each time a switch is done, increase this count by 1:
         switchcount ++;
       } else {
-
+        
         /* If no switching has been done AND the direction is "asc",
         set the direction to "desc" and run the while loop again. */
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";
           switching = true;
-          addArrow(n + 1, false);
+          addArrow(n + 1, false);          
         }
       }
     }
@@ -75,7 +75,7 @@
           {
             document.getElementById("col1").innerHTML = "Member ⇩";
           }
-
+        
       }
     else if (colID == 2)
       {
@@ -197,7 +197,7 @@
 
     th{
       text-align: center;
-
+      
     }
 
     td{
@@ -240,26 +240,26 @@
       .col.left{
         margin-right: 0rem;
       }
-
+  
       .col.right{
         margin-left: 0rem;
       }
 
       h1{
-
+      
       font-size: 8vw;
     }
     th{
-
+      
       font-size: 2.2vw;
     }
     tr{
       font-size: 2vw;
     }
-
+    
   }
-
-
+    
+    
   </style>
     <% content_for(:html_title) { 'Points Tracker' } %>
 
@@ -283,13 +283,11 @@
               <td><%= member.name %></td>
               <td><%= @service_hours.where(member_id: member.id, isApproved: true,).sum(:hours) %></td>
               <td><%= @service_hours.where(member_id: member.id, isApproved: false).sum(:hours) %></td>
-              <td>
-              <% if @past_events.length() == 0 %>
-                No events have occured!
+              <% if @event_num > 0 %>
+                <td><%= 100*member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num %></td>
               <% else %>
-                <%= member.sort_pp %>%
+                <td><%= 100 %></td>
               <% end %>
-              </td>
               <td><%= @mandatory_event_num - member.events.where(isMandatory: true).where('datetime < ?', Time.now).length %></td>
               <td><%= link_to("Details", member_path(member), :class => 'action show') %></td>
             </tr>
