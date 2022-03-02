@@ -9,7 +9,7 @@ class PointTrackerController < ApplicationController
     ordered = Event.order(:datetime)
     @upcoming_events = ordered.where('datetime > ? or datetime IS NULL', Time.zone.now)
     @service_hours = Service.where(member_id: current_member.id).order('date desc')
-    @event_num = Event.where('datetime < ?', Time.zone.now).length
+    @event_num = Event.where('datetime < ?', Time.zone.now).where(isMandatory: false).length
   end
 
   def admin
@@ -17,7 +17,7 @@ class PointTrackerController < ApplicationController
 
     @events = Event.all
     @mandatory_event_num = Event.where(isMandatory: true).where('datetime < ?', Time.zone.now).length
-    @event_num = Event.where('datetime < ?', Time.zone.now).length
+    @event_num = Event.where('datetime < ?', Time.zone.now).where(isMandatory: false).length
     @members = Member.all
     @service_hours = Service.all
     Rails.logger.debug 'Service is in admin view'

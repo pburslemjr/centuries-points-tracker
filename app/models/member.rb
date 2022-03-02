@@ -6,7 +6,7 @@ class Member < ApplicationRecord
      #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
     return nil if Whitelist.where("lower(email) = ?", email.downcase).nil?
-    
+
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -18,14 +18,14 @@ class Member < ApplicationRecord
   def sort_pp
     ordered = Event.order(:datetime)
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil))
+    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
 
     return 'Past events is Nil!' if @past_events.nil?
 
     if @past_events.length.zero?
-      'No events!'
+      '100'
     else
-      ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
+      ((events.where('datetime <= ?', Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
 
     end
   end
@@ -46,7 +46,15 @@ class Member < ApplicationRecord
     elsif @member_mandatory_event_num.zero?
       @past_m
     else
+<<<<<<< HEAD
       @past_m - @member_mandatory_event_num
+=======
+      if @member_mandatory_event_num == 0
+        @past_m
+      else
+      @past_m - @member_mandatory_event_num
+      end
+>>>>>>> 110a1463df48ec7db10f8ceb59811377fa3693a1
     end
   end
 

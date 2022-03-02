@@ -284,7 +284,7 @@
               <td><%= @service_hours.where(member_id: member.id, isApproved: true,).sum(:hours) %></td>
               <td><%= @service_hours.where(member_id: member.id, isApproved: false).sum(:hours) %></td>
               <% if @event_num > 0 %>
-                <td><%= 100*member.events.where('datetime < ?', Time.now).length / @event_num %></td>
+                <td><%= 100*member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num %></td>
               <% else %>
                 <td><%= 100 %></td>
               <% end %>
