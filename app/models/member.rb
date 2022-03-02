@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   def self.from_google(uid:, full_name:, email:)
      #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
-    return nil if Whitelist.where("lower(email) = ?", email.downcase).nil?
+    return nil if Whitelist.where("lower(email) = ?", email.downcase).empty?
 
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
@@ -25,32 +25,32 @@ class Member < ApplicationRecord
     if @past_events.length.zero?
       '100'
     else
-      ((events.where('datetime <= ?', Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
+      ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
 
     end
   end
 
   def sort_mm(uid:)
     return nil if Member.find_by(uid: uid).nil?
+
     @curr_member = Member.find_by(uid: uid)
     ordered = Event.order(:datetime)
     @past_m = ordered.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
-    @member_mandatory_event_num = @curr_member.events.where(isMandatory: true).where('datetime <= ?', Time.zone.now).length
+    @member_mandatory_event_num = @curr_member.events.where(isMandatory: true).where('datetime <= ?',
+                                                                                     Time.zone.now).length
 
     return 'Past mandatory events is Nil!' if @past_m.nil?
 
-    if @past_m == 0
+    if @past_m.zero?
       'No mandatory events have happened yet!'
+    elsif @member_mandatory_event_num.zero?
+      @past_m
     else
-      if @member_mandatory_event_num == 0
-        @past_m
-      else
       @past_m - @member_mandatory_event_num
-      end
     end
   end
 
   def get_mm
-    return sort_mm(uid: Member.find_by(id: id).uid)
+    sort_mm(uid: Member.find_by(id: id).uid)
   end
 end
