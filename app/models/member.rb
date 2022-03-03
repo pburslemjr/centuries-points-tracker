@@ -46,19 +46,7 @@ class Member < ApplicationRecord
     elsif @member_mandatory_event_num.zero?
       @past_m
     else
-<<<<<<< HEAD
       @past_m - @member_mandatory_event_num
-=======
-<<<<<<< HEAD
-      @past_m - @member_mandatory_event_num
-=======
-      if @member_mandatory_event_num == 0
-        @past_m
-      else
-      @past_m - @member_mandatory_event_num
-      end
->>>>>>> 110a1463df48ec7db10f8ceb59811377fa3693a1
->>>>>>> 7b3621fa1751ea16eadbf986d397f79b1b8e0243
     end
   end
 
