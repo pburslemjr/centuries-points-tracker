@@ -3,10 +3,9 @@ class Member < ApplicationRecord
   has_and_belongs_to_many :events
 
   def self.from_google(uid:, full_name:, email:)
-     #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
+    # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
 
-    return nil if Whitelist.where("lower(email) = ?", email.downcase).empty?
-
+    return nil if Whitelist.where('lower(email) = ?', email.downcase).empty?
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -18,14 +17,18 @@ class Member < ApplicationRecord
   def sort_pp
     ordered = Event.order(:datetime)
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
+    @past_events = ordered.where('datetime <= ?',
+                                 Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
 
     return 'Past events is Nil!' if @past_events.nil?
 
     if @past_events.length.zero?
       '100'
     else
-      ((events.where('datetime <= ?', Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
+      ((events.where('datetime <= ?',
+                     # rubocop:disable Layout/LineLength
+                     Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
+      # rubocop:enable Layout/LineLength
 
     end
   end
@@ -50,7 +53,9 @@ class Member < ApplicationRecord
     end
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def get_mm
     sort_mm(uid: Member.find_by(id: id).uid)
   end
+  # rubocop:enable Naming/AccessorMethodName
 end
