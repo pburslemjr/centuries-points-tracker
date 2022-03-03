@@ -45,7 +45,7 @@
   <% end %>
   
 </tr>
-<% members.each do |member| %>
+<% members.reject(&:isAdmin).each do |member| %>
 <tr class="item">
   <td><%= member.name %></td>
   <td><%= member.email %></td>
