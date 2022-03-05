@@ -25,11 +25,9 @@ class Member < ApplicationRecord
     if @past_events.length.zero?
       '100'
     else
-      ((events.where('datetime <= ?',
-                     # rubocop:disable Layout/LineLength
-                     Time.zone.now).where(isMandatory: false).length.to_f / @past_events.length) * 100.to_f).round(2)
-      # rubocop:enable Layout/LineLength
-
+# rubocop:disable Layout/LineLength
+      100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / Event.where('datetime < ?', Time.zone.now).where(isMandatory: false).length
+# rubocop:enable Layout/LineLength      
     end
   end
 
