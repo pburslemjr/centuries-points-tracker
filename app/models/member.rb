@@ -4,8 +4,7 @@ class Member < ApplicationRecord
 
   def self.from_google(uid:, full_name:, email:)
     # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
-
-    return nil if Whitelist.where('lower(email) = ?', email.downcase).empty?
+    return nil if Whitelist.where("lower(email) = ?", email.downcase).blank?
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -17,8 +16,8 @@ class Member < ApplicationRecord
   def sort_pp
     ordered = Event.order(:datetime)
 
-    @past_events = ordered.where('datetime <= ?',
-                                 Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
+    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
+
 
     return 'Past events is Nil!' if @past_events.nil?
 

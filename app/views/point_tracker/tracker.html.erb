@@ -59,11 +59,11 @@
     <% content_for(:html_title) { 'Points Tracker' } %>
 
     <div class="container mt-5 events show">
-    <h2 class="center">Welcome To The Member Home Page, <%= current_member.name%></h2><br>
+    <h2 class="center">Welcome, <%= current_member.name%></h2><br>
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1>Event Participation:</h1> <br><h4> <%= @mandatory_event_num - @member_mandatory_event_num %> Missed Mandatory Event<% if @mandatory_event_num - @member_mandatory_event_num != 1%><%= 's' %><% end %></h4>
+            <h1>PP:</h1> <br><h4> <%= @mandatory_event_num - @member_mandatory_event_num %> Missed Mandatory Event<% if @mandatory_event_num - @member_mandatory_event_num != 1%><%= 's' %><% end %></h4>
             <h4>
               <% if @event_num > 0 %> 
                 <%= 100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num %>
