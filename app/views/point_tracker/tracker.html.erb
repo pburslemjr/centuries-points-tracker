@@ -57,7 +57,11 @@
 
     <%= flash[:alert] %>
     <% content_for(:html_title) { 'Points Tracker' } %>
+    <% if @event_num > 0 %>
     <% pp_val = (100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num) %>
+    <% else %>
+    <% pp_val = 100 %>
+    <% end %>
     <% mm_val = @mandatory_event_num - @member_mandatory_event_num %>
     <% s_val = @service_hours.where(isApproved: true).sum(:hours) %>
 

@@ -51,6 +51,8 @@
   <td><%= member.email %></td>
 <% if @past_events.length() != 0 %>
 <% pp_val = member.get_pp() %>
+<% else %>
+<% pp_val = 100 %>
 <% end %>
 <% mm_val = member.get_mm().to_i %>
 <% s_val = member.sort_service %>
