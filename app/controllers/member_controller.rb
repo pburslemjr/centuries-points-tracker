@@ -10,10 +10,10 @@ class MemberController < ApplicationController
     reset_sorting if params[:sort].nil?
     @members = if params[:sort] == 'pp'
                  if @reverse
-                   Member.all.sort_by(&:sort_pp)
+                   Member.all.sort_by(&:get_pp)
                  else
 
-                   Member.all.sort_by(&:sort_pp).reverse!
+                   Member.all.sort_by(&:get_pp).reverse!
                  end
                elsif params[:sort] == 'mm'
                  if @reverse

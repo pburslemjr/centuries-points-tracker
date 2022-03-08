@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get :delete
       get :attend
       get :unattend
+      get :toggle_lock
     end
   end
 

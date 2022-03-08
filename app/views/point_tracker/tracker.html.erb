@@ -57,16 +57,37 @@
 
     <%= flash[:alert] %>
     <% content_for(:html_title) { 'Points Tracker' } %>
+    <% pp_val = (100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num) %>
+    <% mm_val = @mandatory_event_num - @member_mandatory_event_num %>
+    <% s_val = @service_hours.where(isApproved: true).sum(:hours) %>
 
     <div class="container mt-5 events show">
     <h2 class="center">Welcome, <%= current_member.name%></h2><br>
       <div class="row">
         <div class="col left">
           <table class="table table-striped" summary="Event detail view">
-            <h1>PP:</h1> <br><h4> <%= @mandatory_event_num - @member_mandatory_event_num %> Missed Mandatory Event<% if @mandatory_event_num - @member_mandatory_event_num != 1%><%= 's' %><% end %></h4>
-            <h4>
+            <h1>PP:</h1>
+            <br>
+            <h4 class="<% if mm_val >= 6 %>
+            <%= 'reactive_color_red' %>
+            <% elsif mm_val > 3 %>
+            <%= 'reactive_color_yellow' %>
+            <% else %>
+            <%= 'reactive_color_green' %>
+            <% end %>
+            ">
+            <%= mm_val %> Missed Mandatory Event<% if mm_val != 1%><%= 's' %><% end %>
+            </h4>
+            <h4 class="<% if pp_val > 60 %>
+            <%= 'reactive_color_green' %>
+            <% elsif pp_val > 30 %>
+            <%= 'reactive_color_yellow' %>
+            <% else %>
+            <%= 'reactive_color_red' %>
+            <% end %>
+            ">
               <% if @event_num > 0 %> 
-                <%= 100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num %>
+                <%= pp_val %>
               <% else %> 
                 <%= 0 %>
               <% end %>% Attended
@@ -92,8 +113,18 @@
         </div>
         <div class="col right">
           <table class="table table-striped" summary="Event detail view">            
-          <h1>Approved Service Hours:<br><%= @service_hours.where(isApproved: true).sum(:hours) %></h1>
-          <h2>Service Hours</h2>    
+          <h1>Service:</h1>
+          <br>
+          <h4 class="
+          <% if s_val >= 15 %>
+          <%= 'reactive_color_green' %>
+          <% elsif s_val >= 6 %>
+          <%= 'reactive_color_yellow' %>
+          <% else %>
+          <%= 'reactive_color_red' %>
+          <% end %>
+          ">Approved Hours: <%= s_val %></h4>          
+          <h2>Requests</h2>    
             <thead>
               <tr>
                 <th>Description</th>

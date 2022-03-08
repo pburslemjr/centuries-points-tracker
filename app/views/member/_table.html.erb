@@ -49,15 +49,33 @@
 <tr class="item">
   <td><%= member.name %></td>
   <td><%= member.email %></td>
-
-  <td>
+<% if @past_events.length() != 0 %>
+<% pp_val = member.get_pp() %>
+<% end %>
+<% mm_val = member.get_mm().to_i %>
+<% s_val = member.sort_service %>
+<td class="<% if pp_val > 60 %>
+          <%= 'reactive_color_green' %>
+          <% elsif pp_val > 30 %>
+          <%= 'reactive_color_yellow' %>
+          <% else %>
+          <%= 'reactive_color_red' %>
+          <% end %>
+          ">
   <% if @past_events.length() == 0 %>
         No events have occured!
         <% else %>
-        <%= member.sort_pp %>%
+        <%= pp_val %>%
         <% end %>
   </td>
-  <td>
+  <td class="<% if mm_val >= 6 %>
+    <%= 'reactive_color_red' %>
+    <% elsif mm_val > 3 %>
+    <%= 'reactive_color_yellow' %>
+    <% else %>
+    <%= 'reactive_color_green' %>
+    <% end %>
+    ">
   <% if @past_events.length() == 0 %>
         No events have occured!
         <% else %>
@@ -65,7 +83,16 @@
         <%= member.sort_mm(uid: member.uid) %>
         <% end %>
   </td>
-  <td><%=member.sort_service%></td>
+  <td class="
+<% if s_val >= 15 %>
+<%= 'reactive_color_green' %>
+<% elsif s_val >= 6 %>
+<%= 'reactive_color_yellow' %>
+<% else %>
+<%= 'reactive_color_red' %>
+<% end %>
+">
+  <%= s_val %></td>
   
   
 

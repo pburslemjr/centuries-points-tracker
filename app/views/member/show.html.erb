@@ -28,7 +28,7 @@
         <% if @past_events.length() == 0 %>
         No events have occured!
         <% else %>
-        <%= @member.sort_pp %>%
+        <%= @member.sort_pp(uid: @member.uid) %>%
         <% end %>
       </td>
     </tr>

@@ -13,19 +13,23 @@ class Member < ApplicationRecord
     Service.where(member_id: id).sum(:hours)
   end
 
-  def sort_pp
-    ordered = Event.order(:datetime)
+  def sort_pp(uid:)
+    return nil if Member.find_by(uid: uid).nil?
+    @curr_member = Member.find_by(uid: uid)
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
+    @past_events = Event.where('datetime < ?', Time.zone.now).where(isMandatory: false)
+    @attended_events = @curr_member.events.where('datetime < ?', Time.zone.now).where(isMandatory: false)
+    past_events_len = @past_events.length
 
 
     return 'Past events is Nil!' if @past_events.nil?
+    return 'Attended events is Nil!' if @attended_events.nil?
 
-    if @past_events.length.zero?
+    if past_events_len == 0
       '100'
     else
 # rubocop:disable Layout/LineLength
-      100*current_member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / Event.where('datetime < ?', Time.zone.now).where(isMandatory: false).length
+      return 100 * @attended_events.length / past_events_len
 # rubocop:enable Layout/LineLength      
     end
   end
@@ -53,6 +57,10 @@ class Member < ApplicationRecord
   # rubocop:disable Naming/AccessorMethodName
   def get_mm
     sort_mm(uid: Member.find_by(id: id).uid)
+  end
+
+  def get_pp
+    sort_pp(uid: Member.find_by(id: id).uid)
   end
   # rubocop:enable Naming/AccessorMethodName
 end

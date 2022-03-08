@@ -9,18 +9,18 @@
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@700&display=swap');
 
     hr{
-      margin: 10rem auto;
+      margin: 2rem auto;
     }
 
     h1{
       font-family: 'Archivo Black', sans-serif;
       text-align: center;
-      margin-bottom: 5rem;
+      margin-bottom: 2rem;
     }
 
     h2{
       font-family: 'Montserrat', sans-serif;
-      margin: 5rem auto;
+      margin: 1rem auto;
     }
 
     p{
@@ -38,7 +38,7 @@
     .btn{
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
-      margin-top: 5rem;
+      margin-top: 2rem;
     }
 
     .container{
@@ -84,18 +84,9 @@
   <body>
     <% content_for(:html_title) { 'Events' } %>
     <%# container events index %>
-    <div class="container mt-5 ">
-      <% if !current_member.isAdmin %>
-        <h1>Attended Events</h1>
-        <br>
-        <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
-        <hr>
-      <% end %>
-    </div>
-
-      <h1>All Events</h1>
-
+    
       <div class="container mt-5 mb-5 events show">
+      <h1>All Events</h1>
         <div class="row">
           <div class="col left">
             <table class="table table-striped" summary="Event detail view">
@@ -111,6 +102,15 @@
           </div>
         </div>
       </div>
+
+      <div class="container mt-5 ">
+      <% if !current_member.isAdmin %>
+        <h1>Attended Events</h1>
+        <br>
+        <%= render :partial => 'table', locals: { events: @my_events, attended: true } %>
+        <hr>
+      <% end %>
+    </div>
 
     <% if current_member.isAdmin %>
         <div class="form-buttons">
