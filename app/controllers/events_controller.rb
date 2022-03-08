@@ -94,13 +94,8 @@ class EventsController < ApplicationController
   def toggle_lock
     @event = Event.find(params[:id])
     @event.isLocked = !@event.isLocked
-    if @event.save
-      redirect_to(events_path)
-    else
-      flash[:danger] = @event.errors.full_messages
-      redirect_to(events_path)
-    end
-    
+    flash[:danger] = @event.errors.full_messages unless @event.save
+    redirect_to(events_path)
   end
 
   private

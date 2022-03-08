@@ -4,7 +4,7 @@ class Member < ApplicationRecord
 
   def self.from_google(uid:, full_name:, email:)
     # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
-    return nil if Whitelist.where("lower(email) = ?", email.downcase).blank?
+    return nil if Whitelist.where('lower(email) = ?', email.downcase).blank?
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -15,22 +15,20 @@ class Member < ApplicationRecord
 
   def sort_pp(uid:)
     return nil if Member.find_by(uid: uid).nil?
+
     @curr_member = Member.find_by(uid: uid)
 
     @past_events = Event.where('datetime < ?', Time.zone.now).where(isMandatory: false)
     @attended_events = @curr_member.events.where('datetime < ?', Time.zone.now).where(isMandatory: false)
     past_events_len = @past_events.length
 
-
     return 'Past events is Nil!' if @past_events.nil?
     return 'Attended events is Nil!' if @attended_events.nil?
 
-    if past_events_len == 0
+    if past_events_len.zero?
       '100'
     else
-# rubocop:disable Layout/LineLength
-      return 100 * @attended_events.length / past_events_len
-# rubocop:enable Layout/LineLength      
+      100 * @attended_events.length / past_events_len
     end
   end
 
