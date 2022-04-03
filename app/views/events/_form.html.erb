@@ -21,14 +21,14 @@
       <div class="col">
         <div class="mb-4">
           <%= f.label :date, {class: "form-label"} %>
-          <%= f.date_field :date, {class: "form-control"} %>
+          <%= f.date_field :date, {class: "form-control", value: Date.today} %>
         </div>
       </div>
 
       <div class="col">
         <div class="mb-4">
           <%= f.label :time, {class: "form-label"} %>
-          <%= f.time_field :time, {class: "form-control"} %>
+          <%= f.time_field :time, {class: "form-control"}%>
         </div>
       </div>
     </div>

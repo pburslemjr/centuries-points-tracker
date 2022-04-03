@@ -10,11 +10,13 @@
       <th>Attendees</th>
       <th>Date</th>
       <th>Time</th>
+      <% if current_member.isAdmin %>
+      <th>Lock</th>
+      <% end %>
       <th>Action</th>
     </tr>
     <% events.each do |event| %>
-      <tr>
-        
+      <tr class="<%= event.isLocked ? 'reactive_color_red' : '' %>">        
         <td><%= event.formatName %></td>
         <td class="text-break"><%= event.description %></td>
         <td><%= event.location %></td>
@@ -22,16 +24,25 @@
         <td><%=event.members.count%></td>
         <td><%= event.format_date %></td>
         <td><%= event.formatTime %></td>
+        <% if current_member.isAdmin %>
+          <% if event.isLocked %>
+            <td><div><%= link_to("Unlock", toggle_lock_event_path(event), :class => 'action show') %></div></td>
+          <% else %>
+            <td><div><%= link_to("Lock", toggle_lock_event_path(event), :class => 'action show') %></div></td>
+          <% end %>
+        <% end %>
         <td>
           <% if !current_member.isAdmin %>
-            <% if attended %>
-              <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
-            <% else %>
-              <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
-            <% end %>
-          <% end %>
+            <% if !event.isLocked %>
+              <% if attended %>
+                <div><%= link_to("Unattend", unattend_event_path(event), :class => 'action show') %></div>
+              <% else %>
+                <div><%= link_to("Attend", attend_event_path(event), :class => 'action show') %></div>
+              <% end %>
+            <% end %>         
+          <% end %>          
           <div><%= link_to("Details", event_path(event), :class => 'action show') %></div>
-          <% if current_member.isAdmin %>
+          <% if current_member.isAdmin %>            
             <div><%= link_to("Edit", edit_event_path(event), :class => 'action edit') %></div>
             <div><%= link_to("Delete", delete_event_path(event), :class => 'action delete') %></div>
           <% end %>

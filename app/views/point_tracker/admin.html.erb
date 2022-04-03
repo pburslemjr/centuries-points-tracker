@@ -273,22 +273,54 @@
           <tr>
             <th id="col1" style="cursor:pointer" onclick="sortTableName(0)">Member</th>
             <th id="col2" style="cursor:pointer" onclick="sortTable(1)">Approved Service Hours</th>
-            <th id="col3" style="cursor:pointer" onclick="sortTable(2)">Unapproved Service Hours</th>
+            
             <th id="col4" style="cursor:pointer" onclick="sortTable(3)">Attendance Percentage</th>
             <th id="col5" style="cursor:pointer" onclick="sortTable(4)">Missed Mandatory Events</th>
             <th></th>
           </tr>
           <% @members.where(isAdmin: false).each do |member| %>
+            <% if @event_num > 0 %>
+            <% pp_val = 100*member.events.where('datetime < ?', Time.now).where(isMandatory: false).length / @event_num %>
+            <% else %>
+            <% pp_val = 100 %>
+            <% end %>
+            <% mm_val = @mandatory_event_num - member.events.where(isMandatory: true).where('datetime < ?', Time.now).length.to_i %>
+            <% s_val = @service_hours.where(member_id: member.id, isApproved: true,).sum(:hours) %>
             <tr>
               <td><%= member.name %></td>
-              <td><%= @service_hours.where(member_id: member.id, isApproved: true,).sum(:hours) %></td>
-              <td><%= @service_hours.where(member_id: member.id, isApproved: false).sum(:hours) %></td>
-              <% if @event_num > 0 %>
-                <td><%= 100*member.events.where('datetime < ?', Time.now).length / @event_num %></td>
+              <td class="
+              <% if s_val >= 15 %>
+              <%= 'reactive_color_green' %>
+              <% elsif s_val >= 6 %>
+              <%= 'reactive_color_yellow' %>
               <% else %>
-                <td><%= 100 %></td>
+              <%= 'reactive_color_red' %>
               <% end %>
-              <td><%= @mandatory_event_num - member.events.where(isMandatory: true).where('datetime < ?', Time.now).length %></td>
+              ">
+              <%= s_val %></td>
+              
+              <% if @event_num > 0 %>
+                <td class="<% if pp_val > 60 %>
+                <%= 'reactive_color_green' %>
+                <% elsif pp_val > 30 %>
+                <%= 'reactive_color_yellow' %>
+                <% else %>
+                <%= 'reactive_color_red' %>
+                <% end %>
+                ">
+                <%= pp_val %>%</td>
+              <% else %>
+                <td class="reactive_color_green"><%= 100 %>%</td>
+              <% end %>
+              <td class="<% if mm_val >= 6 %>
+              <%= 'reactive_color_red' %>
+              <% elsif mm_val > 3 %>
+              <%= 'reactive_color_yellow' %>
+              <% else %>
+              <%= 'reactive_color_green' %>
+              <% end %>
+              ">
+              <%= mm_val %></td>
               <td><%= link_to("Details", member_path(member), :class => 'action show') %></td>
             </tr>
           <% end %>

@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .reactive_color_red {background-color: rgb(255, 143, 143) !important;}
+ .reactive_color_yellow {background-color: yellow !important;}
+ .reactive_color_green {background-color: lightgreen !important;}

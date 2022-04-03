@@ -73,12 +73,13 @@ whitelist_data = [
 'carterwiegand0@gmail.com',
 'paul-b-tamu@tamu.edu',
 'centurymens.vp@gmail.com',
+'pebjr99@gmail.com',
 'centurymens.service@gmail.com'
 ]
 
 
-whitelist_data.each do |email|
-  Whitelist.create(email: email) if Whitelist.find_by(email: email).nil?
+whitelist_data.each do |email| 
+  Whitelist.create(email: email) if Whitelist.where("lower(email) = ?", email.downcase).blank?
 end
 
 Member.create(name: 'President', isAdmin: true, email: 'centurymens.president@gmail.com', 
@@ -92,6 +93,9 @@ Member.create(name: 'Vice President', isAdmin: true, email: 'centurymens.vp@gmai
 
 Member.create(name: 'Service Officer', isAdmin: true, email: 'centurymens.service@gmail.com', 
   uid: 115921819643726050456) if Member.find_by(uid: 115921819643726050456).nil?
+
+Member.create(name: 'Developer', isAdmin: true, email: 'pebjr99@gmail.com', 
+  uid: 106635036644446547959) if Member.find_by(uid: 106635036644446547959).nil?
 
 
 

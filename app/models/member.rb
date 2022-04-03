@@ -3,10 +3,8 @@ class Member < ApplicationRecord
   has_and_belongs_to_many :events
 
   def self.from_google(uid:, full_name:, email:)
-     #print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
-
-    return nil if Whitelist.where("lower(email) = ?", email.downcase).blank?
-
+    # print("UID '#{uid}', full_name '#{full_name}', email '#{email}'\n")
+    return nil if Whitelist.where('lower(email) = ?', email.downcase).blank?
 
     create_with(uid: uid, name: full_name, email: email.downcase, isAdmin: false).find_or_create_by!(uid: uid)
   end
@@ -15,18 +13,22 @@ class Member < ApplicationRecord
     Service.where(member_id: id).sum(:hours)
   end
 
-  def sort_pp
-    ordered = Event.order(:datetime)
+  def sort_pp(uid:)
+    return nil if Member.find_by(uid: uid).nil?
 
-    @past_events = ordered.where('datetime <= ?', Time.zone.now).or(ordered.where(datetime: nil)).where(isMandatory: false)
+    @curr_member = Member.find_by(uid: uid)
+
+    @past_events = Event.where('datetime < ?', Time.zone.now).where(isMandatory: false)
+    @attended_events = @curr_member.events.where('datetime < ?', Time.zone.now).where(isMandatory: false)
+    past_events_len = @past_events.length
 
     return 'Past events is Nil!' if @past_events.nil?
+    return 'Attended events is Nil!' if @attended_events.nil?
 
-    if @past_events.length.zero?
-      'No events!'
+    if past_events_len.zero?
+      '100'
     else
-      ((events.where('datetime <= ?', Time.zone.now).length.to_f / @past_events.length) * 100.to_f).round(2)
-
+      100 * @attended_events.length / past_events_len
     end
   end
 
@@ -50,7 +52,13 @@ class Member < ApplicationRecord
     end
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def get_mm
     sort_mm(uid: Member.find_by(id: id).uid)
   end
+
+  def get_pp
+    sort_pp(uid: Member.find_by(id: id).uid)
+  end
+  # rubocop:enable Naming/AccessorMethodName
 end
